@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestellung beim Universum · The Feminine Way of Manifestation</title>
+<meta name="description" content="Bestellung beim Universum – The feminine way of manifestation. Deine kostenlose Session mit der Kraft bilateraler Stimulation.">
+<meta name="theme-color" content="#8b3a2a">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sienna:#8b3a2a; --sienna-1:#b85a42; --sienna-d:#6a2a1a;
+  --gold:#c4963a; --gold-1:#e8c06a;
+  --cream:#f5efe6; --warm:#ede3d6; --sand:#d4c4ae;
+  --bg:#2a1f18;
+  --text:#2a1f18; --mid:#7a5e4e; --lt:#a8907e;
+  --white:#fdfaf6; --sh:rgba(42,31,24,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 15% 20%,rgba(139,58,42,.12) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 60% at 85% 80%,rgba(196,150,58,.09) 0%,transparent 60%);
+  background-color:var(--cream);
+}
+
+.screen{
+  display:none;
+  position:relative;
+  z-index:1;
+  min-height:100vh;
+  animation:fadeIn .6s ease;
+}
+.screen.active{display:flex;flex-direction:column;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* === Layout Wrapper === */
+.wrap{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:3rem 1.5rem;
+  position:relative;
+}
+
+/* === Hero Page (Seite 1) === */
+.hero{
+  background:linear-gradient(155deg,rgba(106,42,26,0.92) 0%,rgba(139,58,42,0.88) 55%,rgba(160,72,48,0.85) 100%);
+  color:var(--cream);
+  position:relative;
+  overflow:hidden;
+}
+.hero-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.35;
+  z-index:0;
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:680px;
+  text-align:center;
+  padding:2rem;
+}
+.eyebrow{
+  font-size:0.75rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--gold-1);
+  margin-bottom:1.5rem;
+  font-weight:400;
+}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.5rem,7vw,4.5rem);
+  font-weight:300;
+  line-height:1.1;
+  margin-bottom:1.5rem;
+  letter-spacing:-0.01em;
+}
+h1 em{
+  font-style:italic;
+  color:var(--gold-1);
+}
+.hero-text{
+  font-size:clamp(1rem,2vw,1.15rem);
+  line-height:1.7;
+  font-weight:300;
+  max-width:540px;
+  margin:0 auto 2.5rem;
+  opacity:0.95;
+}
+.btn{
+  display:inline-block;
+  padding:1.1rem 2.5rem;
+  background:var(--gold);
+  color:var(--bg);
+  border:none;
+  border-radius:0;
+  font-family:'Outfit',sans-serif;
+  font-size:0.95rem;
+  font-weight:400;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all .3s ease;
+  text-decoration:none;
+}
+.btn:hover{
+  background:var(--gold-1);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.2);
+}
+.btn-outline{
+  background:transparent;
+  color:var(--cream);
+  border:1px solid var(--gold-1);
+}
+.btn-outline:hover{
+  background:var(--gold);
+  color:var(--bg);
+}
+
+/* === Content Pages (Seite 2-7) === */
+.content{
+  background:var(--cream);
+  color:var(--text);
+}
+.content-inner{
+  max-width:680px;
+  width:100%;
+  text-align:left;
+  padding:2rem;
+}
+.content-inner.center{text-align:center;}
+.content .eyebrow{
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3rem);
+  font-weight:300;
+  line-height:1.15;
+  margin-bottom:1.5rem;
+  color:var(--sienna);
+  letter-spacing:-0.01em;
+}
+h2 em{font-style:italic;}
+.content p{
+  font-size:1.05rem;
+  line-height:1.8;
+  color:var(--text);
+  margin-bottom:1.25rem;
+  font-weight:300;
+}
+.content p strong{font-weight:500;color:var(--sienna);}
+.content .quote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.4rem;
+  line-height:1.5;
+  color:var(--sienna);
+  border-left:2px solid var(--gold);
+  padding-left:1.5rem;
+  margin:2rem 0;
+}
+.content-img{
+  width:100%;
+  max-width:520px;
+  height:auto;
+  margin:2rem auto;
+  display:block;
+  border-radius:2px;
+  box-shadow:0 12px 40px rgba(42,31,24,0.15);
+}
+.nav-actions{
+  margin-top:2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
+  align-items:center;
+}
+
+/* === Session Page (Seite 7) === */
+.session{
+  background:linear-gradient(160deg,#1a1410 0%,#2a1f18 100%);
+  color:var(--cream);
+}
+.session h2{color:var(--gold-1);}
+.session p{color:var(--cream);opacity:0.9;}
+.session-stage{
+  width:100%;
+  max-width:520px;
+  margin:2rem auto;
+  text-align:center;
+}
+.session-input{
+  width:100%;
+  padding:1rem;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(196,150,58,0.3);
+  color:var(--cream);
+  font-family:'Outfit',sans-serif;
+  font-size:1rem;
+  margin-bottom:1rem;
+  border-radius:2px;
+}
+.session-input::placeholder{color:rgba(245,239,230,0.4);}
+.session-display{
+  background:rgba(196,150,58,0.08);
+  border:1px solid rgba(196,150,58,0.25);
+  padding:2rem 1.5rem;
+  margin:1.5rem 0;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.3rem;
+  line-height:1.5;
+  min-height:120px;
+  color:var(--gold-1);
+  text-align:center;
+}
+.bilat-orb{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:radial-gradient(circle,var(--gold-1) 0%,var(--gold) 70%);
+  margin:2rem auto;
+  box-shadow:0 0 40px rgba(232,192,106,0.5);
+  position:relative;
+  display:none;
+}
+.bilat-orb.active{display:block;animation:bilat 1.6s ease-in-out infinite;}
+@keyframes bilat{
+  0%,100%{transform:translateX(-120px);}
+  50%{transform:translateX(120px);}
+}
+
+/* === Switch Question (Seite 8a) === */
+.switch{
+  background:linear-gradient(155deg,#fdfaf6 0%,#f5efe6 100%);
+}
+.switch h2{
+  text-align:center;
+  margin-bottom:0.5rem;
+}
+.switch-sub{
+  text-align:center;
+  font-style:italic;
+  color:var(--mid);
+  margin-bottom:3rem;
+  font-size:1.05rem;
+}
+.switch-options{
+  display:grid;
+  gap:1.5rem;
+  max-width:520px;
+  margin:0 auto;
+}
+.switch-option{
+  background:var(--white);
+  padding:2rem 1.5rem;
+  border:1px solid var(--sand);
+  text-align:center;
+  cursor:pointer;
+  transition:all .3s ease;
+  text-decoration:none;
+  color:var(--text);
+  display:block;
+}
+.switch-option:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(42,31,24,0.1);
+}
+.switch-emoji{
+  font-size:2rem;
+  display:block;
+  margin-bottom:0.75rem;
+}
+.switch-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;
+  color:var(--sienna);
+  margin-bottom:0.4rem;
+  font-weight:400;
+}
+.switch-desc{
+  font-size:0.9rem;
+  color:var(--mid);
+  font-style:italic;
+}
+
+/* === Upsell Pages (Seite 8b und 8c) === */
+.upsell{
+  background:linear-gradient(170deg,var(--cream) 0%,var(--warm) 100%);
+}
+.upsell-img{
+  width:100%;
+  max-width:480px;
+  height:auto;
+  margin:1.5rem auto 2rem;
+  display:block;
+  border-radius:2px;
+  box-shadow:0 12px 40px rgba(42,31,24,0.15);
+}
+.upsell h2{
+  text-align:center;
+}
+.upsell-text{
+  text-align:center;
+  max-width:560px;
+  margin:0 auto 2rem;
+  font-size:1.05rem;
+  line-height:1.7;
+  color:var(--text);
+}
+.product-card{
+  background:var(--white);
+  padding:2rem;
+  border:1px solid var(--sand);
+  margin:1rem 0;
+  text-align:center;
+  transition:all .3s ease;
+}
+.product-card:hover{
+  border-color:var(--gold);
+  box-shadow:0 8px 28px rgba(42,31,24,0.08);
+}
+.product-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem;
+  color:var(--sienna);
+  margin-bottom:0.5rem;
+}
+.product-tagline{
+  font-style:italic;
+  color:var(--mid);
+  margin-bottom:1rem;
+  font-size:0.95rem;
+}
+.product-price{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+  color:var(--gold);
+  margin-bottom:1.25rem;
+  font-weight:400;
+}
+.product-cta{
+  font-size:0.85rem;
+  letter-spacing:0.1em;
+}
+.product-grid{
+  display:grid;
+  gap:1rem;
+  margin:2rem 0;
+}
+@media(min-width:640px){
+  .product-grid{grid-template-columns:1fr 1fr;}
+}
+.gift-box{
+  background:linear-gradient(135deg,rgba(196,150,58,0.12) 0%,rgba(232,192,106,0.08) 100%);
+  border:1px solid var(--gold);
+  padding:2rem;
+  margin:1.5rem 0;
+  text-align:center;
+}
+.gift-label{
+  font-size:0.75rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:0.75rem;
+}
+.gift-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  color:var(--sienna);
+  margin-bottom:0.75rem;
+}
+
+/* === Disclaimer === */
+.disclaimer{
+  background:var(--bg);
+  color:rgba(253,250,246,0.75);
+  padding:2.5rem 1.5rem;
+  text-align:center;
+  font-size:0.85rem;
+  line-height:1.7;
+  font-style:italic;
+}
+.disclaimer strong{
+  display:block;
+  font-style:normal;
+  font-weight:500;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  font-size:0.7rem;
+  color:var(--gold-1);
+  margin-bottom:1rem;
+}
+.disclaimer-inner{
+  max-width:680px;
+  margin:0 auto;
+}
+
+/* === Page Indicator === */
+.indicator{
+  position:fixed;
+  top:1.5rem;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:0.5rem;
+  z-index:100;
+}
+.indicator-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(42,31,24,0.2);
+  transition:all .3s ease;
+}
+.indicator-dot.active{
+  background:var(--gold);
+  width:24px;
+  border-radius:3px;
+}
+
+/* === Mobile === */
+@media(max-width:600px){
+  .wrap{padding:2rem 1rem;}
+  .hero-content,.content-inner{padding:1.5rem;}
+  h1{font-size:2.2rem;}
+  h2{font-size:1.8rem;}
+  .content p{font-size:1rem;}
+  .indicator{top:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- Page Indicator -->
+<div class="indicator" id="indicator"></div>
+
+<!-- ===== SEITE 1: Hero / Intro ===== -->
+<div class="screen active wrap hero" id="screen1">
+  <img src="images/bild1.png" alt="" class="hero-img">
+  <div class="hero-content">
+    <div class="eyebrow">The Feminine Way of Manifestation · Kostenlos</div>
+    <h1>Bestellung beim<br><em>Universum</em></h1>
+    <p class="hero-text">
+      Du hast schon vieles versucht. Visualisiert. Affirmiert. Gewünscht. Und trotzdem — die Lieferung kommt nicht an. Nicht weil das Universum nicht hört. Sondern weil weibliche Manifestation anders funktioniert als du gelernt hast.
+    </p>
+    <button class="btn" onclick="goTo('screen2')">Jetzt starten</button>
+  </div>
+</div>
+
+<!-- ===== SEITE 2: Das Missverständnis ===== -->
+<div class="screen wrap content" id="screen2">
+  <div class="content-inner">
+    <div class="eyebrow">Das Missverständnis</div>
+    <h2>Manifestation ist <em>kein Kampf</em></h2>
+    <p>Frauen wurden konditioniert zu leisten, zu verdienen, zu kontrollieren. Aber das ist der maskuline Weg.</p>
+    <p>Der feminine Weg beginnt anders — mit dem <strong>Sein</strong> statt mit dem Tun. Mit dem <strong>Empfangen</strong> statt mit dem Kämpfen. Mit dem <strong>Verkörpern</strong> statt mit dem Wünschen.</p>
+    <div class="quote">
+      "Du sollst nicht bekommen, was du willst. Du sollst werden, wer du bist."
+    </div>
+    <div class="nav-actions">
+      <button class="btn" onclick="goTo('screen3')">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 3: The Feminine Way ===== -->
+<div class="screen wrap content" id="screen3">
+  <div class="content-inner">
+    <div class="eyebrow">The Feminine Way</div>
+    <h2>Tiefer als <em>Gedanken</em> reichen</h2>
+    <p>Was du dir wünschst, lebt nicht im Kopf. Es lebt in deinem Nervensystem — in den Mustern, die du als kleines Mädchen gelernt hast.</p>
+    <p>Solange dein Körper "Mangel" gelernt hat, kannst du noch so oft "Fülle" denken — er glaubt es nicht.</p>
+    <p>Die wahre Bestellung beim Universum geht anders:</p>
+    <p><strong>Du fühlst zuerst.</strong> Du verkörperst zuerst. Und dann erst kommt das, was zu dieser Frau gehört.</p>
+    <div class="nav-actions">
+      <button class="btn" onclick="goTo('screen4')">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 4: Die zwei Schlüssel ===== -->
+<div class="screen wrap content" id="screen4">
+  <div class="content-inner">
+    <div class="eyebrow">Die zwei Schlüssel</div>
+    <h2>Bilaterale Stimulation <em>+ Emotion</em></h2>
+    <p>Wir nutzen heute zwei Schlüssel, die deinem Nervensystem helfen, eine neue Bestellung wirklich zu speichern:</p>
+    <p><strong>1. Bilaterale Stimulation.</strong> Sanftes Wechseln zwischen rechter und linker Gehirnhälfte. Diese Methode wird auch in der Trauma-Coaching-Arbeit eingesetzt, weil sie das Nervensystem öffnet und neue Verbindungen ermöglicht.</p>
+    <p><strong>2. Emotionale Verkörperung.</strong> Wir gehen nicht nur in den Wunsch — wir gehen in das Gefühl, das diese Frau hat, die schon dort angekommen ist, wo du hin willst.</p>
+    <div class="nav-actions">
+      <button class="btn" onclick="goTo('screen5')">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 5: Anleitung mit Bild 2 ===== -->
+<div class="screen wrap content" id="screen5">
+  <div class="content-inner center">
+    <div class="eyebrow">So wendest du das Tool an</div>
+    <h2>4 <em>Schritte</em></h2>
+    <img src="images/bild2.png" alt="" class="content-img">
+    <p style="text-align:left;"><strong>1. Wunsch klären.</strong> Eine Sache. Konkret. Sinnlich.</p>
+    <p style="text-align:left;"><strong>2. Gefühl finden.</strong> Wie fühlt es sich an, wenn es schon da ist?</p>
+    <p style="text-align:left;"><strong>3. Bestellung formulieren.</strong> Im Präsens, aus dem Sein heraus.</p>
+    <p style="text-align:left;"><strong>4. Bilaterale Session.</strong> Den Wunsch im Körper verankern.</p>
+    <div class="nav-actions">
+      <button class="btn" onclick="goTo('screen6')">Weiter</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 6: Atemübung mit Bild 3 ===== -->
+<div class="screen wrap content" id="screen6">
+  <div class="content-inner center">
+    <div class="eyebrow">Vorbereitung</div>
+    <h2>Komm <em>im Körper</em> an</h2>
+    <img src="images/bild3.png" alt="" class="content-img">
+    <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
+    <p><strong>Einatmen — 4 Sekunden.</strong><br><strong>Halten — 4 Sekunden.</strong><br><strong>Ausatmen — 6 Sekunden.</strong></p>
+    <p style="font-style:italic;color:var(--mid);">Wenn du bereit bist, gehen wir in die Session.</p>
+    <div class="nav-actions">
+      <button class="btn" onclick="goTo('screen7')">Ich bin bereit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 7: Session ===== -->
+<div class="screen wrap session" id="screen7">
+  <div class="content-inner center">
+    <div class="eyebrow">Deine Session</div>
+    <h2>Deine <em>Bestellung</em></h2>
+    <div class="session-stage">
+      <input type="text" class="session-input" id="wishInput" placeholder="Was wünschst du dir? (z.B. Liebe, die mich sieht)">
+      <input type="text" class="session-input" id="feelInput" placeholder="Wie fühlt es sich an, wenn es schon da ist?">
+      <div class="session-display" id="orderDisplay">Deine Bestellung erscheint hier...</div>
+      <button class="btn" onclick="formOrder()">Bestellung formulieren</button>
+      <div class="bilat-orb" id="bilatOrb"></div>
+      <button class="btn btn-outline" onclick="startSession()" id="sessionBtn" style="margin-top:1rem;">Session starten</button>
+      <button class="btn" onclick="finishSession()" id="finishBtn" style="margin-top:1rem;display:none;">Bestellung absenden</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 8a: Weichenstellung ===== -->
+<div class="screen wrap switch" id="screen8">
+  <div class="content-inner center">
+    <div class="eyebrow">Eine letzte Frage</div>
+    <h2>Welches Thema bewegt dich gerade <em>am stärksten?</em></h2>
+    <p class="switch-sub">Damit ich dir den passenden nächsten Schritt zeigen kann.</p>
+    <div class="switch-options">
+      <a class="switch-option" onclick="goTo('upsellSelf')">
+        <span class="switch-emoji">🌸</span>
+        <div class="switch-title">Die Reise zu mir selbst</div>
+        <div class="switch-desc">Weiblichkeit · Selbstwerdung · Essenz</div>
+      </a>
+      <a class="switch-option" onclick="goTo('upsellRelation')">
+        <span class="switch-emoji">💫</span>
+        <div class="switch-title">Meine Partnerschaft</div>
+        <div class="switch-desc">Beziehung · Klarheit · Liebe</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 8b: Upsell Stream Selbst ===== -->
+<div class="screen wrap upsell" id="upsellSelf">
+  <div class="content-inner center">
+    <div class="eyebrow">Dein nächster Schritt</div>
+    <h2>Du hast gespürt, was möglich ist.<br><em>Jetzt kommen wir dahin.</em></h2>
+    <img src="images/bild4.png" alt="" class="upsell-img">
+    <p class="upsell-text">
+      Was du gerade erlebt hast, war ein Vorgeschmack. <strong>Feminin Reset</strong> ist die echte Reise zurück zu dir — in 30 Tagen.
+    </p>
+    <div class="product-card">
+      <div class="product-name">FEMININ RESET</div>
+      <div class="product-tagline">Zurück zu dir · 30 Tage Selbstwerdung</div>
+      <div class="product-price">27€</div>
+      <a href="#" class="btn product-cta">Ja, ich starte meine 30 Tage</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 8c: Upsell Stream Partnerschaft ===== -->
+<div class="screen wrap upsell" id="upsellRelation">
+  <div class="content-inner center">
+    <div class="eyebrow">Dein nächster Schritt</div>
+    <h2>Lass uns zuerst <em>Klarheit</em> schaffen,<br>was bei dir wirklich los ist.</h2>
+    <img src="images/bild4.png" alt="" class="upsell-img">
+
+    <div class="gift-box">
+      <div class="gift-label">Mein Geschenk an dich</div>
+      <div class="gift-title">Beziehungs-Klarheits-Check</div>
+      <p style="margin-bottom:1.25rem;color:var(--text);">Du hast 'Partnerschaft' gewählt — ich höre dich. Bevor du irgendetwas kaufst, schenke ich dir den Beziehungs-Klarheits-Check. Damit du verstehst, was bei dir gerade wirklich passiert.</p>
+      <a href="#" class="btn">Ja, ich will Klarheit — kostenlos</a>
+    </div>
+
+    <p class="upsell-text" style="margin-top:2rem;font-style:italic;">
+      Klarheit ist der erste Schritt. Aber Klarheit allein verändert noch nichts. Hier sind zwei Wege, wie du jetzt konkret weitergehen kannst:
+    </p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-name">TEXT HIM</div>
+        <div class="product-tagline">Wenn er sich gerade meldet (oder nicht) und du nicht weißt, was du antworten sollst.</div>
+        <div class="product-price">27€</div>
+        <a href="#" class="btn product-cta">Ich will TEXT HIM</a>
+      </div>
+      <div class="product-card">
+        <div class="product-name">BINDUNGSTYP-NAVIGATOR</div>
+        <div class="product-tagline">Wenn du das Muster erkennen willst, das dich immer wieder an den gleichen Punkt führt.</div>
+        <div class="product-price">27€</div>
+        <a href="#" class="btn product-cta">Ich will den Navigator</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Disclaimer (immer sichtbar am Ende) ===== -->
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>Wichtiger Hinweis</strong>
+    Dieses Coaching-Erlebnis ist keine Therapie und ersetzt keine therapeutische oder ärztliche Behandlung. Bei akuter psychischer Belastung wende dich bitte an die Telefonseelsorge (0800 / 111 0 111), deinen Hausarzt oder eine psychotherapeutische Praxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.
+  </div>
+</div>
+
+<script>
+const screens = ['screen1','screen2','screen3','screen4','screen5','screen6','screen7','screen8','upsellSelf','upsellRelation'];
+
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const target = document.getElementById(id);
+  if(target){
+    target.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    updateIndicator(id);
+  }
+}
+
+function updateIndicator(id){
+  const indicator = document.getElementById('indicator');
+  const visible = ['screen1','screen2','screen3','screen4','screen5','screen6','screen7','screen8'];
+  if(!visible.includes(id)){
+    indicator.style.display = 'none';
+    return;
+  }
+  indicator.style.display = 'flex';
+  indicator.innerHTML = '';
+  visible.forEach(s => {
+    const dot = document.createElement('div');
+    dot.className = 'indicator-dot';
+    if(s === id) dot.classList.add('active');
+    indicator.appendChild(dot);
+  });
+}
+
+function formOrder(){
+  const wish = document.getElementById('wishInput').value.trim();
+  const feel = document.getElementById('feelInput').value.trim();
+  if(!wish || !feel){
+    alert('Bitte fülle beide Felder aus.');
+    return;
+  }
+  const order = `Ich bin die Frau, die ${wish.toLowerCase()} bereits in ihrem Leben hat. Ich fühle mich ${feel.toLowerCase()}. Es ist auf dem Weg zu mir.`;
+  document.getElementById('orderDisplay').textContent = order;
+}
+
+function startSession(){
+  const order = document.getElementById('orderDisplay').textContent;
+  if(order.includes('erscheint hier')){
+    alert('Bitte formuliere zuerst deine Bestellung.');
+    return;
+  }
+  document.getElementById('bilatOrb').classList.add('active');
+  document.getElementById('sessionBtn').style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('finishBtn').style.display = 'inline-block';
+  }, 8000);
+}
+
+function finishSession(){
+  document.getElementById('bilatOrb').classList.remove('active');
+  goTo('screen8');
+}
+
+// Initialisierung
+updateIndicator('screen1');
+</script>
+
+</body>
+</html>
