@@ -82,7 +82,7 @@ body::after{
 #screen1,#screen2,#screen3,#screen4{
   background-color:var(--bg);
   background-image:
-    linear-gradient(rgba(139,58,42,0.55),rgba(139,58,42,0.55)),
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
     url('images/bild1.png');
   background-size:cover;
   background-position:center;
@@ -91,7 +91,7 @@ body::after{
 #screen5{
   background-color:var(--bg);
   background-image:
-    linear-gradient(rgba(139,58,42,0.55),rgba(139,58,42,0.55)),
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
     url('images/bild2.png');
   background-size:cover;
   background-position:center;
@@ -100,7 +100,7 @@ body::after{
 #screen6,#screen7{
   background-color:var(--bg);
   background-image:
-    linear-gradient(rgba(139,58,42,0.55),rgba(139,58,42,0.55)),
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
     url('images/bild3.png');
   background-size:cover;
   background-position:center;
@@ -109,30 +109,29 @@ body::after{
 #screen10,#streamSelf,#streamRelation{
   background-color:var(--bg);
   background-image:
-    linear-gradient(rgba(139,58,42,0.55),rgba(139,58,42,0.55)),
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
     url('images/bild4.png');
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
 }
 
-/* Text legibility on dark image overlay */
-#screen2,#screen3,#screen4,#screen5,#screen6,#screen7,
-#screen10,#streamSelf,#streamRelation{color:var(--cream);}
-#screen2 h2,#screen3 h2,#screen4 h2,#screen5 h2,#screen6 h2,#screen7 h2,
-#screen10 h2,#streamSelf h2,#streamRelation h2{color:var(--gold-1);}
-#screen2 .content p,#screen3 .content p,#screen4 .content p,
-#screen5 .content p,#screen6 .content p,#screen7 .content p{color:var(--cream);}
-#screen2 .content p strong,#screen3 .content p strong,#screen4 .content p strong,
-#screen5 .content p strong,#screen6 .content p strong,#screen7 .content p strong{color:var(--gold-1);}
-#screen2 .quote,#screen3 .quote,#screen4 .quote,
-#screen5 .quote,#screen6 .quote,#screen7 .quote{
-  color:var(--gold-1);border-left-color:var(--gold);
+/* White text on background-image pages for legibility on dark overlay */
+#screen1 p,#screen1 h1,#screen1 h2,#screen1 h3,#screen1 span,#screen1 blockquote,
+#screen2 p,#screen2 h1,#screen2 h2,#screen2 h3,#screen2 span,#screen2 blockquote,
+#screen3 p,#screen3 h1,#screen3 h2,#screen3 h3,#screen3 span,#screen3 blockquote,
+#screen4 p,#screen4 h1,#screen4 h2,#screen4 h3,#screen4 span,#screen4 blockquote,
+#screen5 p,#screen5 h1,#screen5 h2,#screen5 h3,#screen5 span,#screen5 blockquote,
+#screen6 p,#screen6 h1,#screen6 h2,#screen6 h3,#screen6 span,#screen6 blockquote,
+#screen7 p,#screen7 h1,#screen7 h2,#screen7 h3,#screen7 span,#screen7 blockquote,
+#screen10 p,#screen10 h1,#screen10 h2,#screen10 h3,#screen10 span,#screen10 blockquote,
+#streamSelf p,#streamSelf h1,#streamSelf h2,#streamSelf h3,#streamSelf span,#streamSelf blockquote,
+#streamRelation p,#streamRelation h1,#streamRelation h2,#streamRelation h3,#streamRelation span,#streamRelation blockquote{
+  color:#ffffff;
 }
-#screen10 .switch-sub{color:rgba(245,239,230,0.85);}
-#streamSelf .upsell-text,#streamRelation .upsell-text{color:var(--cream);}
-#streamSelf .upsell-text strong,#streamRelation .upsell-text strong{color:var(--gold-1);}
-#streamSelf .stream-section-title,#streamRelation .stream-section-title{color:var(--gold-1);}
+
+/* Restore card content readability — cards have their own light background */
+#screen5 .step-body span{color:var(--mid);}
 .hero-content{
   position:relative;
   z-index:1;
