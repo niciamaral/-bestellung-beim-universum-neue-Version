@@ -34,9 +34,22 @@ body::before{
   inset:0;
   z-index:0;
   pointer-events:none;
-  background:radial-gradient(ellipse 70% 50% at 15% 20%,rgba(139,58,42,.12) 0%,transparent 60%),
-             radial-gradient(ellipse 50% 60% at 85% 80%,rgba(196,150,58,.09) 0%,transparent 60%);
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 20%,rgba(139,58,42,.14) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 55% at 85% 80%,rgba(196,150,58,.10) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 30% at 50% 50%,rgba(232,192,106,.05) 0%,transparent 70%);
   background-color:var(--cream);
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:0.4;
+  background-image:
+    radial-gradient(rgba(139,58,42,0.04) 1px,transparent 1px);
+  background-size:3px 3px;
 }
 
 .screen{
@@ -275,9 +288,23 @@ h2 em{font-style:italic;}
 }
 
 .session{
-  background:linear-gradient(160deg,#1a1410 0%,#2a1f18 100%);
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 35%,rgba(196,150,58,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 80% 60% at 20% 100%,rgba(139,58,42,0.18) 0%,transparent 65%),
+    linear-gradient(160deg,#1a1410 0%,#2a1f18 60%,#1f1612 100%);
   color:var(--cream);
+  position:relative;
+  overflow:hidden;
 }
+.session::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:radial-gradient(circle at 50% 35%,rgba(232,192,106,0.06) 0%,transparent 50%);
+  z-index:0;
+}
+.session > .wrap,.session > .disclaimer{position:relative;z-index:1;}
 .session h2{color:var(--gold-1);}
 .session p{color:var(--cream);opacity:0.9;}
 .session-stage{
@@ -307,36 +334,63 @@ h2 em{font-style:italic;}
 .bilat-track{
   position:relative;
   width:100%;
-  max-width:340px;
-  height:80px;
+  max-width:380px;
+  height:110px;
   margin:2.5rem auto 1.5rem;
+  overflow:hidden;
 }
 .bilat-rail{
   position:absolute;
   top:50%;
-  left:0;
-  right:0;
+  left:8%;
+  right:8%;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(196,150,58,0.3),transparent);
+  background:linear-gradient(90deg,transparent,rgba(196,150,58,0.35),transparent);
   transform:translateY(-50%);
+}
+.bilat-glow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:140px;
+  height:140px;
+  margin:-70px 0 0 -70px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(232,192,106,0.28) 0%,rgba(232,192,106,0.08) 40%,transparent 70%);
+  animation:bilat 1.2s cubic-bezier(0.45,0,0.55,1) infinite;
+  animation-play-state:paused;
+  opacity:0;
+  transition:opacity .6s ease;
+  filter:blur(8px);
 }
 .bilat-orb{
   position:absolute;
   top:50%;
   left:50%;
-  width:46px;
-  height:46px;
-  margin:-23px 0 0 -23px;
+  width:54px;
+  height:54px;
+  margin:-27px 0 0 -27px;
   border-radius:50%;
-  background:radial-gradient(circle,var(--gold-1) 0%,var(--gold) 70%);
-  box-shadow:0 0 36px rgba(232,192,106,0.55);
-  animation:bilat 1.2s ease-in-out infinite;
+  background:radial-gradient(circle at 35% 32%,#fff8ec 0%,var(--gold-1) 35%,var(--gold) 75%,var(--sienna) 100%);
+  box-shadow:
+    inset 0 0 8px rgba(255,248,236,0.35),
+    0 0 20px 2px rgba(232,192,106,0.4),
+    0 0 50px 8px rgba(232,192,106,0.25);
+  animation:bilat 1.2s cubic-bezier(0.45,0,0.55,1) infinite;
   animation-play-state:paused;
+  transition:box-shadow .4s ease;
 }
-.bilat-orb.running{animation-play-state:running;}
+.bilat-orb.running,.bilat-glow.running{animation-play-state:running;}
+.bilat-glow.running{opacity:1;}
+.bilat-orb.running{
+  box-shadow:
+    inset 0 0 10px rgba(255,248,236,0.45),
+    0 0 30px 4px rgba(232,192,106,0.55),
+    0 0 70px 14px rgba(232,192,106,0.4);
+}
 @keyframes bilat{
-  0%,100%{transform:translateX(-130px);}
-  50%{transform:translateX(130px);}
+  0%,100%{transform:translateX(-140px);}
+  50%{transform:translateX(140px);}
 }
 
 .tempo-bar{
@@ -382,7 +436,152 @@ h2 em{font-style:italic;}
   margin-top:1.5rem;
 }
 
-.upsell{background:linear-gradient(170deg,var(--cream) 0%,var(--warm) 100%);}
+.upsell{
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(196,150,58,0.18) 0%,transparent 60%),
+    linear-gradient(170deg,var(--cream) 0%,var(--warm) 100%);
+}
+
+/* ===== Switch / Weichenstellung ===== */
+.switch{
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%,rgba(232,192,106,0.18) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 60% at 50% 100%,rgba(139,58,42,0.10) 0%,transparent 60%),
+    linear-gradient(155deg,#fdfaf6 0%,#f5efe6 50%,#ede3d6 100%);
+}
+.switch h2{text-align:center;margin-bottom:0.5rem;}
+.switch-sub{
+  text-align:center;
+  font-style:italic;
+  color:var(--mid);
+  margin-bottom:2.5rem;
+  font-size:1.05rem;
+}
+.switch-options{
+  display:grid;
+  gap:1.25rem;
+  max-width:520px;
+  margin:0 auto;
+}
+@media(min-width:560px){.switch-options{grid-template-columns:1fr 1fr;}}
+.switch-option{
+  background:var(--white);
+  padding:2.25rem 1.5rem;
+  border:1px solid var(--sand);
+  text-align:center;
+  cursor:pointer;
+  transition:all .3s ease;
+  text-decoration:none;
+  color:var(--text);
+  display:block;
+  position:relative;
+  overflow:hidden;
+}
+.switch-option::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(196,150,58,0.08) 100%);
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+}
+.switch-option:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(42,31,24,0.1);
+}
+.switch-option:hover::after{opacity:1;}
+.switch-emoji{
+  font-size:2.2rem;
+  display:block;
+  margin-bottom:0.85rem;
+}
+.switch-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  color:var(--sienna);
+  margin-bottom:0.45rem;
+  font-weight:400;
+}
+.switch-desc{
+  font-size:0.88rem;
+  color:var(--mid);
+  font-style:italic;
+  letter-spacing:0.02em;
+}
+
+/* ===== Stream page extras ===== */
+.upsell-tag{
+  display:inline-block;
+  font-size:0.62rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--gold);
+  padding:0.35rem 0.85rem;
+  border:1px solid rgba(196,150,58,0.4);
+  border-radius:2px;
+  margin-bottom:0.85rem;
+}
+.product-card.featured{
+  border:2px solid var(--gold);
+  background:linear-gradient(180deg,var(--white) 0%,#fdf6e8 100%);
+  position:relative;
+}
+.product-card.impulse::before{
+  content:'Impulskauf';
+  position:absolute;
+  top:0;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:var(--gold);
+  color:var(--bg);
+  font-size:0.62rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  padding:0.35rem 0.9rem;
+  white-space:nowrap;
+}
+.product-note{
+  font-size:0.78rem;
+  color:var(--mid);
+  font-style:italic;
+  margin-top:-0.5rem;
+  margin-bottom:1rem;
+}
+.stream-section-eye{
+  display:block;
+  font-size:0.7rem;
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:2.5rem auto 0.4rem;
+  text-align:center;
+}
+.stream-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  color:var(--sienna);
+  text-align:center;
+  margin-bottom:1.25rem;
+  font-style:italic;
+  font-weight:400;
+}
+.btn-link{
+  display:inline-block;
+  margin-top:1.5rem;
+  font-size:0.75rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--mid);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  font-family:'Outfit',sans-serif;
+}
+.btn-link:hover{color:var(--sienna);}
 .upsell-img{
   width:100%;
   max-width:480px;
@@ -673,6 +872,7 @@ h2 em{font-style:italic;}
 
         <div class="bilat-track">
           <div class="bilat-rail"></div>
+          <div class="bilat-glow" id="bilatGlow"></div>
           <div class="bilat-orb" id="bilatOrb"></div>
         </div>
 
@@ -693,31 +893,103 @@ h2 em{font-style:italic;}
   <div class="disclaimer"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an die Telefonseelsorge (0800 / 111 0 111) oder eine psychologische Fachpraxis.</div></div>
 </div>
 
-<!-- ===== SEITE 10: Upsell ===== -->
-<div class="screen upsell" id="screen10">
+<!-- ===== SEITE 10: Weichenstellung ===== -->
+<div class="screen switch" id="screen10">
   <div class="wrap">
     <div class="content-inner center">
-      <div class="eyebrow">Dein nächster Schritt</div>
-      <h2>Du hast gespürt, was möglich ist.<br><em>Jetzt geh tiefer.</em></h2>
+      <div class="eyebrow">Eine letzte Frage</div>
+      <h2>Welches Thema bewegt dich gerade <em>am stärksten?</em></h2>
+      <p class="switch-sub">Damit wir dir den passenden nächsten Schritt zeigen können.</p>
+      <div class="switch-options">
+        <a class="switch-option" onclick="goTo('streamSelf')">
+          <span class="switch-emoji">🌸</span>
+          <div class="switch-title">Die Reise zu mir selbst</div>
+          <div class="switch-desc">Weiblichkeit · Selbstwerdung · Essenz</div>
+        </a>
+        <a class="switch-option" onclick="goTo('streamRelation')">
+          <span class="switch-emoji">💫</span>
+          <div class="switch-title">Meine Partnerschaft</div>
+          <div class="switch-desc">Beziehung · Klarheit · Liebe</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="disclaimer"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an die Telefonseelsorge (0800 / 111 0 111) oder eine psychologische Fachpraxis.</div></div>
+</div>
+
+<!-- ===== Stream 1: Selbst ===== -->
+<div class="screen upsell" id="streamSelf">
+  <div class="wrap">
+    <div class="content-inner center">
+      <span class="upsell-tag">Stream 1 · Einstieg</span>
+      <h2>Du hast gespürt, was möglich ist.<br><em>Jetzt kommen wir dahin.</em></h2>
       <img src="images/bild4.png" alt="" class="upsell-img">
       <p class="upsell-text">
-        Eine Session öffnet die Tür. Wenn dich dieses Thema gerade besonders bewegt — dann wähle den Weg, der zu dir passt. Beide Tools sind sofort einsatzbereit, wenn du sie brauchst.
+        Was du gerade erlebt hast, war ein Vorgeschmack. <strong style="color:var(--sienna);font-weight:500;">Feminin Reset</strong> ist die echte Reise zurück zu dir — in 30 Tagen. Erkennen · Loslassen · Werden · Verkörpern.
       </p>
 
-      <div class="product-grid">
-        <div class="product-card">
-          <div class="product-name">SITUATIONSHIP-DECODE</div>
-          <div class="product-tagline">Wenn du nicht weißt, was zwischen euch eigentlich läuft — und endlich verstehen willst, woran du bist.</div>
+      <div class="product-grid" style="grid-template-columns:1fr;max-width:480px;">
+        <div class="product-card featured">
+          <div class="product-name">FEMININ RESET</div>
+          <div class="product-tagline">30 Tage zurück zu der Frau, die du immer warst. Tagesimpulse, Journalfragen und tägliche Sessions, die deine neue Identität tief im Nervensystem verankern.</div>
           <div class="product-price">€27</div>
-          <a href="#" class="btn product-cta">Ich will Klarheit</a>
+          <a href="#" class="btn product-cta">Ja, ich starte meine 30 Tage</a>
         </div>
-        <div class="product-card">
+      </div>
+
+      <button class="btn-link" onclick="goTo('screen10')">← Andere Richtung wählen</button>
+    </div>
+  </div>
+  <div class="disclaimer"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an die Telefonseelsorge (0800 / 111 0 111) oder eine psychologische Fachpraxis.</div></div>
+</div>
+
+<!-- ===== Stream 2: Partnerschaft ===== -->
+<div class="screen upsell" id="streamRelation">
+  <div class="wrap">
+    <div class="content-inner center">
+      <span class="upsell-tag">Stream 2 · Partnerschaft</span>
+      <h2>Lass uns <em>Klarheit</em> schaffen,<br>was bei dir wirklich los ist.</h2>
+      <img src="images/bild4.png" alt="" class="upsell-img">
+
+      <p class="upsell-text">
+        Wenn dich dein Partnerthema gerade besonders bewegt — hier sind die Tools, die dir genau dort helfen, wo du gerade stehst.
+      </p>
+
+      <span class="stream-section-eye">Sofort-Hilfe</span>
+      <div class="stream-section-title">Wenn du jetzt einen Anker brauchst</div>
+      <div class="product-grid" style="grid-template-columns:1fr;max-width:480px;">
+        <div class="product-card featured impulse">
           <div class="product-name">TEXT HIM</div>
-          <div class="product-tagline">Wenn er sich gerade meldet (oder nicht) und du nicht weißt, was du antworten sollst.</div>
+          <div class="product-tagline">Wenn er sich gerade meldet (oder nicht) und du nicht weißt, was du antworten sollst. Vorlagen · Mini-Skripte · der richtige Ton.</div>
           <div class="product-price">€27</div>
           <a href="#" class="btn product-cta">Ich will TEXT HIM</a>
         </div>
       </div>
+
+      <span class="stream-section-eye">Tiefer verstehen</span>
+      <div class="stream-section-title">Wenn du das Muster dahinter erkennen willst</div>
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-name">SITUATIONSHIP-DECODE</div>
+          <div class="product-tagline">Wenn du nicht weißt, was zwischen euch eigentlich läuft — und endlich verstehen willst, woran du bist.</div>
+          <div class="product-price">€47</div>
+          <a href="#" class="btn product-cta">ICH WILL KLARHEIT</a>
+        </div>
+        <div class="product-card">
+          <div class="product-name">BINDUNGSTYP-NAVIGATOR</div>
+          <div class="product-tagline">Wenn du das Muster erkennen willst, das dich immer wieder an den gleichen Punkt führt.</div>
+          <div class="product-price">€47</div>
+          <a href="#" class="btn product-cta">Ich will den Navigator</a>
+        </div>
+        <div class="product-card">
+          <div class="product-name">TRAUMA BOND ERKENNEN</div>
+          <div class="product-tagline">Wenn die Bindung sich stark anfühlt, aber etwas in dir leise weiß: Das ist nicht Liebe — das ist etwas anderes.</div>
+          <div class="product-price">€47</div>
+          <a href="#" class="btn product-cta">Ich will es erkennen</a>
+        </div>
+      </div>
+
+      <button class="btn-link" onclick="goTo('screen10')">← Andere Richtung wählen</button>
     </div>
   </div>
   <div class="disclaimer"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an die Telefonseelsorge (0800 / 111 0 111) oder eine psychologische Fachpraxis.</div></div>
@@ -774,19 +1046,24 @@ function setTempo(t){
   if(!tempos[t]) return;
   document.querySelectorAll('.tempo-btn').forEach(b => b.classList.toggle('active', b.dataset.tempo === t));
   document.getElementById('bilatOrb').style.animationDuration = tempos[t];
+  const glow = document.getElementById('bilatGlow');
+  if(glow) glow.style.animationDuration = tempos[t];
   localStorage.setItem(STORAGE.tempo, t);
 }
 
 let sessionRunning = false;
 function toggleSession(){
   const orb = document.getElementById('bilatOrb');
+  const glow = document.getElementById('bilatGlow');
   const btn = document.getElementById('sessionBtn');
   sessionRunning = !sessionRunning;
   if(sessionRunning){
     orb.classList.add('running');
+    glow.classList.add('running');
     btn.textContent = 'Session pausieren';
   } else {
     orb.classList.remove('running');
+    glow.classList.remove('running');
     btn.textContent = 'Session starten';
   }
 }
