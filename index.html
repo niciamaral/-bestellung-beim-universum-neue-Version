@@ -130,6 +130,13 @@ body::after{
   color:#ffffff;
 }
 
+/* Larger body text on background-image pages for readability */
+#screen1 p,#screen2 p,#screen3 p,#screen4 p,#screen5 p,#screen6 p,#screen7 p,
+#screen10 p,#streamSelf p,#streamRelation p{
+  font-size:19px;
+  line-height:1.8;
+}
+
 /* Restore card content readability — cards have their own light background */
 #screen5 .step-body span{color:var(--mid);}
 .hero-content{
@@ -143,7 +150,7 @@ body::after{
   font-size:0.75rem;
   letter-spacing:0.4em;
   text-transform:uppercase;
-  color:var(--gold-1);
+  color:var(--gold);
   margin-bottom:1.5rem;
   font-weight:400;
 }
@@ -155,7 +162,7 @@ h1{
   margin-bottom:1.5rem;
   letter-spacing:-0.01em;
 }
-h1 em{font-style:italic;color:var(--gold-1);}
+h1 em{font-style:italic;color:var(--gold);}
 .hero-text{
   font-size:clamp(1rem,2vw,1.15rem);
   line-height:1.7;
@@ -216,13 +223,13 @@ h2 em{font-style:italic;}
   margin-bottom:1.25rem;
   font-weight:300;
 }
-.content p strong{font-weight:500;color:var(--gold-1);}
+.content p strong{font-weight:500;color:var(--gold);}
 .content .quote{
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
   font-size:1.4rem;
   line-height:1.5;
-  color:var(--gold-1);
+  color:var(--gold);
   border-left:2px solid var(--gold);
   padding-left:1.5rem;
   margin:2rem 0;
@@ -273,7 +280,7 @@ h2 em{font-style:italic;}
   justify-content:center;
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
-  color:var(--gold-1);
+  color:var(--gold);
   font-size:1.2rem;
   animation:breathe 14s ease-in-out infinite;
 }
@@ -341,7 +348,7 @@ h2 em{font-style:italic;}
   z-index:0;
 }
 .session > .wrap,.session > .disclaimer{position:relative;z-index:1;}
-.session h2{color:var(--gold-1);}
+.session h2{color:var(--gold);}
 .session p{color:var(--cream);opacity:0.9;}
 .session-stage{
   width:100%;
@@ -359,7 +366,7 @@ h2 em{font-style:italic;}
   font-size:1.25rem;
   line-height:1.55;
   min-height:140px;
-  color:var(--gold-1);
+  color:var(--gold);
   text-align:center;
   display:flex;
   align-items:center;
@@ -453,7 +460,7 @@ h2 em{font-style:italic;}
 .tempo-btn:last-child{border-right:none;}
 .tempo-btn.active{
   background:rgba(196,150,58,0.18);
-  color:var(--gold-1);
+  color:var(--gold);
 }
 .tempo-label{
   font-size:0.7rem;
@@ -597,7 +604,7 @@ h2 em{font-style:italic;}
 .stream-section-title{
   font-family:'Cormorant Garamond',serif;
   font-size:1.5rem;
-  color:var(--gold-1);
+  color:var(--gold);
   text-align:center;
   margin-bottom:1.25rem;
   font-style:italic;
@@ -617,7 +624,7 @@ h2 em{font-style:italic;}
   text-underline-offset:4px;
   font-family:'Outfit',sans-serif;
 }
-.btn-link:hover{color:var(--gold-1);}
+.btn-link:hover{color:var(--gold);}
 .upsell h2{text-align:center;}
 .upsell-text{
   text-align:center;
@@ -704,7 +711,7 @@ h2 em{font-style:italic;}
   color:var(--gold);
   margin-bottom:0.6rem;
 }
-.hero .disclaimer strong,.session .disclaimer strong{color:var(--gold-1);}
+.hero .disclaimer strong,.session .disclaimer strong{color:var(--gold);}
 
 .indicator{
   position:fixed;
@@ -941,7 +948,7 @@ h2 em{font-style:italic;}
       <span class="upsell-tag">Stream 1 · Einstieg</span>
       <h2>Du hast gespürt, was möglich ist.<br><em>Jetzt kommen wir dahin.</em></h2>
       <p class="upsell-text">
-        Was du gerade erlebt hast, war ein Vorgeschmack. <strong style="color:var(--gold-1);font-weight:500;">Feminin Reset</strong> ist die echte Reise zurück zu dir — in 30 Tagen. Erkennen · Loslassen · Werden · Verkörpern.
+        Was du gerade erlebt hast, war ein Vorgeschmack. <strong style="color:var(--gold);font-weight:500;">Feminin Reset</strong> ist die echte Reise zurück zu dir — in 30 Tagen. Erkennen · Loslassen · Werden · Verkörpern.
       </p>
 
       <div class="product-grid" style="grid-template-columns:1fr;max-width:480px;">
