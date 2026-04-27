@@ -68,7 +68,7 @@ body::after{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:3rem 1.5rem 1.5rem;
+  padding:3rem 0 1.5rem;
   position:relative;
 }
 
@@ -142,9 +142,10 @@ body::after{
 .hero-content{
   position:relative;
   z-index:1;
-  max-width:680px;
-  text-align:center;
-  padding:2rem 1rem;
+  max-width:900px;
+  width:100%;
+  text-align:left;
+  padding:2rem 60px;
 }
 .eyebrow{
   font-size:0.75rem;
@@ -203,8 +204,7 @@ h1 em{font-style:italic;color:var(--gold);}
 }
 
 .content{background:var(--cream);color:var(--text);}
-.content-inner{max-width:680px;width:100%;text-align:left;padding:2rem 1rem;}
-.content-inner.center{text-align:center;}
+.content-inner{max-width:900px;width:100%;text-align:left;padding:2rem 60px;}
 .content .eyebrow{color:var(--gold);margin-bottom:1rem;}
 h2{
   font-family:'Cormorant Garamond',serif;
@@ -737,12 +737,14 @@ h2 em{font-style:italic;}
 .hero .indicator-dot,.session .indicator-dot{background:rgba(245,239,230,0.25);}
 .hero .indicator-dot.active,.session .indicator-dot.active{background:var(--gold-1);}
 
-@media(max-width:600px){
-  .wrap{padding:2.5rem 1rem 1rem;}
-  .hero-content,.content-inner{padding:1.5rem 0.5rem;}
-  h1{font-size:2.4rem;}
-  h2{font-size:1.85rem;}
-  .content p{font-size:1rem;}
+@media(max-width:768px){
+  .wrap{padding:2.5rem 0 1rem;}
+  .hero-content,.content-inner{padding:2rem 24px;}
+  h1{font-size:36px;}
+  h2{font-size:30px;}
+  .content p,.hero-text,.switch-sub,.upsell-text,
+  #screen1 p,#screen2 p,#screen3 p,#screen4 p,#screen5 p,#screen6 p,#screen7 p,
+  #screen10 p,#streamSelf p,#streamRelation p{font-size:17px;}
   .indicator{top:0.85rem;}
   .order-display{font-size:1.1rem;padding:1.5rem 1rem;min-height:120px;}
   .bilat-track{max-width:280px;}
