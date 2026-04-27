@@ -78,15 +78,61 @@ body::after{
   position:relative;
   overflow:hidden;
 }
-.hero-img{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0.32;
-  z-index:0;
+/* === Full-screen background images === */
+#screen1,#screen2,#screen3,#screen4,#screen7{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(42,31,24,0.45),rgba(42,31,24,0.45)),
+    url('images/bild1.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
 }
+#screen5{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(42,31,24,0.45),rgba(42,31,24,0.45)),
+    url('images/bild2.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+#screen6{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(42,31,24,0.45),rgba(42,31,24,0.45)),
+    url('images/bild3.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+#screen10,#streamSelf,#streamRelation{
+  background-color:var(--bg);
+  background-image:
+    linear-gradient(rgba(42,31,24,0.45),rgba(42,31,24,0.45)),
+    url('images/bild4.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+
+/* Text legibility on dark image overlay */
+#screen2,#screen3,#screen4,#screen5,#screen6,#screen7,
+#screen10,#streamSelf,#streamRelation{color:var(--cream);}
+#screen2 h2,#screen3 h2,#screen4 h2,#screen5 h2,#screen6 h2,#screen7 h2,
+#screen10 h2,#streamSelf h2,#streamRelation h2{color:var(--gold-1);}
+#screen2 .content p,#screen3 .content p,#screen4 .content p,
+#screen5 .content p,#screen6 .content p,#screen7 .content p{color:var(--cream);}
+#screen2 .content p strong,#screen3 .content p strong,#screen4 .content p strong,
+#screen5 .content p strong,#screen6 .content p strong,#screen7 .content p strong{color:var(--gold-1);}
+#screen2 .quote,#screen3 .quote,#screen4 .quote,
+#screen5 .quote,#screen6 .quote,#screen7 .quote{
+  color:var(--gold-1);border-left-color:var(--gold);
+}
+#screen10 .switch-sub{color:rgba(245,239,230,0.85);}
+#streamSelf .upsell-text,#streamRelation .upsell-text{color:var(--cream);}
+#streamSelf .upsell-text strong,#streamRelation .upsell-text strong{color:var(--gold-1);}
+#streamSelf .stream-section-title,#streamRelation .stream-section-title{color:var(--gold-1);}
 .hero-content{
   position:relative;
   z-index:1;
@@ -181,15 +227,6 @@ h2 em{font-style:italic;}
   border-left:2px solid var(--gold);
   padding-left:1.5rem;
   margin:2rem 0;
-}
-.content-img{
-  width:100%;
-  max-width:520px;
-  height:auto;
-  margin:2rem auto;
-  display:block;
-  border-radius:2px;
-  box-shadow:0 12px 40px rgba(42,31,24,0.15);
 }
 .nav-actions{
   margin-top:2.5rem;
@@ -582,15 +619,6 @@ h2 em{font-style:italic;}
   font-family:'Outfit',sans-serif;
 }
 .btn-link:hover{color:var(--sienna);}
-.upsell-img{
-  width:100%;
-  max-width:480px;
-  height:auto;
-  margin:1.5rem auto 2rem;
-  display:block;
-  border-radius:2px;
-  box-shadow:0 12px 40px rgba(42,31,24,0.15);
-}
 .upsell h2{text-align:center;}
 .upsell-text{
   text-align:center;
@@ -724,7 +752,6 @@ h2 em{font-style:italic;}
 <!-- ===== SEITE 1: Hero ===== -->
 <div class="screen active hero" id="screen1">
   <div class="wrap">
-    <img src="images/bild1.png" alt="" class="hero-img">
     <div class="hero-content">
       <div class="eyebrow">The Feminine Way of Manifestation · Kostenlos</div>
       <h1>Bestellung beim<br><em>Universum</em></h1>
@@ -789,7 +816,6 @@ h2 em{font-style:italic;}
     <div class="content-inner center">
       <div class="eyebrow">So wendest du das Tool an</div>
       <h2>In 4 <em>Schritten</em></h2>
-      <img src="images/bild2.png" alt="" class="content-img">
       <div class="steps">
         <div class="step"><div class="step-num">I</div><div class="step-body"><strong>Wunsch klären</strong><span>Eine Sache. Konkret. Sinnlich.</span></div></div>
         <div class="step"><div class="step-num">II</div><div class="step-body"><strong>Gefühl finden</strong><span>Wie fühlt es sich an, wenn es schon da ist?</span></div></div>
@@ -808,7 +834,6 @@ h2 em{font-style:italic;}
     <div class="content-inner center">
       <div class="eyebrow">Vorbereitung</div>
       <h2>Komm <em>im Körper</em> an</h2>
-      <img src="images/bild3.png" alt="" class="content-img">
       <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
       <div class="breath-circle"><span>Atme</span></div>
       <p><strong>Einatmen — 4 Sekunden.</strong><br><strong>Halten — 4 Sekunden.</strong><br><strong>Ausatmen — 6 Sekunden.</strong></p>
@@ -923,7 +948,6 @@ h2 em{font-style:italic;}
     <div class="content-inner center">
       <span class="upsell-tag">Stream 1 · Einstieg</span>
       <h2>Du hast gespürt, was möglich ist.<br><em>Jetzt kommen wir dahin.</em></h2>
-      <img src="images/bild4.png" alt="" class="upsell-img">
       <p class="upsell-text">
         Was du gerade erlebt hast, war ein Vorgeschmack. <strong style="color:var(--sienna);font-weight:500;">Feminin Reset</strong> ist die echte Reise zurück zu dir — in 30 Tagen. Erkennen · Loslassen · Werden · Verkörpern.
       </p>
@@ -949,7 +973,6 @@ h2 em{font-style:italic;}
     <div class="content-inner center">
       <span class="upsell-tag">Stream 2 · Partnerschaft</span>
       <h2>Lass uns <em>Klarheit</em> schaffen,<br>was bei dir wirklich los ist.</h2>
-      <img src="images/bild4.png" alt="" class="upsell-img">
 
       <p class="upsell-text">
         Wenn dich dein Partnerthema gerade besonders bewegt — hier sind die Tools, die dir genau dort helfen, wo du gerade stehst.
