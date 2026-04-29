@@ -1096,6 +1096,138 @@ h2 em{font-style:italic;color:var(--gold);}
   85%{opacity:0.5;}
   100%{opacity:0; transform:translateY(-95vh) scale(1.3);}
 }
+/* === Seite 2 — Scroll-Reveal + Feminine Orb === */
+
+/* Scroll-Reveal Basis */
+.scroll-reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1s ease, transform 1s ease;
+  animation:none !important;
+}
+.scroll-reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Reveal-Trigger Button-Container */
+.reveal-trigger{
+  text-align:center;
+  margin:3rem 0 2rem;
+  transition:opacity 0.6s ease, transform 0.6s ease, max-height 0.6s ease;
+  max-height:120px;
+  overflow:hidden;
+}
+.reveal-trigger.hidden{
+  opacity:0;
+  transform:scale(0.95);
+  max-height:0;
+  margin:0;
+  pointer-events:none;
+}
+.reveal-btn{
+  background:transparent;
+  border:1.5px solid var(--gold);
+  color:var(--gold-1);
+  padding:1.1rem 2.5rem;
+  font-size:0.85rem;
+  letter-spacing:0.2em;
+  transition:all 0.4s ease;
+  animation:revealBtnPulse 3s ease-in-out infinite;
+}
+.reveal-btn:hover{
+  background:rgba(196,150,58,0.15);
+  border-color:var(--gold-1);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 0 30px rgba(232,192,106,0.3);
+}
+@keyframes revealBtnPulse{
+  0%,100%{box-shadow:0 0 0 rgba(232,192,106,0);}
+  50%{box-shadow:0 0 25px rgba(232,192,106,0.25);}
+}
+
+/* Feminine Orb — die goldene Lichtkugel */
+.feminine-orb{
+  position:relative;
+  margin:2rem auto 3rem;
+  padding:5rem 2rem;
+  max-width:680px;
+  text-align:center;
+  opacity:0;
+  transform:scale(0.8);
+  transition:opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events:none;
+}
+.feminine-orb.is-revealed{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+.orb-glow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:140%;
+  height:140%;
+  pointer-events:none;
+  background:radial-gradient(circle at center,
+    rgba(232,192,106,0.45) 0%,
+    rgba(232,192,106,0.25) 18%,
+    rgba(232,192,106,0.12) 35%,
+    rgba(232,192,106,0.05) 55%,
+    transparent 75%);
+  filter:blur(8px);
+  animation:orbBreathe 6s ease-in-out infinite;
+  z-index:0;
+}
+@keyframes orbBreathe{
+  0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.85;}
+  50%{transform:translate(-50%,-50%) scale(1.1); opacity:1;}
+}
+.orb-content{
+  position:relative;
+  z-index:1;
+}
+.orb-eye{
+  display:block;
+  font-size:0.72rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--gold-1);
+  font-weight:500;
+  margin-bottom:1.5rem;
+}
+#screen2 .orb-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem;
+  font-weight:300;
+  font-style:italic;
+  color:#fff;
+  line-height:1.3;
+  margin-bottom:1.5rem;
+  text-shadow:0 0 30px rgba(232,192,106,0.4);
+}
+#screen2 .orb-title em{
+  font-style:italic;
+  color:var(--gold-1);
+  font-weight:400;
+}
+#screen2 .orb-text{
+  font-size:1.05rem;
+  line-height:1.85;
+  color:#fff;
+  opacity:0.92;
+  max-width:520px;
+  margin:0 auto;
+  font-weight:300;
+}
+@media(min-width:769px){
+  .feminine-orb{padding:6rem 3rem; margin:3rem auto 4rem;}
+  #screen2 .orb-title{font-size:2.7rem;}
+  #screen2 .orb-text{font-size:1.15rem;}
+}
 </style>
 </head>
 <body>
@@ -1126,37 +1258,44 @@ h2 em{font-style:italic;color:var(--gold);}
       <div class="eyebrow">DAS MISSVERSTÄNDNIS</div>
       <h2>Manifestation funktioniert nur <em>anders</em></h2>
 
-      <div class="misc-box" style="animation-delay:0.2s, 2.1s">
+      <div class="misc-box scroll-reveal">
         <div class="misc-eyebrow">IRRGLAUBE 1</div>
         <h3 class="misc-title">Wenn ich es nur stark genug will, kommt es</h3>
         <p class="misc-text">Millionen Frauen visualisieren täglich. Stimmungsboards. Affirmationen. Und trotzdem — die Lieferung bleibt aus. Weil Wollen allein das Nervensystem nicht verändert.</p>
       </div>
 
-      <div class="misc-box" style="animation-delay:0.5s, 2.1s">
+      <div class="misc-box scroll-reveal">
         <div class="misc-eyebrow">IRRGLAUBE 2</div>
         <h3 class="misc-title">Ich muss positiv denken und negative Gedanken vermeiden</h3>
         <p class="misc-text">Positives Denken spricht den Kopf an. Aber dein Unterbewusstsein speichert seit der Kindheit andere Wahrheiten. Solange diese Prägungen im Körper sitzen, gewinnt immer das Alte.</p>
       </div>
 
-      <div class="misc-box" style="animation-delay:0.8s, 2.1s">
+      <div class="misc-box scroll-reveal">
         <div class="misc-eyebrow">IRRGLAUBE 3</div>
         <h3 class="misc-title">Ich muss mir vorstellen als wäre es schon da</h3>
         <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
       </div>
 
-      <div class="misc-box" style="animation-delay:1.1s, 2.1s">
+      <div class="misc-box scroll-reveal">
         <div class="misc-eyebrow">IRRGLAUBE 4</div>
-        <h3 class="misc-title">Du kannst nicht nicht manifestieren</h3>
-        <p class="misc-text">Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
+        <h3 class="misc-title">Ich kann nicht manifestieren</h3>
+        <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
       </div>
 
-      <div class="truth-box" style="animation-delay:1.4s">
-        <div class="truth-eye">The Feminine Way</div>
-        <h3 class="truth-title">Du wirst zur Frau die <em>es anzieht</em></h3>
-        <p class="truth-text">Weibliche Manifestation beginnt nicht im Kopf — sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein. Wenn du die Frau wirst, für die es selbstverständlich ist — fließt es zu dir.</p>
+      <div class="reveal-trigger scroll-reveal" id="revealTrigger">
+        <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way →</button>
       </div>
 
-      <div class="misc-quote" style="animation-delay:1.7s, 2.1s">
+      <div class="feminine-orb" id="feminineOrb">
+        <div class="orb-glow"></div>
+        <div class="orb-content">
+          <div class="orb-eye">The Feminine Way</div>
+          <h3 class="orb-title">Du wirst zur Frau die <em>es anzieht</em></h3>
+          <p class="orb-text">Weibliche Manifestation beginnt nicht im Kopf — sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein. Wenn du die Frau wirst, für die es selbstverständlich ist — fließt es zu dir.</p>
+        </div>
+      </div>
+
+      <div class="misc-quote scroll-reveal" id="finalQuote">
         <p>Das Quantenfeld antwortet nicht auf das was du willst — es antwortet auf wer du bist.</p>
         <span>— Joe Dispenza</span>
       </div>
@@ -1517,6 +1656,35 @@ function createParticles(){
     p.style.animationDelay = (Math.random() * 6) + 's';
     screen.appendChild(p);
   }
+}
+
+// === Seite 2 — Scroll-Reveal Mechanik ===
+(function(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+})();
+
+// === The Feminine Way Reveal ===
+function showFeminineWay(){
+  const trigger = document.getElementById('revealTrigger');
+  const orb = document.getElementById('feminineOrb');
+  const quote = document.getElementById('finalQuote');
+  if(!trigger || !orb) return;
+  trigger.classList.add('hidden');
+  setTimeout(() => {
+    orb.classList.add('is-revealed');
+    if(quote){
+      setTimeout(() => quote.classList.add('is-visible'), 1200);
+    }
+  }, 400);
 }
 </script>
 
