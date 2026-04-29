@@ -928,6 +928,69 @@ h2 em{font-style:italic;color:var(--gold);}
   color:#e8c06a;
   font-weight:400;
 }
+/* === Seite 2 — Erkenntnis-Box (Wendepunkt) === */
+@keyframes truthGlow{
+  0%,100%{box-shadow:0 0 30px rgba(196,150,58,0.25), inset 0 0 20px rgba(196,150,58,0.08);}
+  50%{box-shadow:0 0 50px rgba(196,150,58,0.4), inset 0 0 30px rgba(196,150,58,0.15);}
+}
+@keyframes truthAppear{
+  from{opacity:0; transform:scale(0.94) translateY(20px);}
+  to{opacity:1; transform:scale(1) translateY(0);}
+}
+.truth-box{
+  position:relative;
+  background:linear-gradient(135deg,rgba(196,150,58,0.12) 0%,rgba(232,192,106,0.06) 100%);
+  border:1.5px solid rgba(232,192,106,0.5);
+  border-radius:14px;
+  padding:2.25rem 2rem;
+  margin:2.5rem 0 1.5rem;
+  text-align:center;
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+  opacity:0;
+  animation:truthAppear 1.2s ease forwards, truthGlow 4s ease-in-out infinite 1.2s;
+}
+.truth-eye{
+  display:inline-block;
+  font-size:0.72rem;
+  letter-spacing:0.4em;
+  text-transform:uppercase;
+  color:var(--gold-1);
+  font-weight:500;
+  margin-bottom:1.25rem;
+  padding-bottom:0.5rem;
+  border-bottom:1px solid rgba(232,192,106,0.35);
+}
+#screen2 .truth-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+  font-weight:300;
+  font-style:italic;
+  color:var(--gold-1);
+  line-height:1.3;
+  margin-bottom:1.25rem;
+}
+#screen2 .truth-title em{
+  font-style:italic;
+  font-weight:400;
+  color:#fff;
+  text-decoration:underline;
+  text-decoration-color:var(--gold);
+  text-underline-offset:6px;
+}
+#screen2 .truth-text{
+  font-size:1.05rem;
+  line-height:1.75;
+  color:#fff;
+  opacity:0.95;
+  max-width:560px;
+  margin:0 auto;
+}
+@media(min-width:769px){
+  .truth-box{padding:3rem 3rem; margin:3rem 0 2rem;}
+  #screen2 .truth-title{font-size:2.5rem;}
+  #screen2 .truth-text{font-size:1.15rem;}
+}
 </style>
 </head>
 <body>
@@ -975,10 +1038,10 @@ h2 em{font-style:italic;color:var(--gold);}
         <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
       </div>
 
-      <div class="misc-box" style="animation-delay:1.1s, 2.1s">
-        <div class="misc-eyebrow">IRRGLAUBE 4</div>
-        <h3 class="misc-title">Ich manifestiere falsch</h3>
-        <p class="misc-text">Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
+      <div class="truth-box" style="animation-delay:1.1s">
+        <div class="truth-eye">Die Wahrheit</div>
+        <h3 class="truth-title">Du kannst nicht <em>nicht</em> manifestieren</h3>
+        <p class="truth-text">Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
       </div>
 
       <div class="misc-box" style="animation-delay:1.4s, 2.1s">
