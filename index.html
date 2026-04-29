@@ -1039,7 +1039,7 @@ h2 em{font-style:italic;color:var(--gold);}
     0 0 0 1px rgba(232,192,106,0.05),
     0 8px 32px rgba(0,0,0,0.15),
     inset 0 1px 0 rgba(255,255,255,0.08);
-  animation:boxGlow 5s ease-in-out infinite;
+  animation:fadeInUp 0.8s ease forwards, boxGlow 5s ease-in-out infinite;
   transition:all .4s ease;
 }
 @keyframes boxGlow{
@@ -1066,7 +1066,7 @@ h2 em{font-style:italic;color:var(--gold);}
 /* Button mit sanftem Heartbeat */
 #screen1 .btn{
   position:relative;
-  animation:btnPulse 3.5s ease-in-out infinite;
+  animation:fadeInUp 0.8s ease forwards, btnPulse 3.5s ease-in-out infinite;
 }
 @keyframes btnPulse{
   0%,100%{
