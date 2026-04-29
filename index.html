@@ -991,6 +991,111 @@ h2 em{font-style:italic;color:var(--gold);}
   #screen2 .truth-title{font-size:2.5rem;}
   #screen2 .truth-text{font-size:1.15rem;}
 }
+/* === Seite 1 — Boutique-Glow Layer === */
+
+/* Sanfte goldene Lichtkugel hinter der Headline */
+.hero-glow{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-58%);
+  width:min(70vw, 900px);
+  height:min(60vh, 600px);
+  pointer-events:none;
+  z-index:0;
+  background:radial-gradient(ellipse at center,
+    rgba(232,192,106,0.18) 0%,
+    rgba(232,192,106,0.08) 25%,
+    rgba(232,192,106,0.03) 50%,
+    transparent 75%);
+  filter:blur(20px);
+  animation:heroGlowBreathe 8s ease-in-out infinite;
+}
+@keyframes heroGlowBreathe{
+  0%,100%{opacity:0.85; transform:translate(-50%,-58%) scale(1);}
+  50%{opacity:1; transform:translate(-50%,-58%) scale(1.08);}
+}
+
+/* Headline "Universum" sanft glimmend */
+#screen1 h1 em{
+  text-shadow:
+    0 0 30px rgba(232,192,106,0.35),
+    0 0 60px rgba(232,192,106,0.2);
+  animation:headlineShimmer 6s ease-in-out infinite;
+}
+@keyframes headlineShimmer{
+  0%,100%{text-shadow:0 0 30px rgba(232,192,106,0.35), 0 0 60px rgba(232,192,106,0.2);}
+  50%{text-shadow:0 0 40px rgba(232,192,106,0.5), 0 0 80px rgba(232,192,106,0.3);}
+}
+
+/* Highlight-Box edler — mit Schimmer-Rand der atmet */
+#screen1 .highlight-box{
+  position:relative;
+  background:rgba(255,255,255,0.08) !important;
+  border:1px solid rgba(232,192,106,0.35) !important;
+  -webkit-backdrop-filter:blur(8px) !important;
+  backdrop-filter:blur(8px) !important;
+  box-shadow:
+    0 0 0 1px rgba(232,192,106,0.05),
+    0 8px 32px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  animation:boxGlow 5s ease-in-out infinite;
+  transition:all .4s ease;
+}
+@keyframes boxGlow{
+  0%,100%{
+    box-shadow:
+      0 0 0 1px rgba(232,192,106,0.05),
+      0 8px 32px rgba(0,0,0,0.15),
+      0 0 30px rgba(232,192,106,0.1),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  50%{
+    box-shadow:
+      0 0 0 1px rgba(232,192,106,0.15),
+      0 8px 32px rgba(0,0,0,0.2),
+      0 0 50px rgba(232,192,106,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+}
+#screen1 .highlight-box:hover{
+  border-color:rgba(232,192,106,0.55) !important;
+  background:rgba(255,255,255,0.11) !important;
+}
+
+/* Button mit sanftem Heartbeat */
+#screen1 .btn{
+  position:relative;
+  animation:btnPulse 3.5s ease-in-out infinite;
+}
+@keyframes btnPulse{
+  0%,100%{
+    box-shadow:
+      0 0 0 0 rgba(196,150,58,0),
+      0 8px 24px rgba(0,0,0,0.2);
+  }
+  50%{
+    box-shadow:
+      0 0 0 8px rgba(196,150,58,0.0),
+      0 0 35px rgba(232,192,106,0.45),
+      0 8px 24px rgba(0,0,0,0.2);
+  }
+}
+#screen1 .btn:hover{animation-play-state:paused;}
+
+/* hero-content über Glow positionieren */
+#screen1 .hero-content{
+  position:relative;
+  z-index:2;
+}
+
+/* Partikel langsamer, weicher, mit Goldglow */
+@keyframes floatUp{
+  0%{opacity:0; transform:translateY(0) scale(0.6);}
+  15%{opacity:0.8;}
+  85%{opacity:0.5;}
+  100%{opacity:0; transform:translateY(-95vh) scale(1.3);}
+}
 </style>
 </head>
 <body>
@@ -1000,6 +1105,7 @@ h2 em{font-style:italic;color:var(--gold);}
 <!-- ===== SEITE 1: Hero ===== -->
 <div class="screen active hero" id="screen1">
   <div class="wrap">
+      <div class="hero-glow"></div>
     <div class="hero-content">
       <div class="eyebrow animate" style="animation-delay:0.2s">THE FEMININE WAY OF MANIFESTATION · KOSTENLOS</div>
       <h1 class="animate" style="animation-delay:0.5s">Bestellung beim <em>Universum</em></h1>
@@ -1396,17 +1502,19 @@ window.addEventListener('load', () => {
 function createParticles(){
   const screen = document.getElementById('screen1');
   if(!screen) return;
-  for(let i = 0; i < 18; i++){
+  for(let i = 0; i < 38; i++){
     const p = document.createElement('div');
     p.className = 'particle';
-    const size = 2 + Math.random() * 4;
+    const size = 2 + Math.random() * 5;
     p.style.width = size + 'px';
     p.style.height = size + 'px';
     p.style.left = Math.random() * 100 + '%';
-    p.style.top = Math.random() * 100 + '%';
-    p.style.background = 'rgba(232,192,106,0.9)';
-    p.style.animationDuration = (6 + Math.random() * 8) + 's';
-    p.style.animationDelay = (Math.random() * 4) + 's';
+    p.style.top = (60 + Math.random() * 40) + '%';
+    const opacity = 0.4 + Math.random() * 0.5;
+    p.style.background = `radial-gradient(circle, rgba(232,192,106,${opacity}) 0%, rgba(232,192,106,${opacity * 0.4}) 40%, transparent 70%)`;
+    p.style.boxShadow = `0 0 ${size * 2}px rgba(232,192,106,${opacity * 0.6})`;
+    p.style.animationDuration = (10 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 6) + 's';
     screen.appendChild(p);
   }
 }
