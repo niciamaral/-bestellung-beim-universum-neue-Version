@@ -908,6 +908,21 @@ h2 em{font-style:italic;color:var(--gold);}
   color:#7a4a1c !important;
   font-weight:400;
 }
+/* === FIX: Goldschrift wieder hell + lesbar === */
+
+/* Seite 1 — Highlight-Box: "Was wäre" Phrasen
+   Dasselbe Gold wie "Universum" in der Headline */
+.highlight-box span[style*="color:#a07828"]{
+  color:#c4963a !important;
+  font-weight:500 !important;
+}
+
+/* Seite 3 — Anchor-Card: "Mangel" / "Fülle"
+   Dasselbe Gold-1 (heller Akzent) wie ursprünglich */
+#screen3 .anchor-text em{
+  color:#e8c06a !important;
+  font-weight:400;
+}
 </style>
 </head>
 <body>
