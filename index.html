@@ -1343,6 +1343,54 @@ h2 em{font-style:italic;color:var(--gold);}
   padding-top:1rem;
   border-top:1px solid rgba(232,192,106,0.2);
 }
+/* === Stream 2 — Auffälliger "Nein, kenne ich schon"-Button === */
+#streamRelation .btn-link[onclick*="streamRelationProducts"]{
+  display:inline-block;
+  margin-top:2rem;
+  padding:1rem 2.25rem;
+  background:linear-gradient(180deg,rgba(232,192,106,0.18) 0%,rgba(232,192,106,0.08) 100%);
+  border:1.5px solid rgba(232,192,106,0.55);
+  border-radius:50px;
+  color:var(--gold-1);
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;
+  font-weight:400;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
+#streamRelation .btn-link[onclick*="streamRelationProducts"]:hover{
+  background:linear-gradient(180deg,rgba(232,192,106,0.28) 0%,rgba(232,192,106,0.14) 100%);
+  border-color:var(--gold-1);
+  color:#ffffff;
+  transform:translateY(-2px);
+  box-shadow:0 0 24px rgba(232,192,106,0.25);
+}
+
+/* "Andere Richtung wählen" bleibt dezent als kleiner Link */
+#streamRelation .btn-link[onclick*="screen10"]{
+  display:inline-block;
+  margin-top:1.5rem;
+  padding:0;
+  background:none;
+  border:none;
+  color:rgba(245,239,230,0.55);
+  font-size:0.75rem;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  text-decoration:underline;
+  text-underline-offset:4px;
+  text-decoration-color:rgba(245,239,230,0.3);
+}
+#streamRelation .btn-link[onclick*="screen10"]:hover{
+  color:var(--gold-1);
+  background:none;
+  border:none;
+  transform:none;
+  box-shadow:none;
+}
 </style>
 </head>
 <body>
@@ -1612,7 +1660,6 @@ h2 em{font-style:italic;color:var(--gold);}
 <div class="screen upsell" id="streamRelation">
   <div class="wrap">
     <div class="content-inner center">
-      <span class="upsell-tag">Stream 2 · Einstieg</span>
       <h2>Du ziehst denselben Typ Mann an.<br><em>Lass uns verstehen warum.</em></h2>
       <p class="upsell-text">
         Es ist nicht Pech. Es ist kein falscher Typ. Es ist kein Zufall. <strong style="color:var(--gold);font-weight:500;">Es ist dein Muster.</strong> Und ein Muster — das kann man verstehen. Und verändern.
