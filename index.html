@@ -1895,6 +1895,96 @@ h2 em{font-style:italic;color:var(--gold);}
   color:var(--gold-1) !important;
   font-weight:300 !important;
 }
+/* === Seite 9 — Bilateraler Ball Edge-to-Edge === */
+.bilat-track{
+  position:relative;
+  width:90vw !important;
+  max-width:none !important;
+  height:80px !important;
+  margin:2.5rem auto 1.5rem !important;
+  overflow:hidden;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Kleinerer Ball */
+.bilat-orb{
+  width:32px !important;
+  height:32px !important;
+  margin:-16px 0 0 -16px !important;
+}
+
+/* Glow auch kleiner und dezenter */
+.bilat-glow{
+  width:80px !important;
+  height:80px !important;
+  margin:-40px 0 0 -40px !important;
+  filter:blur(6px);
+}
+
+/* SEHR langsame Animation — meditatives Tempo */
+.bilat-orb,
+.bilat-glow{
+  animation-duration:3.5s !important;
+}
+
+/* Track-Distanz: viel weiter, da der Track jetzt edge-to-edge ist */
+@keyframes bilat{
+  0%,100%{transform:translateX(calc(-45vw + 16px));}
+  50%{transform:translateX(calc(45vw - 16px));}
+}
+
+@media(max-width:640px){
+  @keyframes bilat{
+    0%,100%{transform:translateX(calc(-43vw + 14px));}
+    50%{transform:translateX(calc(43vw - 14px));}
+  }
+}
+
+/* === Hinweis: Handy quer halten — nur auf Mobile Hochformat sichtbar === */
+.rotate-hint{
+  display:none;
+  text-align:center;
+  padding:1rem 1.25rem;
+  margin:1rem auto 1.5rem;
+  max-width:380px;
+  background:rgba(232,192,106,0.10);
+  border:1px solid rgba(232,192,106,0.35);
+  border-radius:12px;
+  color:#ffffff;
+  font-size:0.9rem;
+  line-height:1.55;
+  font-weight:300;
+}
+.rotate-hint .rotate-icon{
+  display:inline-block;
+  font-size:1.3rem;
+  color:var(--gold-1);
+  margin-right:0.4rem;
+  animation:rotateGently 2.5s ease-in-out infinite;
+}
+.rotate-hint strong{
+  color:var(--gold-1);
+  font-weight:500;
+}
+@keyframes rotateGently{
+  0%,100%{transform:rotate(0deg);}
+  50%{transform:rotate(90deg);}
+}
+
+/* Hinweis nur auf Hochformat-Mobile sichtbar */
+@media(max-width:767px) and (orientation:portrait){
+  .rotate-hint{
+    display:block;
+  }
+}
+
+/* Im Querformat oder auf Desktop: Hinweis verstecken */
+@media(min-width:768px), (orientation:landscape){
+  .rotate-hint{
+    display:none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -2113,19 +2203,16 @@ h2 em{font-style:italic;color:var(--gold);}
       <div class="eyebrow">Deine Session</div>
       <h2>Verankere <em>deine Wahrheit</em></h2>
       <div class="session-stage">
+        <div class="rotate-hint" id="rotateHint">
+          <span class="rotate-icon">↻</span>
+          <span>Bitte halte dein Handy <strong>quer</strong> für die Session — so kann der Ball sanft zwischen deinen Augen wandern.</span>
+        </div>
         <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
 
         <div class="bilat-track">
           <div class="bilat-rail"></div>
           <div class="bilat-glow" id="bilatGlow"></div>
           <div class="bilat-orb" id="bilatOrb"></div>
-        </div>
-
-        <div class="tempo-label">Tempo</div>
-        <div class="tempo-bar">
-          <button class="tempo-btn" data-tempo="sanft" onclick="setTempo('sanft')">Sanft</button>
-          <button class="tempo-btn active" data-tempo="mittel" onclick="setTempo('mittel')">Mittel</button>
-          <button class="tempo-btn" data-tempo="schnell" onclick="setTempo('schnell')">Schnell</button>
         </div>
 
         <div class="session-controls">
@@ -2278,7 +2365,7 @@ h2 em{font-style:italic;color:var(--gold);}
 
 <script>
 const screens = ['screen1','screen2','screen3','screen4','screen5','screen6','screen7','screen8','screen9','screen10'];
-const tempos = { sanft:'1.6s', mittel:'1.2s', schnell:'0.8s' };
+const tempos = { sanft:'3.5s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
 function goTo(id){
@@ -2324,12 +2411,12 @@ function updateOrder(){
 }
 
 function setTempo(t){
-  if(!tempos[t]) return;
-  document.querySelectorAll('.tempo-btn').forEach(b => b.classList.toggle('active', b.dataset.tempo === t));
-  document.getElementById('bilatOrb').style.animationDuration = tempos[t];
+  // Nur ein Tempo: sanft. Frühere Werte werden ignoriert.
+  const orb = document.getElementById('bilatOrb');
   const glow = document.getElementById('bilatGlow');
-  if(glow) glow.style.animationDuration = tempos[t];
-  localStorage.setItem(STORAGE.tempo, t);
+  if(orb) orb.style.animationDuration = tempos.sanft;
+  if(glow) glow.style.animationDuration = tempos.sanft;
+  localStorage.setItem(STORAGE.tempo, 'sanft');
 }
 
 let sessionRunning = false;
@@ -2365,7 +2452,7 @@ window.addEventListener('load', () => {
     updateOrder();
   });
 
-  setTempo(localStorage.getItem(STORAGE.tempo) || 'mittel');
+  setTempo('sanft');
   updateOrder();
   updateIndicator('screen1');
   createParticles();
