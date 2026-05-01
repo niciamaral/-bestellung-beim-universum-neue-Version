@@ -1419,6 +1419,41 @@ h2 em{font-style:italic;color:var(--gold);}
   border-style:solid !important;
   border-width:1.5px !important;
 }
+/* === Seite 2 — Active-State Fix für Feminine Way Button === */
+.reveal-btn:active,
+.reveal-btn:focus,
+.reveal-btn:focus-visible{
+  border:1.5px solid var(--gold-1) !important;
+  border-top:1.5px solid var(--gold-1) !important;
+  border-bottom:1.5px solid var(--gold-1) !important;
+  border-left:1.5px solid var(--gold-1) !important;
+  border-right:1.5px solid var(--gold-1) !important;
+  outline:none !important;
+  background:rgba(196,150,58,0.22) !important;
+  color:#fff !important;
+}
+
+/* === Seite 2 — Lücke zwischen Button und Quote schließen === */
+.feminine-orb:not(.is-revealed){
+  display:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  height:0 !important;
+}
+.feminine-orb.is-revealed{
+  display:block !important;
+}
+
+/* === Reveal-Trigger Abstand zur Quote sauber === */
+#screen2 .reveal-trigger{
+  margin-bottom:1.5rem !important;
+}
+#screen2 .reveal-trigger.hidden + .feminine-orb{
+  margin-top:0;
+}
+#screen2 .misc-quote{
+  margin-top:2.5rem !important;
+}
 </style>
 </head>
 <body>
@@ -1447,7 +1482,7 @@ h2 em{font-style:italic;color:var(--gold);}
   <div class="wrap">
     <div class="content-inner">
       <div class="eyebrow">DAS MISSVERSTÄNDNIS</div>
-      <h2>Manifestation funktioniert nur <em>anders</em></h2>
+      <h2>Manifestation funktioniert <em>nur anders</em></h2>
 
       <div class="misc-box scroll-reveal">
         <div class="misc-eyebrow">IRRGLAUBE 1</div>
