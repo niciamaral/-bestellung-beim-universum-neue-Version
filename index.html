@@ -1522,6 +1522,54 @@ h2 em{font-style:italic;color:var(--gold);}
   color:var(--gold-1) !important;
   opacity:0.95;
 }
+/* === Seite 4 — Box 1: Weiße Karte (Stimulation = klar/kühl) === */
+.key-stimulation{
+  background:rgba(253,250,246,0.96) !important;
+  border:1px solid rgba(196,150,58,0.4) !important;
+  border-left:4px solid var(--gold) !important;
+  border-radius:12px !important;
+  padding:2rem 2rem 2rem 2.5rem !important;
+  box-shadow:0 12px 40px rgba(0,0,0,0.18) !important;
+}
+.key-stimulation::before{
+  background:var(--gold) !important;
+  box-shadow:0 0 14px rgba(196,150,58,0.6) !important;
+}
+.key-stimulation .misc-eyebrow{
+  color:var(--sienna) !important;
+  letter-spacing:0.4em !important;
+  font-weight:500 !important;
+}
+.key-stimulation .misc-text{
+  color:var(--text) !important;
+  opacity:1 !important;
+}
+
+/* === Seite 4 — Box 2: Goldene Karte (Verkörperung = warm/fühlend) === */
+.key-embodiment{
+  background:linear-gradient(135deg,#e8c06a 0%,#c4963a 100%) !important;
+  border:1px solid rgba(139,58,42,0.3) !important;
+  border-radius:12px !important;
+  padding:2rem !important;
+  box-shadow:0 12px 40px rgba(196,150,58,0.3), 0 0 60px rgba(232,192,106,0.15) !important;
+  overflow:hidden;
+}
+.key-embodiment::before{
+  background:radial-gradient(circle at top right,rgba(255,255,255,0.3) 0%,transparent 60%) !important;
+  width:120px !important;
+  height:120px !important;
+}
+.key-embodiment .misc-eyebrow{
+  color:var(--sienna-d) !important;
+  letter-spacing:0.4em !important;
+  font-weight:600 !important;
+  font-style:normal !important;
+}
+.key-embodiment .misc-text{
+  color:var(--bg) !important;
+  opacity:1 !important;
+  font-weight:400 !important;
+}
 </style>
 </head>
 <body>
