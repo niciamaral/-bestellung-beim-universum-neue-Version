@@ -1685,6 +1685,89 @@ h2 em{font-style:italic;color:var(--gold);}
   border:1.5px solid var(--gold-1) !important;
   color:#ffffff !important;
 }
+/* === Seite 5 — Elegante Schritt-Karten mit großer Hintergrund-Zahl === */
+.elegant-steps{
+  display:grid;
+  gap:1rem;
+  margin:2rem 0;
+  text-align:left;
+}
+
+.step-card{
+  position:relative;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(232,192,106,0.25);
+  border-radius:12px;
+  padding:1.75rem 2rem 1.75rem 5.5rem;
+  overflow:hidden;
+  transition:all 0.4s ease;
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+}
+
+.step-card:hover{
+  border-color:rgba(232,192,106,0.5);
+  background:rgba(255,255,255,0.10);
+  transform:translateX(4px);
+}
+
+.step-bg-num{
+  position:absolute;
+  top:50%;
+  left:0.75rem;
+  transform:translateY(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:5.5rem;
+  font-weight:300;
+  font-style:italic;
+  color:rgba(232,192,106,0.35);
+  line-height:1;
+  pointer-events:none;
+  letter-spacing:-0.05em;
+  transition:color 0.4s ease;
+}
+
+.step-card:hover .step-bg-num{
+  color:rgba(232,192,106,0.55);
+}
+
+.step-content{
+  position:relative;
+  z-index:1;
+}
+
+.step-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;
+  font-weight:300;
+  color:#ffffff;
+  margin:0 0 0.4rem 0;
+  letter-spacing:-0.005em;
+}
+
+.step-desc{
+  font-family:'Outfit',sans-serif;
+  font-size:0.95rem;
+  font-weight:300;
+  color:#ffffff;
+  opacity:0.78;
+  line-height:1.6;
+  margin:0;
+}
+
+/* Mobile: kleinere Hintergrund-Zahl */
+@media(max-width:640px){
+  .step-card{
+    padding:1.5rem 1.5rem 1.5rem 4.5rem;
+  }
+  .step-bg-num{
+    font-size:4.5rem;
+    left:0.5rem;
+  }
+  .step-title{
+    font-size:1.3rem;
+  }
+}
 </style>
 </head>
 <body>
@@ -1806,11 +1889,35 @@ h2 em{font-style:italic;color:var(--gold);}
     <div class="content-inner center">
       <div class="eyebrow">So wendest du das Tool an</div>
       <h2>In 4 <em>Schritten</em></h2>
-      <div class="steps">
-        <div class="step"><div class="step-num">I</div><div class="step-body"><strong>Wunsch klären</strong><span>Eine Sache. Konkret. Sinnlich.</span></div></div>
-        <div class="step"><div class="step-num">II</div><div class="step-body"><strong>Gefühl finden</strong><span>Wie fühlt es sich an, wenn es schon da ist?</span></div></div>
-        <div class="step"><div class="step-num">III</div><div class="step-body"><strong>Bestellung formulieren</strong><span>Im Präsens, aus dem Sein heraus.</span></div></div>
-        <div class="step"><div class="step-num">IV</div><div class="step-body"><strong>Bilaterale Session</strong><span>Den Wunsch im Körper verankern.</span></div></div>
+      <div class="steps elegant-steps">
+        <div class="step-card">
+          <span class="step-bg-num">1</span>
+          <div class="step-content">
+            <h3 class="step-title">Wunsch klären</h3>
+            <p class="step-desc">Eine Sache. Konkret. Sinnlich.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <span class="step-bg-num">2</span>
+          <div class="step-content">
+            <h3 class="step-title">Gefühl finden</h3>
+            <p class="step-desc">Wie fühlt es sich an, wenn es schon da ist?</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <span class="step-bg-num">3</span>
+          <div class="step-content">
+            <h3 class="step-title">Bestellung formulieren</h3>
+            <p class="step-desc">Im Präsens, aus dem Sein heraus.</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <span class="step-bg-num">4</span>
+          <div class="step-content">
+            <h3 class="step-title">Bilaterale Session</h3>
+            <p class="step-desc">Den Wunsch im Körper verankern.</p>
+          </div>
+        </div>
       </div>
       <div class="nav-actions"><button class="btn" onclick="goTo('screen6')">Weiter</button></div>
     </div>
