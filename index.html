@@ -2181,6 +2181,10 @@ function showFeminineWay(){
   trigger.classList.add('hidden');
   setTimeout(() => {
     orb.classList.add('is-revealed');
+    // Sanft zur Lichtkugel scrollen, sobald sie aufzugehen beginnt
+    setTimeout(() => {
+      orb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
     if(quote){
       setTimeout(() => quote.classList.add('is-visible'), 1200);
     }
