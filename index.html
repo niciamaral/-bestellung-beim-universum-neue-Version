@@ -1570,6 +1570,21 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity:1 !important;
   font-weight:400 !important;
 }
+/* === Seite 2 — Weiter-Button erst nach Reveal sichtbar === */
+#screen2NextBtn{
+  opacity:0;
+  pointer-events:none;
+  max-height:0;
+  overflow:hidden;
+  margin:0;
+  transition:opacity 1s ease 0.5s, max-height 1s ease 0.5s, margin 1s ease 0.5s;
+}
+#screen2NextBtn.is-visible{
+  opacity:1;
+  pointer-events:auto;
+  max-height:200px;
+  margin-top:2.5rem;
+}
 </style>
 </head>
 <body>
@@ -1625,7 +1640,7 @@ h2 em{font-style:italic;color:var(--gold);}
       </div>
 
       <div class="reveal-trigger scroll-reveal" id="revealTrigger">
-        <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way →</button>
+        <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way</button>
       </div>
 
       <div class="feminine-orb" id="feminineOrb">
@@ -1642,7 +1657,7 @@ h2 em{font-style:italic;color:var(--gold);}
         <span>— Diane Mariechild</span>
       </div>
 
-      <div class="nav-actions"><button class="btn" onclick="goTo('screen3')">WEITER</button></div>
+      <div class="nav-actions" id="screen2NextBtn"><button class="btn" onclick="goTo('screen3')">WEITER</button></div>
     </div>
   </div>
 </div>
@@ -2061,12 +2076,16 @@ function showFeminineWay(){
   const trigger = document.getElementById('revealTrigger');
   const orb = document.getElementById('feminineOrb');
   const quote = document.getElementById('finalQuote');
+  const nextBtn = document.getElementById('screen2NextBtn');
   if(!trigger || !orb) return;
   trigger.classList.add('hidden');
   setTimeout(() => {
     orb.classList.add('is-revealed');
     if(quote){
       setTimeout(() => quote.classList.add('is-visible'), 1200);
+    }
+    if(nextBtn){
+      setTimeout(() => nextBtn.classList.add('is-visible'), 1800);
     }
   }, 400);
 }
