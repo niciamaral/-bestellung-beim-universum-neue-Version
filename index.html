@@ -1641,6 +1641,50 @@ h2 em{font-style:italic;color:var(--gold);}
   animation:slideInRight 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
   animation-delay:1.2s !important;
 }
+/* === Seite 2 — The Feminine Way Button: Kompletter Border-Reset === */
+.reveal-btn,
+.reveal-btn:hover,
+.reveal-btn:focus,
+.reveal-btn:focus-visible,
+.reveal-btn:active{
+  /* Reset alles was den Border zerlegen könnte */
+  outline:none !important;
+  outline-offset:0 !important;
+
+  /* Border explizit als shorthand definiert */
+  border:1.5px solid var(--gold) !important;
+  border-radius:50px !important;
+
+  /* Layout-Stabilisierung */
+  box-sizing:border-box !important;
+
+  /* Background als Shorthand */
+  background:transparent !important;
+
+  /* Typografie */
+  color:var(--gold-1) !important;
+  font-family:'Outfit',sans-serif !important;
+
+  /* Transform-Reset — verhindert Layout-Shifts */
+  transform:none !important;
+}
+
+/* Hover: nur Farben ändern, keine Position */
+.reveal-btn:hover{
+  background:rgba(196,150,58,0.15) !important;
+  border-color:var(--gold-1) !important;
+  color:#ffffff !important;
+  box-shadow:0 0 24px rgba(232,192,106,0.25) !important;
+}
+
+/* Active/Focus: nochmal explizit Border halten */
+.reveal-btn:active,
+.reveal-btn:focus,
+.reveal-btn:focus-visible{
+  background:rgba(196,150,58,0.22) !important;
+  border:1.5px solid var(--gold-1) !important;
+  color:#ffffff !important;
+}
 </style>
 </head>
 <body>
