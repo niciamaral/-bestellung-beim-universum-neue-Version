@@ -1233,6 +1233,80 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity:0;
   animation:fadeInUp 1s ease forwards;
 }
+/* === Stream 2 Produktseite — Bordeaux-Hintergrund (überschreibt upsell hell) === */
+#streamRelationProducts{
+  background:none !important;
+  background-color:var(--bg) !important;
+  background-image:
+    linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
+    url('images/bild4.png') !important;
+  background-size:cover !important;
+  background-position:center !important;
+  background-repeat:no-repeat !important;
+}
+
+/* Texte hell auf dunklem Hintergrund */
+#streamRelationProducts h2,
+#streamRelationProducts .upsell-text,
+#streamRelationProducts p{
+  color:#ffffff;
+}
+#streamRelationProducts h2 em{
+  color:var(--gold-1);
+}
+#streamRelationProducts .stream-section-eye{
+  color:var(--gold);
+}
+
+/* === Karten 3-spaltig erzwingen auf Desktop === */
+@media(min-width:768px){
+  #streamRelationProducts .product-grid{
+    grid-template-columns:repeat(3,1fr) !important;
+  }
+}
+
+/* === Cream-Variante: hell auf dunklem Hintergrund === */
+.product-card.card-cream{
+  background:rgba(245,239,230,0.94);
+  border:1px solid rgba(196,150,58,0.5);
+}
+.product-card.card-cream .product-name{
+  color:var(--sienna);
+}
+.product-card.card-cream .product-tagline{
+  color:var(--sienna);
+  font-style:italic;
+  opacity:0.85;
+}
+.product-card.card-cream .product-price{
+  color:var(--gold);
+}
+
+/* === Bordeaux-Variante: warmer Akzent === */
+.product-card.card-bordeaux{
+  background:rgba(139,58,42,0.55);
+  border:1px solid rgba(232,192,106,0.5);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.product-card.card-bordeaux .product-name{
+  color:#ffffff;
+}
+.product-card.card-bordeaux .product-tagline{
+  color:var(--gold-1);
+  font-style:italic;
+  opacity:0.95;
+}
+.product-card.card-bordeaux .product-price{
+  color:var(--gold-1);
+}
+
+/* === Mobile: alle Karten untereinander === */
+@media(max-width:767px){
+  #streamRelationProducts .product-grid{
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 <body>
