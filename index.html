@@ -2013,6 +2013,36 @@ h2 em{font-style:italic;color:var(--gold);}
     0 0 30px 6px rgba(232,192,106,0.6),
     0 0 60px 14px rgba(232,192,106,0.3) !important;
 }
+/* === Seite 9 — RICHTIG langsam (8 Sekunden) + Schatten radikal weg === */
+.bilat-orb,
+.bilat-orb.running,
+.bilat-glow,
+.bilat-glow.running,
+#screen9 .bilat-orb,
+#screen9 .bilat-orb.running{
+  animation-duration:8s !important;
+  animation-timing-function:ease-in-out !important;
+}
+
+/* Glow komplett ausblenden — alle möglichen Wege */
+.bilat-glow,
+.bilat-glow.running,
+#bilatGlow{
+  display:none !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  width:0 !important;
+  height:0 !important;
+}
+
+/* Track-Container: keine Schatten, keine Hintergründe */
+.bilat-track,
+#screen9 .bilat-track{
+  background:none !important;
+  background-color:transparent !important;
+  box-shadow:none !important;
+  border:none !important;
+}
 /* === Seite 10 — Weichenstellung elegant (Bordeaux-Glas-Karten) === */
 #screen10{
   background-color:var(--bg);
@@ -2482,7 +2512,7 @@ h2 em{font-style:italic;color:var(--gold);}
 
 <script>
 const screens = ['screen1','screen2','screen3','screen4','screen5','screen6','screen7','screen8','screen9','screen10'];
-const tempos = { sanft:'6s' };
+const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
 function goTo(id){
