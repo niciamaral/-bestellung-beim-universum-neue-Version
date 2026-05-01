@@ -1228,6 +1228,11 @@ h2 em{font-style:italic;color:var(--gold);}
   #screen2 .orb-title{font-size:2.7rem;}
   #screen2 .orb-text{font-size:1.15rem;}
 }
+/* === Seite 1 — Disclaimer Animation (erscheint zuletzt) === */
+#screen1 .disclaimer.animate{
+  opacity:0;
+  animation:fadeInUp 1s ease forwards;
+}
 </style>
 </head>
 <body>
@@ -1239,7 +1244,7 @@ h2 em{font-style:italic;color:var(--gold);}
   <div class="wrap">
       <div class="hero-glow"></div>
     <div class="hero-content">
-      <div class="eyebrow animate" style="animation-delay:0.2s">THE FEMININE WAY OF MANIFESTATION · KOSTENLOS</div>
+      <div class="eyebrow animate" style="animation-delay:0.2s">THE FEMININE WAY OF MANIFESTATION</div>
       <h1 class="animate" style="animation-delay:0.5s">Bestellung beim <em>Universum</em></h1>
       <p class="hero-text animate" style="animation-delay:0.9s">Schön, dass du da bist, du wundervolle Frau. Ich lade dich ein in einen Raum — für deine Wünsche, deine Träume und vor allem: für dich selbst.</p>
       <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
@@ -1248,7 +1253,7 @@ h2 em{font-style:italic;color:var(--gold);}
       <button class="btn animate" style="animation-delay:2.4s" onclick="goTo('screen2')">JETZT ENTDECKEN →</button>
     </div>
   </div>
-  <div class="disclaimer"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
+  <div class="disclaimer animate" style="animation-delay:2.8s"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
 </div>
 
 <!-- ===== SEITE 2: Das Missverständnis ===== -->
