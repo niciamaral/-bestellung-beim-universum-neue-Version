@@ -1833,6 +1833,68 @@ h2 em{font-style:italic;color:var(--gold);}
     font-size:1.15rem !important;
   }
 }
+/* === Seite 6 — Atemrhythmus in einer Zeile === */
+.breath-rhythm{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:0.85rem;
+  margin:1.5rem auto 0 !important;
+  font-size:0.95rem;
+  line-height:1;
+}
+.breath-rhythm span{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  color:#ffffff;
+  letter-spacing:0.05em;
+}
+.breath-rhythm em{
+  font-style:italic;
+  color:var(--gold-1);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  font-weight:400;
+}
+.breath-dot{
+  width:5px !important;
+  height:5px !important;
+  border-radius:50%;
+  background:var(--gold);
+  opacity:0.6;
+  flex-shrink:0;
+  display:inline-block !important;
+}
+
+/* Mobile: kleinere Schrift, aber bleibt einzeilig wenn möglich */
+@media(max-width:640px){
+  .breath-rhythm{
+    font-size:0.85rem;
+    gap:0.6rem;
+  }
+  .breath-rhythm em{
+    font-size:1rem;
+  }
+}
+
+/* === Seite 6 — Heller leuchtender Atemkreis === */
+.breath-circle{
+  background:radial-gradient(circle at 35% 35%,
+    rgba(255,248,236,0.55) 0%,
+    rgba(232,192,106,0.7) 25%,
+    rgba(196,150,58,0.45) 55%,
+    rgba(196,150,58,0.15) 80%,
+    transparent 100%) !important;
+  border:1px solid rgba(232,192,106,0.6) !important;
+  box-shadow:
+    inset 0 0 30px rgba(255,248,236,0.3),
+    0 0 40px 8px rgba(232,192,106,0.35),
+    0 0 80px 16px rgba(232,192,106,0.2) !important;
+  color:var(--gold-1) !important;
+  font-weight:300 !important;
+}
 </style>
 </head>
 <body>
@@ -1997,7 +2059,7 @@ h2 em{font-style:italic;color:var(--gold);}
       <h2>Komm <em>im Körper</em> an</h2>
       <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
       <div class="breath-circle"><span>Atme</span></div>
-      <p><strong>Einatmen — 4 Sekunden.</strong><br><strong>Halten — 4 Sekunden.</strong><br><strong>Ausatmen — 6 Sekunden.</strong></p>
+      <p class="breath-rhythm"><span>Einatmen <em>4 Sek</em></span><span class="breath-dot"></span><span>Halten <em>4 Sek</em></span><span class="breath-dot"></span><span>Ausatmen <em>6 Sek</em></span></p>
       <div class="nav-actions"><button class="btn" onclick="goTo('screen7')">Weiter</button></div>
     </div>
   </div>
