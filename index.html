@@ -2110,6 +2110,152 @@ h2 em{font-style:italic;color:var(--gold);}
   font-weight:400;
   opacity:0.85;
 }
+/* === Seite 10 — Karten präsenter und einladender === */
+#screen10 .switch-option{
+  background:rgba(255,255,255,0.10) !important;
+  border:1.5px solid rgba(232,192,106,0.6) !important;
+  padding:3rem 2rem 2.25rem !important;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.25),
+    0 0 30px rgba(232,192,106,0.2) !important;
+  animation:cardBreathe 4s ease-in-out infinite;
+  transition:all 0.4s ease;
+}
+
+@keyframes cardBreathe{
+  0%,100%{
+    box-shadow:0 8px 32px rgba(0,0,0,0.25), 0 0 30px rgba(232,192,106,0.18);
+  }
+  50%{
+    box-shadow:0 8px 32px rgba(0,0,0,0.25), 0 0 50px rgba(232,192,106,0.32);
+  }
+}
+
+#screen10 .switch-option:hover{
+  border-color:var(--gold-1) !important;
+  background:rgba(255,255,255,0.16) !important;
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:
+    0 16px 48px rgba(0,0,0,0.35),
+    0 0 60px rgba(232,192,106,0.45) !important;
+  animation-play-state:paused;
+}
+
+#screen10 .switch-title{
+  font-size:1.8rem !important;
+  margin-bottom:0.75rem !important;
+}
+
+#screen10 .switch-desc{
+  font-size:0.82rem !important;
+  margin-bottom:1.5rem;
+}
+
+/* "Entdecken →" Pfeil — klare Klick-Einladung */
+.switch-arrow{
+  font-family:'Outfit',sans-serif;
+  font-size:0.78rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--gold-1);
+  font-weight:500;
+  padding-top:1.25rem;
+  border-top:1px solid rgba(232,192,106,0.25);
+  transition:all 0.3s ease;
+}
+
+#screen10 .switch-option:hover .switch-arrow{
+  color:#ffffff;
+  letter-spacing:0.3em;
+  border-top-color:var(--gold-1);
+}
+
+/* === TÜR-SEKTION === */
+.door-section {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 60px auto 80px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.door-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9/16;
+  max-height: 70vh;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.door-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.door-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(232, 192, 106, 0.5) 0%,
+    rgba(232, 192, 106, 0.2) 30%,
+    transparent 70%);
+  opacity: 0;
+  transition: opacity 2.5s ease;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.door-glow.is-active {
+  opacity: 1;
+}
+
+.door-words {
+  margin-top: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+.word-line {
+  margin: 0.4em 0;
+}
+
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  margin-right: 0.25em;
+}
+
+.word.gold {
+  color: var(--gold-1);
+  font-style: italic;
+}
+
+.word.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile Optimierung */
+@media (max-width: 600px) {
+  .door-section {
+    margin: 40px auto 60px;
+  }
+  .door-words {
+    margin-top: 30px;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+}
 </style>
 </head>
 <body>
@@ -2124,6 +2270,35 @@ h2 em{font-style:italic;color:var(--gold);}
       <div class="eyebrow animate" style="animation-delay:0.2s">THE FEMININE WAY OF MANIFESTATION</div>
       <h1 class="animate" style="animation-delay:0.5s">Bestellung beim <em>Universum</em></h1>
       <p class="hero-text animate" style="animation-delay:0.9s">Schön, dass du da bist, du wundervolle Frau. Ich lade dich ein in einen Raum — für deine Wünsche, deine Träume und vor allem: für dich selbst.</p>
+
+      <!-- TÜR-SEKTION -->
+      <div class="door-section" id="doorSection">
+        <div class="door-container">
+          <video
+            class="door-video"
+            src="videotuer.mp4"
+            muted
+            playsinline
+            preload="auto"
+          ></video>
+          <div class="door-glow"></div>
+        </div>
+
+        <!-- Worte die aus der Tür kommen -->
+        <div class="door-words" id="doorWords">
+          <p class="word-line">
+            <span class="word gold">Was wäre,</span>
+          </p>
+          <p class="word-line">
+            <span class="word">wenn</span>
+            <span class="word gold">alles in dir</span>
+          </p>
+          <p class="word-line">
+            <span class="word gold">beginnt?</span>
+          </p>
+        </div>
+      </div>
+
       <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
       <div class="highlight-box animate" style="animation-delay:1.7s"><span style="color:#a07828">Was wäre</span>, wenn alles in dir beginnt? <span style="color:#a07828">Was wäre</span>, wenn du eine absolute Kraft in dir trägst, die noch niemand dir gezeigt hat? <span style="color:#a07828">Und was wäre</span>, wenn ich dir heute zeige — warum es bisher noch nicht so richtig geklappt hat?</div>
       <p class="hero-text animate" style="animation-delay:2.1s">Die Antwort liegt tiefer als du denkst. Und sie beginnt hier.</p>
@@ -2360,10 +2535,12 @@ h2 em{font-style:italic;color:var(--gold);}
         <a class="switch-option" onclick="goTo('streamSelf')">
           <div class="switch-title">Die Reise zu mir <em>selbst</em></div>
           <div class="switch-desc">Weiblichkeit · Selbstwerdung</div>
+          <div class="switch-arrow">Entdecken →</div>
         </a>
         <a class="switch-option" onclick="goTo('streamRelation')">
           <div class="switch-title">Meine <em>Partnerschaft</em></div>
           <div class="switch-desc">Beziehung · Klarheit · Liebe</div>
+          <div class="switch-arrow">Entdecken →</div>
         </a>
       </div>
     </div>
@@ -2637,6 +2814,42 @@ function showFeminineWay(){
     }
   }, 400);
 }
+
+// === TÜR-ANIMATION ===
+(function() {
+  const doorSection = document.getElementById('doorSection');
+  if (!doorSection) return;
+
+  const video = doorSection.querySelector('.door-video');
+  const glow = doorSection.querySelector('.door-glow');
+  const words = doorSection.querySelectorAll('.word');
+
+  // Intersection Observer — startet wenn Tür sichtbar
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Video starten
+        video.play().catch(() => {});
+
+        // Glow nach 1 Sekunde
+        setTimeout(() => {
+          glow.classList.add('is-active');
+        }, 1000);
+
+        // Worte nacheinander
+        words.forEach((word, i) => {
+          setTimeout(() => {
+            word.classList.add('is-visible');
+          }, 2500 + i * 900);
+        });
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+
+  observer.observe(doorSection);
+})();
 </script>
 
 </body>
