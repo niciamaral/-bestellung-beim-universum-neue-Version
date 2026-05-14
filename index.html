@@ -2298,6 +2298,47 @@ h2 em{font-style:italic;color:var(--gold);}
     font-size: clamp(2.8rem, 13vw, 4rem);
   }
 }
+
+/* === SEITE 2: VIDEO-HINTERGRÜNDE FÜR IRRGLAUBEN-BOXEN === */
+#screen2 .misc-box {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+#screen2 .misc-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#screen2 .misc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(42, 20, 16, 0.82), rgba(101, 30, 20, 0.78));
+  z-index: 1;
+  pointer-events: none;
+}
+
+#screen2 .misc-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile: bei prefers-reduced-motion Videos abschalten — Performance auf 4G */
+@media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+  #screen2 .misc-video {
+    display: none;
+  }
+  #screen2 .misc-overlay {
+    background: rgba(42, 20, 16, 0.95);
+  }
+}
 </style>
 </head>
 <body>
@@ -2399,27 +2440,43 @@ h2 em{font-style:italic;color:var(--gold);}
       <h2>Manifestation funktioniert <em>nur anders</em></h2>
 
       <div class="misc-box scroll-reveal">
-        <div class="misc-eyebrow">IRRGLAUBE 1</div>
-        <h3 class="misc-title">Wenn ich es nur stark genug will, kommt es</h3>
-        <p class="misc-text">Millionen Frauen visualisieren täglich. Stimmungsboards. Affirmationen. Und trotzdem — die Lieferung bleibt aus. Weil Wollen allein das Nervensystem nicht verändert.</p>
+        <video class="misc-video" src="video1.mp4" muted loop autoplay playsinline preload="metadata"></video>
+        <div class="misc-overlay"></div>
+        <div class="misc-content">
+          <div class="misc-eyebrow">IRRGLAUBE 1</div>
+          <h3 class="misc-title">Wenn ich es nur stark genug will, kommt es</h3>
+          <p class="misc-text">Millionen Frauen visualisieren täglich. Stimmungsboards. Affirmationen. Und trotzdem — die Lieferung bleibt aus. Weil Wollen allein das Nervensystem nicht verändert.</p>
+        </div>
       </div>
 
       <div class="misc-box scroll-reveal">
-        <div class="misc-eyebrow">IRRGLAUBE 2</div>
-        <h3 class="misc-title">Ich muss positiv denken und negative Gedanken vermeiden</h3>
-        <p class="misc-text">Positives Denken spricht den Kopf an. Aber dein Unterbewusstsein speichert seit der Kindheit andere Wahrheiten. Solange diese Prägungen im Körper sitzen, gewinnt immer das Alte.</p>
+        <video class="misc-video" src="video2.mp4" muted loop autoplay playsinline preload="metadata"></video>
+        <div class="misc-overlay"></div>
+        <div class="misc-content">
+          <div class="misc-eyebrow">IRRGLAUBE 2</div>
+          <h3 class="misc-title">Ich muss positiv denken und negative Gedanken vermeiden</h3>
+          <p class="misc-text">Positives Denken spricht den Kopf an. Aber dein Unterbewusstsein speichert seit der Kindheit andere Wahrheiten. Solange diese Prägungen im Körper sitzen, gewinnt immer das Alte.</p>
+        </div>
       </div>
 
       <div class="misc-box scroll-reveal">
-        <div class="misc-eyebrow">IRRGLAUBE 3</div>
-        <h3 class="misc-title">Ich muss mir vorstellen als wäre es schon da</h3>
-        <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
+        <video class="misc-video" src="video3.mp4" muted loop autoplay playsinline preload="metadata"></video>
+        <div class="misc-overlay"></div>
+        <div class="misc-content">
+          <div class="misc-eyebrow">IRRGLAUBE 3</div>
+          <h3 class="misc-title">Ich muss mir vorstellen als wäre es schon da</h3>
+          <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
+        </div>
       </div>
 
       <div class="misc-box scroll-reveal">
-        <div class="misc-eyebrow">IRRGLAUBE 4</div>
-        <h3 class="misc-title">Ich kann nicht manifestieren</h3>
-        <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
+        <video class="misc-video" src="video4.mp4" muted loop autoplay playsinline preload="metadata"></video>
+        <div class="misc-overlay"></div>
+        <div class="misc-content">
+          <div class="misc-eyebrow">IRRGLAUBE 4</div>
+          <h3 class="misc-title">Ich kann nicht manifestieren</h3>
+          <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
+        </div>
       </div>
 
       <div class="reveal-trigger scroll-reveal" id="revealTrigger">
