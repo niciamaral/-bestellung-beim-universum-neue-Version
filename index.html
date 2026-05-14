@@ -2299,14 +2299,15 @@ h2 em{font-style:italic;color:var(--gold);}
   }
 }
 
-/* === SEITE 2: VIDEO-HINTERGRÜNDE FÜR IRRGLAUBEN-BOXEN === */
-#screen2 .misc-box {
+/* === SEITE 2: 4 IRRGLAUBEN ALS SUB-SCREENS === */
+.irrglaube-screen {
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  min-height: 100vh;
 }
 
-#screen2 .misc-video {
+.irrglaube-video {
   position: absolute;
   top: 0;
   left: 0;
@@ -2317,7 +2318,7 @@ h2 em{font-style:italic;color:var(--gold);}
   pointer-events: none;
 }
 
-#screen2 .misc-overlay {
+.irrglaube-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(rgba(42, 20, 16, 0.82), rgba(101, 30, 20, 0.78));
@@ -2325,18 +2326,75 @@ h2 em{font-style:italic;color:var(--gold);}
   pointer-events: none;
 }
 
-#screen2 .misc-content {
+.irrglaube-wrap {
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+}
+
+.irrglaube-content {
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+}
+
+.irrglaube-content .misc-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.irrglaube-content .misc-title {
+  margin-bottom: 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.irrglaube-content .misc-text {
+  margin-bottom: 1.5rem;
+}
+
+/* Eingangstext oben auf #screen2a */
+#screen2a .irrglaube-content .eyebrow {
+  margin-bottom: 1rem;
+}
+
+#screen2a .irrglaube-content h2 {
+  margin-bottom: 1.5rem;
+}
+
+.irrglaube-spacer {
+  width: 60px;
+  height: 1px;
+  background: rgba(232, 192, 106, 0.4);
+  margin: 2rem auto;
+}
+
+/* Nav-Buttons in Reihe für Sub-Screens */
+.irrglaube-nav {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
 }
 
 /* Mobile: bei prefers-reduced-motion Videos abschalten — Performance auf 4G */
 @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
-  #screen2 .misc-video {
+  .irrglaube-video {
     display: none;
   }
-  #screen2 .misc-overlay {
+  .irrglaube-overlay {
     background: rgba(42, 20, 16, 0.95);
+  }
+}
+
+@media (max-width: 600px) {
+  .irrglaube-wrap {
+    padding: 3rem 1.25rem;
   }
 }
 </style>
@@ -2426,80 +2484,106 @@ h2 em{font-style:italic;color:var(--gold);}
 
       <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
       <p class="hero-text animate" style="animation-delay:2.1s">Die Antwort liegt tiefer als du denkst. Und sie beginnt hier.</p>
-      <button class="btn animate" style="animation-delay:2.4s" onclick="goTo('screen2')">JETZT ENTDECKEN →</button>
+      <button class="btn animate" style="animation-delay:2.4s" onclick="goTo('screen2a')">JETZT ENTDECKEN →</button>
     </div>
   </div>
   <div class="disclaimer animate" style="animation-delay:2.8s"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
 </div>
 
 <!-- ===== SEITE 2: Das Missverständnis ===== -->
-<div class="screen content" id="screen2">
-  <div class="wrap">
-    <div class="content-inner">
-      <div class="eyebrow">DAS MISSVERSTÄNDNIS</div>
-      <h2>Manifestation funktioniert <em>nur anders</em></h2>
+<!-- ===== SEITE 2: 4 Irrglauben als Sub-Screens (Wrapper #screen2) ===== -->
+<div id="screen2">
 
-      <div class="misc-box scroll-reveal">
-        <video class="misc-video" src="video1.mp4" muted loop autoplay playsinline preload="metadata"></video>
-        <div class="misc-overlay"></div>
-        <div class="misc-content">
-          <div class="misc-eyebrow">IRRGLAUBE 1</div>
-          <h3 class="misc-title">Wenn ich es nur stark genug will, kommt es</h3>
-          <p class="misc-text">Millionen Frauen visualisieren täglich. Stimmungsboards. Affirmationen. Und trotzdem — die Lieferung bleibt aus. Weil Wollen allein das Nervensystem nicht verändert.</p>
+  <!-- Sub-Screen 2a — Irrglaube 1 (mit Eingangstext oben) -->
+  <div class="screen content irrglaube-screen" id="screen2a">
+    <video class="irrglaube-video" src="video1.mp4" muted loop playsinline preload="metadata"></video>
+    <div class="irrglaube-overlay"></div>
+    <div class="wrap irrglaube-wrap">
+      <div class="content-inner irrglaube-content">
+        <div class="eyebrow">DAS MISSVERSTÄNDNIS</div>
+        <h2>Manifestation funktioniert <em>nur anders</em></h2>
+        <div class="irrglaube-spacer"></div>
+        <div class="misc-eyebrow">IRRGLAUBE 1</div>
+        <h3 class="misc-title">Wenn ich es nur stark genug will, kommt es</h3>
+        <p class="misc-text">Millionen Frauen visualisieren täglich. Stimmungsboards. Affirmationen. Und trotzdem — die Lieferung bleibt aus. Weil Wollen allein das Nervensystem nicht verändert.</p>
+        <div class="nav-actions irrglaube-nav">
+          <button class="btn" onclick="goTo('screen2b')">Weiter</button>
+          <button class="btn-link" onclick="goTo('screen1')">← Zurück</button>
         </div>
       </div>
-
-      <div class="misc-box scroll-reveal">
-        <video class="misc-video" src="video2.mp4" muted loop autoplay playsinline preload="metadata"></video>
-        <div class="misc-overlay"></div>
-        <div class="misc-content">
-          <div class="misc-eyebrow">IRRGLAUBE 2</div>
-          <h3 class="misc-title">Ich muss positiv denken und negative Gedanken vermeiden</h3>
-          <p class="misc-text">Positives Denken spricht den Kopf an. Aber dein Unterbewusstsein speichert seit der Kindheit andere Wahrheiten. Solange diese Prägungen im Körper sitzen, gewinnt immer das Alte.</p>
-        </div>
-      </div>
-
-      <div class="misc-box scroll-reveal">
-        <video class="misc-video" src="video3.mp4" muted loop autoplay playsinline preload="metadata"></video>
-        <div class="misc-overlay"></div>
-        <div class="misc-content">
-          <div class="misc-eyebrow">IRRGLAUBE 3</div>
-          <h3 class="misc-title">Ich muss mir vorstellen als wäre es schon da</h3>
-          <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
-        </div>
-      </div>
-
-      <div class="misc-box scroll-reveal">
-        <video class="misc-video" src="video4.mp4" muted loop autoplay playsinline preload="metadata"></video>
-        <div class="misc-overlay"></div>
-        <div class="misc-content">
-          <div class="misc-eyebrow">IRRGLAUBE 4</div>
-          <h3 class="misc-title">Ich kann nicht manifestieren</h3>
-          <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
-        </div>
-      </div>
-
-      <div class="reveal-trigger scroll-reveal" id="revealTrigger">
-        <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way</button>
-      </div>
-
-      <div class="feminine-orb" id="feminineOrb">
-        <div class="orb-glow"></div>
-        <div class="orb-content">
-          <div class="orb-eye">The Feminine Way</div>
-          <h3 class="orb-title">Du wirst zur Frau die <em>es anzieht</em></h3>
-          <p class="orb-text">Weibliche Manifestation beginnt nicht im Kopf — sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein. Wenn du die Frau wirst, für die es selbstverständlich ist — fließt es zu dir.</p>
-        </div>
-      </div>
-
-      <div class="misc-quote scroll-reveal" id="finalQuote">
-        <p>Eine Frau ist der vollkommene Kreis. In ihr liegt die Kraft zu erschaffen, zu nähren und zu verwandeln.</p>
-        <span>— Diane Mariechild</span>
-      </div>
-
-      <div class="nav-actions" id="screen2NextBtn"><button class="btn" onclick="goTo('screen3')">WEITER</button></div>
     </div>
   </div>
+
+  <!-- Sub-Screen 2b — Irrglaube 2 -->
+  <div class="screen content irrglaube-screen" id="screen2b">
+    <video class="irrglaube-video" src="video2.mp4" muted loop playsinline preload="metadata"></video>
+    <div class="irrglaube-overlay"></div>
+    <div class="wrap irrglaube-wrap">
+      <div class="content-inner irrglaube-content">
+        <div class="misc-eyebrow">IRRGLAUBE 2</div>
+        <h3 class="misc-title">Ich muss positiv denken und negative Gedanken vermeiden</h3>
+        <p class="misc-text">Positives Denken spricht den Kopf an. Aber dein Unterbewusstsein speichert seit der Kindheit andere Wahrheiten. Solange diese Prägungen im Körper sitzen, gewinnt immer das Alte.</p>
+        <div class="nav-actions irrglaube-nav">
+          <button class="btn" onclick="goTo('screen2c')">Weiter</button>
+          <button class="btn-link" onclick="goTo('screen2a')">← Zurück</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub-Screen 2c — Irrglaube 3 -->
+  <div class="screen content irrglaube-screen" id="screen2c">
+    <video class="irrglaube-video" src="video3.mp4" muted loop playsinline preload="metadata"></video>
+    <div class="irrglaube-overlay"></div>
+    <div class="wrap irrglaube-wrap">
+      <div class="content-inner irrglaube-content">
+        <div class="misc-eyebrow">IRRGLAUBE 3</div>
+        <h3 class="misc-title">Ich muss mir vorstellen als wäre es schon da</h3>
+        <p class="misc-text">Das „Act as if" funktioniert nur wenn dein Nervensystem mitspielt. Wenn dein Körper noch in alten Überzeugungen lebt, fühlt sich das Vorstellen leer an wie eine Lüge. Das Gehirn glaubt dir nicht.</p>
+        <div class="nav-actions irrglaube-nav">
+          <button class="btn" onclick="goTo('screen2d')">Weiter</button>
+          <button class="btn-link" onclick="goTo('screen2b')">← Zurück</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub-Screen 2d — Irrglaube 4 + Feminine-Way-Reveal -->
+  <div class="screen content irrglaube-screen" id="screen2d">
+    <video class="irrglaube-video" src="video4.mp4" muted loop playsinline preload="metadata"></video>
+    <div class="irrglaube-overlay"></div>
+    <div class="wrap irrglaube-wrap">
+      <div class="content-inner irrglaube-content">
+        <div class="misc-eyebrow">IRRGLAUBE 4</div>
+        <h3 class="misc-title">Ich kann nicht manifestieren</h3>
+        <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
+
+        <div class="reveal-trigger scroll-reveal" id="revealTrigger">
+          <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way</button>
+        </div>
+
+        <div class="feminine-orb" id="feminineOrb">
+          <div class="orb-glow"></div>
+          <div class="orb-content">
+            <div class="orb-eye">The Feminine Way</div>
+            <h3 class="orb-title">Du wirst zur Frau die <em>es anzieht</em></h3>
+            <p class="orb-text">Weibliche Manifestation beginnt nicht im Kopf — sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein. Wenn du die Frau wirst, für die es selbstverständlich ist — fließt es zu dir.</p>
+          </div>
+        </div>
+
+        <div class="misc-quote scroll-reveal" id="finalQuote">
+          <p>Eine Frau ist der vollkommene Kreis. In ihr liegt die Kraft zu erschaffen, zu nähren und zu verwandeln.</p>
+          <span>— Diane Mariechild</span>
+        </div>
+
+        <div class="nav-actions irrglaube-nav" id="screen2NextBtn">
+          <button class="btn" onclick="goTo('screen3')">Weiter</button>
+          <button class="btn-link" onclick="goTo('screen2c')">← Zurück</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ===== SEITE 3: The Feminine Way ===== -->
@@ -2804,7 +2888,7 @@ h2 em{font-style:italic;color:var(--gold);}
 </div>
 
 <script>
-const screens = ['screen1','screen2','screen3','screen4','screen5','screen6','screen7','screen8','screen9','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screen9','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
@@ -2815,7 +2899,21 @@ function goTo(id){
   target.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   updateIndicator(id);
+  updateIrrglaubeVideos(id);
   if(id === 'screen9') updateOrder();
+}
+
+// Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
+function updateIrrglaubeVideos(activeId){
+  document.querySelectorAll('.irrglaube-screen').forEach(scr => {
+    const vid = scr.querySelector('.irrglaube-video');
+    if(!vid) return;
+    if(scr.id === activeId){
+      vid.play().catch(() => {});
+    } else {
+      vid.pause();
+    }
+  });
 }
 
 function updateIndicator(id){
