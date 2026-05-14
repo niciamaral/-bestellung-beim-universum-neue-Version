@@ -2202,7 +2202,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .door-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(101, 30, 20, 0.65), rgba(101, 30, 20, 0.55));
+  background: linear-gradient(rgba(42, 20, 16, 0.75), rgba(101, 30, 20, 0.7));
   z-index: 1;
   pointer-events: none;
   transition: opacity 2.5s ease;
@@ -2211,7 +2211,7 @@ h2 em{font-style:italic;color:var(--gold);}
 
 /* Overlay wird heller — zeigt das Öffnen */
 .door-overlay.is-opening {
-  opacity: 0.55;
+  opacity: 0.65;
 }
 
 .door-glow {
@@ -2255,7 +2255,7 @@ h2 em{font-style:italic;color:var(--gold);}
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.4;
-  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  font-size: clamp(2.6rem, 9vw, 3.8rem);
   color: #ffffff;
   text-shadow:
     0 0 25px rgba(232, 192, 106, 0.6),
@@ -2295,7 +2295,7 @@ h2 em{font-style:italic;color:var(--gold);}
   .word-line {
     padding: 20px 14px;
     gap: 0.12em 0.28em;
-    font-size: clamp(2rem, 9vw, 2.8rem);
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
   }
 }
 </style>
@@ -2918,7 +2918,7 @@ function showFeminineWay(){
       doorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     setTimeout(() => window.removeEventListener('scroll', onScroll), 2500);
-  }, 1500);
+  }, 6000);
 })();
 
 // === TÜR-ANIMATION: Zeilen synchron zum Video (11s) ===
