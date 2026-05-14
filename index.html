@@ -1151,7 +1151,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .feminine-orb{
   position:relative;
   margin:2rem auto 3rem;
-  padding:5rem 2rem;
+  padding:8rem 2rem 5rem;
   max-width:680px;
   text-align:center;
   opacity:0;
@@ -1163,6 +1163,31 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity:1;
   transform:scale(1);
   pointer-events:auto;
+}
+/* Sanfter goldener Lichtkreis hinter dem Feminin-Way-Element (1.2s fade-in beim Reveal) */
+.feminine-orb::before{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:180%;
+  height:180%;
+  background:radial-gradient(circle at center,
+    rgba(232, 192, 106, 0.3) 0%,
+    rgba(232, 192, 106, 0.1) 40%,
+    transparent 70%);
+  border-radius:50%;
+  opacity:0;
+  pointer-events:none;
+  z-index:0;
+}
+.feminine-orb.is-revealed::before{
+  animation:goldhaloIn 1.2s ease forwards;
+}
+@keyframes goldhaloIn{
+  from{opacity:0;}
+  to{opacity:1;}
 }
 .orb-glow{
   position:absolute;
@@ -1224,7 +1249,7 @@ h2 em{font-style:italic;color:var(--gold);}
   font-weight:300;
 }
 @media(min-width:769px){
-  .feminine-orb{padding:6rem 3rem; margin:3rem auto 4rem;}
+  .feminine-orb{padding:10rem 3rem 6rem; margin:3rem auto 4rem;}
   #screen2 .orb-title{font-size:2.7rem;}
   #screen2 .orb-text{font-size:1.15rem;}
 }
