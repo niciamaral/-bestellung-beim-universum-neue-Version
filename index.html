@@ -1151,7 +1151,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .feminine-orb{
   position:relative;
   margin:2rem auto 3rem;
-  padding:8rem 2rem 5rem;
+  padding:5rem 2rem;
   max-width:680px;
   text-align:center;
   opacity:0;
@@ -1249,7 +1249,7 @@ h2 em{font-style:italic;color:var(--gold);}
   font-weight:300;
 }
 @media(min-width:769px){
-  .feminine-orb{padding:10rem 3rem 6rem; margin:3rem auto 4rem;}
+  .feminine-orb{padding:6rem 3rem; margin:3rem auto 4rem;}
   #screen2 .orb-title{font-size:2.7rem;}
   #screen2 .orb-text{font-size:1.15rem;}
 }
@@ -1466,7 +1466,11 @@ h2 em{font-style:italic;color:var(--gold);}
   height:0 !important;
 }
 .feminine-orb.is-revealed{
-  display:block !important;
+  display:flex !important;
+  flex-direction:column;
+  justify-content:center;
+  min-height:100vh;
+  margin-top:100vh;
 }
 
 /* === Reveal-Trigger Abstand zur Quote sauber === */
