@@ -846,6 +846,36 @@ h2 em{font-style:italic;color:var(--gold);}
   text-align:center;
   -webkit-backdrop-filter:blur(4px);
   backdrop-filter:blur(4px);
+  position:relative;
+  isolation:isolate;
+  opacity:0;
+  transform:scale(2.5);
+  filter:blur(8px);
+  transition:opacity 2s ease,
+             transform 2.5s cubic-bezier(0.22, 1, 0.36, 1),
+             filter 2s ease;
+}
+.anchor-card.is-revealed{
+  opacity:1;
+  transform:scale(1);
+  filter:blur(0);
+}
+/* Goldener Schleier-Overlay — verschwindet während die Karte schrumpft */
+.anchor-card::before{
+  content:'';
+  position:absolute;
+  inset:-20%;
+  background:radial-gradient(ellipse at center top,
+    rgba(232, 192, 106, 0.6) 0%,
+    rgba(232, 192, 106, 0.3) 30%,
+    transparent 70%);
+  opacity:1;
+  transition:opacity 2.5s ease;
+  pointer-events:none;
+  z-index:-1;
+}
+.anchor-card.is-revealed::before{
+  opacity:0;
 }
 .anchor-eye{
   font-size:0.7rem;
@@ -2617,7 +2647,7 @@ h2 em{font-style:italic;color:var(--gold);}
       <div class="eyebrow fade-soft" style="animation-delay:0.2s">The Feminine Way</div>
       <h2 class="fade-soft" style="animation-delay:0.4s">Tiefer als <em>Gedanken</em> reichen</h2>
       <p class="fade-soft" style="animation-delay:0.7s;max-width:620px;margin-left:auto;margin-right:auto;">Was du dir wünschst, lebt nicht im Kopf. Es lebt in deinem Nervensystem — in den Mustern, die du als kleines Mädchen gelernt hast.</p>
-      <div class="anchor-card fade-soft" style="animation-delay:1.0s">
+      <div class="anchor-card">
         <div class="anchor-eye">Der Kern</div>
         <p class="anchor-text">Solange dein Körper <em>"Mangel"</em> gelernt hat, kannst du noch so oft <em>"Fülle"</em> denken — er glaubt es nicht.</p>
       </div>
@@ -3052,6 +3082,23 @@ function createParticles(){
   }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
 
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+})();
+
+// === ANCHOR-CARD REVEAL (Seite 3: goldener Schleier) ===
+(function() {
+  const anchorCard = document.querySelector('.anchor-card');
+  if (!anchorCard) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        anchorCard.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  observer.observe(anchorCard);
 })();
 
 // === The Feminine Way Reveal ===
