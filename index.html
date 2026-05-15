@@ -837,45 +837,40 @@ h2 em{font-style:italic;color:var(--gold);}
 
 /* === Anchor-Card für zentrale Aussagen (Seite 3) === */
 .anchor-card{
-  background:rgba(255,255,255,0.10);
-  border:1px solid rgba(196,150,58,0.35);
-  border-radius:12px;
+  /* Box-Look entfernt — Anchor-Text wirkt jetzt als Raum mit Goldschein */
   padding:2rem 2rem;
   max-width:560px;
   margin:2rem auto;
   text-align:center;
-  -webkit-backdrop-filter:blur(4px);
-  backdrop-filter:blur(4px);
   position:relative;
   isolation:isolate;
   opacity:0;
-  transform:scale(2.5);
-  filter:blur(8px);
-  transition:opacity 2s ease,
-             transform 2.5s cubic-bezier(0.22, 1, 0.36, 1),
-             filter 2s ease;
+  transition:opacity 1.5s ease;
 }
 .anchor-card.is-revealed{
   opacity:1;
-  transform:scale(1);
-  filter:blur(0);
 }
-/* Goldener Schleier-Overlay — verschwindet während die Karte schrumpft */
+/* Goldener Schein — gleiches Pattern wie "The Feminin Way" auf #screen2d */
 .anchor-card::before{
   content:'';
   position:absolute;
-  inset:-20%;
-  background:radial-gradient(ellipse at center top,
-    rgba(232, 192, 106, 0.6) 0%,
-    rgba(232, 192, 106, 0.3) 30%,
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:180%;
+  height:180%;
+  background:radial-gradient(circle at center,
+    rgba(232, 192, 106, 0.3) 0%,
+    rgba(232, 192, 106, 0.1) 40%,
     transparent 70%);
-  opacity:1;
-  transition:opacity 2.5s ease;
+  border-radius:50%;
+  opacity:0;
   pointer-events:none;
   z-index:-1;
+  transition:opacity 1.5s ease;
 }
 .anchor-card.is-revealed::before{
-  opacity:0;
+  opacity:1;
 }
 .anchor-eye{
   font-size:0.7rem;
