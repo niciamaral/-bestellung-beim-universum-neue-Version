@@ -845,10 +845,12 @@ h2 em{font-style:italic;color:var(--gold);}
   position:relative;
   isolation:isolate;
   opacity:0;
-  transition:opacity 1.5s ease;
+  transform:translateY(40px);
+  transition:opacity 1.5s ease, transform 1.5s ease;
 }
 .anchor-card.is-revealed{
   opacity:1;
+  transform:translateY(0);
 }
 /* Goldener Schein — gleiches Pattern wie "The Feminin Way" auf #screen2d */
 .anchor-card::before{
@@ -882,7 +884,7 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 #screen3 .anchor-text{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.5rem;
+  font-size:clamp(1.8rem, 5vw, 2.4rem);
   line-height:1.5;
   color:#fff;
   margin:0;
@@ -912,7 +914,6 @@ h2 em{font-style:italic;color:var(--gold);}
     margin:2.5rem auto;
   }
   #screen3 .anchor-text{
-    font-size:1.85rem !important;
     line-height:1.55;
   }
   #screen3 .anchor-eye{
@@ -2946,7 +2947,12 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  // Sofort zum Top — kein smooth, kein Hängenbleiben mid-page bei Screen-Wechsel
+  const html = document.documentElement;
+  const prevBehavior = html.style.scrollBehavior;
+  html.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  setTimeout(() => { html.style.scrollBehavior = prevBehavior; }, 0);
   updateIndicator(id);
   updateIrrglaubeVideos(id);
   if(id === 'screen9') updateOrder();
