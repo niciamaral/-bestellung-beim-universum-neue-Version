@@ -2947,12 +2947,9 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Sofort zum Top — kein smooth, kein Hängenbleiben mid-page bei Screen-Wechsel
-  const html = document.documentElement;
-  const prevBehavior = html.style.scrollBehavior;
-  html.style.scrollBehavior = 'auto';
-  window.scrollTo(0, 0);
-  setTimeout(() => { html.style.scrollBehavior = prevBehavior; }, 0);
+  // Sofort zum Top — scrollTop-Assignment ignoriert CSS scroll-behavior:smooth
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   updateIndicator(id);
   updateIrrglaubeVideos(id);
   if(id === 'screen9') updateOrder();
