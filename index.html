@@ -2019,6 +2019,128 @@ h2 em{font-style:italic;color:var(--gold);}
   margin:60px auto 40px;
 }
 
+/* === SEITE 11 NEU: ABSCHLUSS === */
+.screen-abschluss{
+  background-color:#2a1410;
+  padding:80px 0 100px;
+}
+.abschluss-inner{
+  max-width:620px;
+  margin:0 auto;
+  padding:0 28px;
+  text-align:center;
+}
+.screen-abschluss .eyebrow{
+  margin-bottom:28px;
+  display:block;
+}
+.abschluss-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(2.4rem, 7vw, 4rem);
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  color:#ffffff;
+  margin:0 0 40px;
+}
+.abschluss-title em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--gold-1);
+}
+.abschluss-statement{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(1.8rem, 5vw, 2.6rem);
+  line-height:1.2;
+  color:#ffffff;
+  margin:60px 0 40px;
+  letter-spacing:-0.005em;
+}
+.abschluss-statement em{
+  font-style:italic;
+  font-weight:300;
+  color:var(--gold-1);
+}
+.abschluss-text{
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  font-size:clamp(1rem, 2.5vw, 1.1rem);
+  line-height:1.85;
+  color:rgba(255,255,255,0.9);
+  margin:0 auto 28px;
+  max-width:560px;
+}
+.abschluss-text em{
+  font-style:italic;
+  color:var(--gold-1);
+  font-weight:400;
+}
+.abschluss-outro{
+  font-style:italic;
+  color:rgba(255,255,255,0.85);
+  margin-bottom:40px;
+}
+.abschluss-divider{
+  width:60px;
+  height:1px;
+  background:var(--gold);
+  opacity:0.5;
+  margin:48px auto;
+}
+.screen-abschluss .btn{
+  margin-top:20px;
+}
+
+/* === FLUSS-ANIMATIONEN (Reveal-on-Scroll für Abschluss) === */
+.reveal-on-scroll{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1),
+             transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-on-scroll.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.abschluss-statement.reveal-on-scroll{
+  transform:translateY(60px) scale(0.96);
+  transition:opacity 1.8s cubic-bezier(0.22, 1, 0.36, 1),
+             transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.abschluss-statement.reveal-on-scroll.is-visible{
+  transform:translateY(0) scale(1);
+}
+.abschluss-title.reveal-on-scroll{
+  transform:translateY(60px) scale(0.94);
+  transition:opacity 2s cubic-bezier(0.22, 1, 0.36, 1),
+             transform 2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.abschluss-title.reveal-on-scroll.is-visible{
+  transform:translateY(0) scale(1);
+}
+
+@media (max-width:600px){
+  .screen-abschluss{
+    padding:60px 0 80px;
+  }
+  .abschluss-inner{
+    padding:0 22px;
+  }
+  .abschluss-title{
+    margin-bottom:32px;
+  }
+  .abschluss-statement{
+    margin:48px 0 32px;
+  }
+  .abschluss-text{
+    margin-bottom:24px;
+  }
+  .abschluss-divider{
+    margin:40px auto;
+  }
+}
+
 /* Weiter-Button: kompakter Abstand zum Text (~48px) */
 #screen2NextBtn.is-visible{
   margin-top:3rem !important;
@@ -3027,8 +3149,106 @@ h2 em{font-style:italic;color:var(--gold);}
     <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
 
     <!-- CTA NACH SESSION -->
-    <button class="btn btn-after-session" onclick="goTo('screen10')">
+    <button class="btn btn-after-session" onclick="goTo('screenAbschluss')">
       Session beenden
+    </button>
+
+  </div>
+</div>
+
+<!-- ===== SEITE 11 NEU: Abschluss-Seite mit Fluss-Animation ===== -->
+<div class="screen screen-abschluss" id="screenAbschluss">
+  <div class="screen-inner abschluss-inner">
+
+    <span class="eyebrow reveal-on-scroll">Du bist angekommen.</span>
+
+    <h1 class="abschluss-title reveal-on-scroll">
+      Danke, dass du <em>hier bist,</em><br>
+      wundervolle Frau.
+    </h1>
+
+    <div class="abschluss-divider reveal-on-scroll"></div>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Und wie geht es dir jetzt — nach unserer kleinen Reise?
+    </p>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Ich hoffe, du konntest bereits fühlen, wie nah deine Zukunft eigentlich ist.
+      Denn sie ist nichts, das du erst irgendwann erreichen musst.
+      <em>Sie existiert bereits.</em>
+    </p>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Die Version von dir, nach der du dich sehnst — die Frau, die in Fülle lebt,
+      sich sicher fühlt, sichtbar ist, liebt, empfängt und vertraut —
+      sie ist nicht weit weg von dir.
+    </p>
+
+    <h2 class="abschluss-statement reveal-on-scroll">
+      Sie wartet nicht irgendwo<br>
+      in der <em>Zukunft</em> auf dich.
+    </h2>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Sie möchte jetzt von dir <em>erinnert</em> werden.
+    </p>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Ich möchte dich daran erinnern, dass du nicht hier bist,
+      um dein ganzes Leben nur zu funktionieren.
+      Du bist hier, um zu <em>fühlen</em>. Zu <em>kreieren</em>. Zu <em>empfangen</em>.
+      Und dir ein Leben aufzubauen, das sich nicht nur gut aussieht —
+      sondern sich auch tief in dir richtig anfühlt.
+    </p>
+
+    <h2 class="abschluss-statement reveal-on-scroll">
+      Genau deshalb öffne ich<br>
+      mit jedem meiner Kurse<br>
+      einen besonderen <em>Frauenraum</em><br>
+      für dich.
+    </h2>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Einen Raum, in dem dein Nervensystem lernen darf, dass es sicher ist,
+      Neues zu wählen. Sicher ist, sichtbar zu sein. Sicher ist, mehr zu empfangen.
+      Sicher ist, die Frau zu werden, die du tief in dir <em>längst bist</em>.
+    </p>
+
+    <h2 class="abschluss-statement reveal-on-scroll">
+      Denn echte Veränderung<br>
+      passiert nicht im Kopf.<br>
+      Sie passiert <em>im Körper</em>.
+    </h2>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Während viele Menschen weiter versuchen, im Außen alles zu kontrollieren,
+      zu kämpfen und noch mehr zu tun, gehen wir einen anderen Weg.
+      Wir beginnen <em>innen</em>.
+    </p>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Mit Verkörperung. Mit Bewegung. Mit echter Transformation.
+    </p>
+
+    <p class="abschluss-text reveal-on-scroll">
+      Deshalb arbeite ich in meinen Räumen mit <em>bilateraler Stimulation</em> —
+      damit dein Körper und dein Nervensystem dich auf dieser Reise
+      wirklich mitnehmen können. Denn unser Gehirn ist auf Vergangenheit programmiert —
+      und wenn wir eine neue Realität erschaffen wollen, dürfen wir anfangen,
+      dem Körper etwas Neues beizubringen.
+    </p>
+
+    <div class="abschluss-divider reveal-on-scroll"></div>
+
+    <p class="abschluss-text abschluss-outro reveal-on-scroll">
+      Und wenn du spürst, dass deine Reise gerade erst begonnen hat …
+      dann schau dir unbedingt an, welche wundervollen Räume
+      bereits auf dich warten.
+    </p>
+
+    <button class="btn reveal-on-scroll" onclick="goTo('screen10')">
+      Räume entdecken
     </button>
 
   </div>
@@ -3174,7 +3394,7 @@ h2 em{font-style:italic;color:var(--gold);}
 </div>
 
 <script>
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screen9','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screen9','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
@@ -3337,6 +3557,28 @@ function createParticles(){
   }, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
 
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+})();
+
+// === ABSCHLUSS-SEITE FLUSS-ANIMATION ===
+(function() {
+  const elements = document.querySelectorAll('#screenAbschluss .reveal-on-scroll');
+  if (!elements.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('is-visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
 })();
 
 // === ANCHOR-CARD REVEAL (Seite 3: goldener Schleier) ===
