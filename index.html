@@ -2952,9 +2952,19 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Sofort zum Top — scrollTop-Assignment ignoriert CSS scroll-behavior:smooth
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+  // Aggressives Scroll-to-Top — 2x (sofort + nach Reflow), kein smooth
+  const html = document.documentElement;
+  html.style.scrollBehavior = 'auto';
+  const forceTop = () => {
+    html.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
+  };
+  forceTop();
+  requestAnimationFrame(() => {
+    forceTop();
+    html.style.scrollBehavior = '';
+  });
   updateIndicator(id);
   updateIrrglaubeVideos(id);
   if(id === 'screen9') updateOrder();
