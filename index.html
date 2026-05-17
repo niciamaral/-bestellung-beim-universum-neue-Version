@@ -2962,22 +2962,24 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // 3-fach Scroll-to-Top — sofort, nach Reflow, nach 50ms — alles ohne smooth
-  const html = document.documentElement;
-  html.style.scrollBehavior = 'auto';
-  const forceTop = () => {
-    html.scrollTop = 0;
-    document.body.scrollTop = 0;
-    window.scrollTo({top: 0, left: 0, behavior: 'instant'});
-  };
-  forceTop();
-  requestAnimationFrame(() => {
+  // Auto-Scroll-to-Top: NICHT für screen3 (Frau scrollt dort selbst)
+  if (id !== 'screen3') {
+    const html = document.documentElement;
+    html.style.scrollBehavior = 'auto';
+    const forceTop = () => {
+      html.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+    };
     forceTop();
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       forceTop();
-      html.style.scrollBehavior = '';
-    }, 50);
-  });
+      setTimeout(() => {
+        forceTop();
+        html.style.scrollBehavior = '';
+      }, 50);
+    });
+  }
   updateIndicator(id);
   updateIrrglaubeVideos(id);
   if(id === 'screen9') updateOrder();
