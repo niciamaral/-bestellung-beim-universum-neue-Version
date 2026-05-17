@@ -1928,6 +1928,97 @@ h2 em{font-style:italic;color:var(--gold);}
   text-align:center;
 }
 
+/* === SEITE 10 NEU: KUGEL-SESSION QUERFORMAT === */
+.screen-bilat{
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  padding-top:0;
+}
+.screen-inner-bilat{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.kugel-area{
+  width:100%;
+  height:25vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+.kugel-track{
+  position:relative;
+  width:90vw;
+  max-width:none;
+  height:80px;
+  margin:0 auto;
+  overflow:hidden;
+}
+.kugel-orb{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:32px;
+  height:32px;
+  margin:-16px 0 0 -16px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 32%,
+    #fff8ec 0%,
+    var(--gold-1) 35%,
+    var(--gold) 75%,
+    var(--sienna) 100%);
+  box-shadow:
+    inset 0 0 8px rgba(255, 248, 236, 0.45),
+    0 0 24px 4px rgba(232, 192, 106, 0.5),
+    0 0 50px 10px rgba(232, 192, 106, 0.25);
+  animation:kugelSession 8s ease-in-out infinite;
+}
+@keyframes kugelSession{
+  0%,100%{
+    transform:translateX(calc(-45vw + 16px));
+  }
+  50%{
+    transform:translateX(calc(45vw - 16px));
+  }
+}
+.kugel-instruction{
+  margin-top:24px;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--gold-1);
+  text-align:center;
+}
+.orientation-hint{
+  display:none;
+  margin-top:40px;
+  padding:20px;
+  text-align:center;
+}
+.orientation-hint p{
+  font-family:'Outfit',sans-serif;
+  color:var(--gold-1);
+  font-size:0.95rem;
+}
+@media (max-width:768px) and (orientation:portrait){
+  .orientation-hint{
+    display:block;
+  }
+}
+#screen9 .order-display{
+  margin:40px auto;
+  max-width:540px;
+}
+.btn-after-session{
+  margin:60px auto 40px;
+}
+
 /* Weiter-Button: kompakter Abstand zum Text (~48px) */
 #screen2NextBtn.is-visible{
   margin-top:3rem !important;
@@ -2915,31 +3006,31 @@ h2 em{font-style:italic;color:var(--gold);}
   </div>
 </div>
 
-<!-- ===== SEITE 9: Session ===== -->
-<div class="screen session" id="screen9">
-  <div class="wrap">
-    <div class="content-inner center">
-      <div class="eyebrow">Deine Session</div>
-      <h2>Verankere <em>deine Wahrheit</em></h2>
-      <div class="session-stage">
-        <div class="rotate-hint" id="rotateHint">
-          <span class="rotate-icon">↻</span>
-          <span>Bitte halte dein Handy <strong>quer</strong> für die Session — so kann der Ball sanft zwischen deinen Augen wandern.</span>
-        </div>
-        <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
+<!-- ===== SEITE 10 NEU: Kugel-Session (eigene Seite, Querformat) ===== -->
+<div class="screen screen-bilat" id="screen9">
+  <div class="screen-inner-bilat">
 
-        <div class="bilat-track">
-          <div class="bilat-rail"></div>
-          <div class="bilat-glow" id="bilatGlow"></div>
-          <div class="bilat-orb" id="bilatOrb"></div>
-        </div>
-
-        <div class="session-controls">
-          <button class="btn btn-outline" id="sessionBtn" onclick="toggleSession()">Session starten</button>
-          <button class="btn" onclick="goTo('screen10')">Bestellung absenden</button>
-        </div>
+    <!-- KUGEL-BEREICH (obere 25%) -->
+    <div class="kugel-area">
+      <div class="kugel-track">
+        <div class="kugel-orb"></div>
       </div>
+      <p class="kugel-instruction"><em>Folge der Kugel mit deinen Augen.</em></p>
     </div>
+
+    <!-- HINWEIS NUR HOCHFORMAT -->
+    <div class="orientation-hint">
+      <p>📱 Bitte drehe dein Handy quer für die beste Erfahrung.</p>
+    </div>
+
+    <!-- BESTELLUNGS-DISPLAY -->
+    <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
+
+    <!-- CTA NACH SESSION -->
+    <button class="btn btn-after-session" onclick="goTo('screen10')">
+      Session beenden
+    </button>
+
   </div>
 </div>
 
@@ -3179,6 +3270,7 @@ function toggleSession(){
   const orb = document.getElementById('bilatOrb');
   const glow = document.getElementById('bilatGlow');
   const btn = document.getElementById('sessionBtn');
+  if(!orb || !glow || !btn) return;
   sessionRunning = !sessionRunning;
   if(sessionRunning){
     orb.classList.add('running');
