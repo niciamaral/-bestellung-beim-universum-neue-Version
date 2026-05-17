@@ -2746,6 +2746,43 @@ h2 em{font-style:italic;color:var(--gold);}
     padding: 3rem 1.25rem;
   }
 }
+
+/* === GLOBALE MOBILE OPTIMIERUNG (Snippet 8) === */
+
+/* Touch-freundliche Buttons (min 48px Höhe für Daumen) */
+.btn-primary,
+.btn-outline,
+button {
+  min-height: 48px;
+  cursor: pointer;
+}
+
+/* Mobile-Specific */
+@media (max-width: 600px) {
+  /* Vermeidet horizontalen Scroll */
+  body, html {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* Eingabefelder volle Breite + iOS-Zoom verhindern */
+  input[type="text"],
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+}
+
+/* Sehr kleine Handys (< 375px) — kompaktere h1/h2 */
+@media (max-width: 375px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}
 </style>
 </head>
 <body>
