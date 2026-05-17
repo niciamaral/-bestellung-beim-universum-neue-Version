@@ -79,7 +79,7 @@ body::after{
   overflow:hidden;
 }
 /* === Full-screen background images === */
-#screen1,#screen2,#screen3,#screen4,#screenAbschluss{
+#screen1,#screen2,#screen3,#screen4{
   background-color:var(--bg);
   background-image:
     linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
@@ -96,6 +96,29 @@ body::after{
     url('images/bild1.png');
   background-size:cover;
   background-position:center;
+}
+/* Abschluss — eigener Hintergrund mit bild4 + 0.70 Overlay */
+#screenAbschluss{
+  background-color:#2a1410;
+  background-image:
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
+    url('images/bild4.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+/* Alle Texte auf der Abschluss-Seite weiß */
+#screenAbschluss,
+#screenAbschluss p,
+#screenAbschluss h1,
+#screenAbschluss h2,
+#screenAbschluss span,
+#screenAbschluss em,
+#screenAbschluss strong{
+  color:#ffffff;
+}
+#screenAbschluss em{
+  color:var(--gold-1);
 }
 #screen5{
   background-color:var(--bg);
@@ -1883,33 +1906,14 @@ h2 em{font-style:italic;color:var(--gold);}
   border:1px solid rgba(232,192,106,0.2);
   border-radius:12px;
 }
-.vorbereitung-liste{
-  list-style:none;
-  padding:0;
-  margin:0;
-  text-align:left;
-}
-.vorbereitung-liste li{
-  position:relative;
-  padding:10px 0 10px 24px;
-  border-bottom:1px solid rgba(232,192,106,0.1);
+.vorbereitung-prosa{
   font-family:'Outfit',sans-serif;
   font-weight:300;
-  font-size:1rem;
-  color:rgba(255,255,255,0.9);
-  line-height:1.5;
-}
-.vorbereitung-liste li:last-child{
-  border-bottom:none;
-}
-.vorbereitung-liste li::before{
-  content:'·';
-  position:absolute;
-  left:6px;
-  top:8px;
-  color:var(--gold-1);
-  font-size:1.5rem;
-  line-height:1;
+  font-size:1.05rem;
+  line-height:1.8;
+  color:rgba(255,255,255,0.92);
+  margin:0;
+  text-align:left;
 }
 .disclaimer{
   margin-top:20px;
@@ -1937,12 +1941,6 @@ h2 em{font-style:italic;color:var(--gold);}
   position:fixed;
   inset:0;
   background-color:#2a1410;
-  background-image:
-    linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
-    url('images/bild1.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
   z-index:9999;
   display:none;
   overflow:hidden;
@@ -3045,13 +3043,15 @@ button {
   </div>
 </div>
 
-<!-- ===== SEITE 6: Übergang (Atmung wurde auf screenVorbereitung verschoben) ===== -->
+<!-- ===== SEITE 6: Vorbereitung Atmung (Backup, Atmung läuft auch auf screenVorbereitung) ===== -->
 <div class="screen content" id="screen6">
   <div class="wrap">
     <div class="content-inner center">
       <div class="eyebrow">Vorbereitung</div>
       <h2>Komm <em>im Körper</em> an</h2>
-      <p>Lass die Welt draußen kurz still werden. Diese Minuten gehören dir.</p>
+      <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
+      <div class="breath-circle"><span>Atme</span></div>
+      <p class="breath-rhythm"><span>Einatmen <em>4 Sek</em></span><span class="breath-dot"></span><span>Halten <em>4 Sek</em></span><span class="breath-dot"></span><span>Ausatmen <em>6 Sek</em></span></p>
       <div class="nav-actions"><button class="btn" onclick="goTo('screen7')">Weiter</button></div>
     </div>
   </div>
@@ -3112,33 +3112,17 @@ button {
       <h2>Bevor du die <em>Kugel</em> startest</h2>
 
       <div class="vorbereitung-anleitung">
-        <ul class="vorbereitung-liste">
-          <li>Schließ deine Augen.</li>
-          <li>Denk an deinen Wunsch.</li>
-          <li>Stell ihn dir bildlich vor.</li>
-          <li>Wie fühlst du dich dabei? Welche Emotion spürst du?</li>
-          <li>Halte alles — öffne die Augen und folge dem Punkt mit den Augen.</li>
-          <li>Der Kopf bleibt gerade.</li>
-          <li>Wenn es dir zu viel wird: stoppe die Session.</li>
-          <li>Wenn es dir gut tut: wiederhole es so oft du möchtest.</li>
-        </ul>
-      </div>
-
-      <!-- ATMUNG (von screen6 hierher verschoben) -->
-      <div class="atmung-block">
-        <div class="eyebrow">Dein Atem</div>
-        <p class="breath-rhythm">
-          <span>Einatmen <em>4 Sek</em></span>
-          <span class="breath-dot"></span>
-          <span>Halten <em>4 Sek</em></span>
-          <span class="breath-dot"></span>
-          <span>Ausatmen <em>6 Sek</em></span>
+        <p class="vorbereitung-prosa">
+          Schließ deine Augen. Denk an deinen Wunsch. Stell ihn dir bildlich vor.
+          Welche Emotion spürst du dabei?
+          Halte alles — öffne dann die Augen und folge dem Punkt mit den Augen.
+          Der Kopf bleibt gerade.
+          Wenn es dir zu viel wird: stoppe die Session.
+          Wenn es dir gut tut: wiederhole es so oft du möchtest.
         </p>
-        <div class="breath-circle"><span>Atme</span></div>
       </div>
 
       <p class="disclaimer">
-        <strong>⚠ Wichtiger Hinweis:</strong>
         Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.
       </p>
 
