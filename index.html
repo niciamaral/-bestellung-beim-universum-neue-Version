@@ -2947,23 +2947,31 @@ const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3'
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
+// Browser-Scroll-Restoration deaktivieren — wir steuern selbst
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Aggressives Scroll-to-Top — 2x (sofort + nach Reflow), kein smooth
+  // 3-fach Scroll-to-Top — sofort, nach Reflow, nach 50ms — alles ohne smooth
   const html = document.documentElement;
   html.style.scrollBehavior = 'auto';
   const forceTop = () => {
     html.scrollTop = 0;
     document.body.scrollTop = 0;
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, left: 0, behavior: 'instant'});
   };
   forceTop();
   requestAnimationFrame(() => {
     forceTop();
-    html.style.scrollBehavior = '';
+    setTimeout(() => {
+      forceTop();
+      html.style.scrollBehavior = '';
+    }, 50);
   });
   updateIndicator(id);
   updateIrrglaubeVideos(id);
