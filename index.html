@@ -1928,31 +1928,32 @@ h2 em{font-style:italic;color:var(--gold);}
   text-align:center;
 }
 
-/* === SEITE 10 NEU: KUGEL-SESSION QUERFORMAT === */
-.screen-bilat{
-  background:var(--bg);
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  padding-top:0;
+/* === KUGEL-SESSION MODAL (Vollbild, 30s auto, kein Standalone-Screen) === */
+.kugel-modal{
+  position:fixed;
+  inset:0;
+  background:#2a1410;
+  z-index:9999;
+  display:none;
+  overflow-y:auto;
 }
-.screen-inner-bilat{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+.kugel-modal.is-open{
+  display:block;
 }
-.kugel-area{
-  width:100%;
-  height:25vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+.kugel-modal-inner{
   position:relative;
+  width:100%;
+  min-height:100vh;
 }
-.kugel-track{
+.kugel-modal-stage{
+  position:absolute;
+  top:40%;
+  left:0;
+  right:0;
+  transform:translateY(-50%);
+  text-align:center;
+}
+.kugel-modal .kugel-track{
   position:relative;
   width:90vw;
   max-width:none;
@@ -1960,7 +1961,7 @@ h2 em{font-style:italic;color:var(--gold);}
   margin:0 auto;
   overflow:hidden;
 }
-.kugel-orb{
+.kugel-modal .kugel-orb{
   position:absolute;
   top:50%;
   left:50%;
@@ -1980,14 +1981,10 @@ h2 em{font-style:italic;color:var(--gold);}
   animation:kugelSession 8s ease-in-out infinite;
 }
 @keyframes kugelSession{
-  0%,100%{
-    transform:translateX(calc(-45vw + 16px));
-  }
-  50%{
-    transform:translateX(calc(45vw - 16px));
-  }
+  0%,100%{ transform:translateX(calc(-45vw + 16px)); }
+  50%{ transform:translateX(calc(45vw - 16px)); }
 }
-.kugel-instruction{
+.kugel-modal .kugel-instruction{
   margin-top:24px;
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
@@ -1995,28 +1992,20 @@ h2 em{font-style:italic;color:var(--gold);}
   color:var(--gold-1);
   text-align:center;
 }
-.orientation-hint{
-  display:none;
-  margin-top:40px;
-  padding:20px;
+.kugel-modal .order-display{
+  position:absolute;
+  bottom:160px;
+  left:50%;
+  transform:translateX(-50%);
+  max-width:540px;
+  width:90vw;
   text-align:center;
 }
-.orientation-hint p{
-  font-family:'Outfit',sans-serif;
-  color:var(--gold-1);
-  font-size:0.95rem;
-}
-@media (max-width:768px) and (orientation:portrait){
-  .orientation-hint{
-    display:block;
-  }
-}
-#screen9 .order-display{
-  margin:40px auto;
-  max-width:540px;
-}
-.btn-after-session{
-  margin:60px auto 40px;
+.kugel-modal-close{
+  position:absolute;
+  bottom:40px;
+  left:50%;
+  transform:translateX(-50%);
 }
 
 /* === SEITE 11 NEU: ABSCHLUSS === */
@@ -3159,39 +3148,13 @@ button {
       </div>
 
       <div class="nav-actions">
-        <button class="btn" onclick="goTo('screen9')">Ich bin bereit</button>
+        <button class="btn" onclick="openKugelModal()">Ich bin bereit</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ===== SEITE 10 NEU: Kugel-Session (eigene Seite, Querformat) ===== -->
-<div class="screen screen-bilat" id="screen9">
-  <div class="screen-inner-bilat">
-
-    <!-- KUGEL-BEREICH (obere 25%) -->
-    <div class="kugel-area">
-      <div class="kugel-track">
-        <div class="kugel-orb"></div>
-      </div>
-      <p class="kugel-instruction"><em>Folge der Kugel mit deinen Augen.</em></p>
-    </div>
-
-    <!-- HINWEIS NUR HOCHFORMAT -->
-    <div class="orientation-hint">
-      <p>📱 Bitte drehe dein Handy quer für die beste Erfahrung.</p>
-    </div>
-
-    <!-- BESTELLUNGS-DISPLAY -->
-    <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
-
-    <!-- CTA NACH SESSION -->
-    <button class="btn btn-after-session" onclick="goTo('screenAbschluss')">
-      Session beenden
-    </button>
-
-  </div>
-</div>
+<!-- screen9 (Kugel-Standalone-Seite) entfernt — Kugel ist jetzt ein Modal (siehe #kugelModal am Ende des Body) -->
 
 <!-- ===== SEITE 11 NEU: Abschluss-Seite mit Fluss-Animation ===== -->
 <div class="screen screen-abschluss" id="screenAbschluss">
@@ -3430,8 +3393,22 @@ button {
   </div>
 </div>
 
+<!-- ===== KUGEL-SESSION MODAL ===== -->
+<div class="kugel-modal" id="kugelModal" aria-hidden="true">
+  <div class="kugel-modal-inner">
+    <div class="kugel-modal-stage">
+      <div class="kugel-track">
+        <div class="kugel-orb"></div>
+      </div>
+      <p class="kugel-instruction"><em>Folge der Kugel mit deinen Augen.</em></p>
+    </div>
+    <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
+    <button class="btn kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
+  </div>
+</div>
+
 <script>
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screen9','screenAbschluss','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
@@ -3465,7 +3442,6 @@ function goTo(id){
   }
   updateIndicator(id);
   updateIrrglaubeVideos(id);
-  if(id === 'screen9') updateOrder();
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
@@ -3595,6 +3571,27 @@ function createParticles(){
 
   document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 })();
+
+// === KUGEL-SESSION MODAL ===
+let kugelTimer = null;
+function openKugelModal(){
+  const modal = document.getElementById('kugelModal');
+  if(!modal) return;
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  updateOrder();
+  // Auto-Schließen nach 30 Sekunden
+  if(kugelTimer) clearTimeout(kugelTimer);
+  kugelTimer = setTimeout(closeKugelModal, 30000);
+}
+function closeKugelModal(){
+  const modal = document.getElementById('kugelModal');
+  if(!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  if(kugelTimer){ clearTimeout(kugelTimer); kugelTimer = null; }
+  goTo('screenAbschluss');
+}
 
 // === ABSCHLUSS-SEITE FLUSS-ANIMATION ===
 (function() {
