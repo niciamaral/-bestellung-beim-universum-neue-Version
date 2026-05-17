@@ -76,7 +76,6 @@ body::after{
   background:linear-gradient(155deg,rgba(106,42,26,0.92) 0%,rgba(139,58,42,0.88) 55%,rgba(160,72,48,0.85) 100%);
   color:var(--cream);
   position:relative;
-  overflow:hidden;
 }
 /* === Full-screen background images === */
 #screen1,#screen2,#screen3,#screen4{
@@ -929,8 +928,8 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 #screen3 .anchor-text{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.8rem, 5vw, 2.4rem);
-  line-height:1.5;
+  font-size:clamp(2.8rem, 9vw, 4rem);
+  line-height:1.4;
   color:#fff;
   margin:0;
   font-weight:300;
@@ -1261,22 +1260,8 @@ h2 em{font-style:italic;color:var(--gold);}
   to{opacity:1;}
 }
 .orb-glow{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:140%;
-  height:140%;
-  pointer-events:none;
-  background:radial-gradient(circle at center,
-    rgba(232,192,106,0.45) 0%,
-    rgba(232,192,106,0.25) 18%,
-    rgba(232,192,106,0.12) 35%,
-    rgba(232,192,106,0.05) 55%,
-    transparent 75%);
-  filter:blur(8px);
-  animation:orbBreathe 6s ease-in-out infinite;
-  z-index:0;
+  /* Weißlicher Kasten-Eindruck entfernt — kein eigener Hintergrund mehr */
+  display:none;
 }
 @keyframes orbBreathe{
   0%,100%{transform:translate(-50%,-50%) scale(1); opacity:0.85;}
@@ -1912,11 +1897,16 @@ h2 em{font-style:italic;color:var(--gold);}
 .vorbereitung-prosa{
   font-family:'Outfit',sans-serif;
   font-weight:300;
-  font-size:1.05rem;
-  line-height:1.8;
+  font-size:clamp(1.15rem, 4vw, 1.3rem);
+  line-height:1.7;
   color:rgba(255,255,255,0.92);
   margin:0;
   text-align:left;
+}
+@media (min-width: 768px){
+  .vorbereitung-prosa{
+    font-size:clamp(1.2rem, 2.5vw, 1.4rem);
+  }
 }
 .disclaimer{
   margin-top:20px;
@@ -2035,29 +2025,13 @@ h2 em{font-style:italic;color:var(--gold);}
   0%,100%{ transform:translateX(calc(-45vw + 16px)); }
   50%{ transform:translateX(calc(45vw - 16px)); }
 }
-/* Dezenter Gold-Button unten */
+/* Close-Button rund — gleicher Style wie .btn, nur Position */
 .kugel-modal-close{
   position:absolute;
   bottom:40px;
   left:50%;
   transform:translateX(-50%);
-  background:transparent;
-  border:1px solid var(--gold);
-  color:var(--gold-1);
-  font-family:'Outfit',sans-serif;
-  font-size:0.8rem;
-  font-weight:400;
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  padding:10px 24px;
-  border-radius:4px;
-  cursor:pointer;
-  min-height:auto;
-  transition:background 0.3s ease, color 0.3s ease;
-}
-.kugel-modal-close:hover{
-  background:rgba(232,192,106,0.1);
-  color:#ffffff;
+  border-radius:50px !important;
 }
 
 /* === SEITE 11 NEU: ABSCHLUSS === */
@@ -2578,6 +2552,9 @@ h2 em{font-style:italic;color:var(--gold);}
   border: none;
   background: transparent;
   box-shadow: none;
+  /* Weiche Ränder — Video fließt aus dem Bild */
+  -webkit-mask-image: radial-gradient(ellipse 85% 85% at center, black 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 85% at center, black 60%, transparent 100%);
 }
 
 .door-video {
@@ -2626,7 +2603,7 @@ h2 em{font-style:italic;color:var(--gold);}
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  overflow: visible;
+  overflow: visible !important;
 }
 
 .word-line {
@@ -2643,8 +2620,9 @@ h2 em{font-style:italic;color:var(--gold);}
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.4;
-  font-size: clamp(3rem, 12vw, 5rem);
+  font-size: clamp(2.8rem, 11vw, 4.5rem) !important;
   color: #ffffff;
+  overflow: visible;
   text-shadow:
     0 0 25px rgba(232, 192, 106, 0.6),
     0 0 55px rgba(232, 192, 106, 0.3),
@@ -2683,7 +2661,7 @@ h2 em{font-style:italic;color:var(--gold);}
   .word-line {
     padding: 20px 14px;
     gap: 0.12em 0.28em;
-    font-size: clamp(3rem, 12vw, 5rem);
+    font-size: clamp(2.8rem, 11vw, 4.5rem) !important;
   }
 }
 
@@ -2823,13 +2801,13 @@ button {
   }
 }
 
-/* === GLOBAL FLIESSTEXT: p-Tags eine bis zwei Größen größer === */
-p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm){
+/* === GLOBAL FLIESSTEXT: nur FREISTEHENDE p-Tags größer (keine Box-/Step-/Card-Inhalte) === */
+p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm):not(.step-body):not(.step-title):not(.switch-desc):not(.product-tagline):not(.misc-text):not(.misc-title):not(.orb-text):not(.anchor-text):not(.hero-text):not(.vorbereitung-prosa):not(.abschluss-text){
   font-size:clamp(1.15rem, 4vw, 1.3rem) !important;
   line-height:1.7;
 }
 @media (min-width: 768px){
-  p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm){
+  p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm):not(.step-body):not(.step-title):not(.switch-desc):not(.product-tagline):not(.misc-text):not(.misc-title):not(.orb-text):not(.anchor-text):not(.hero-text):not(.vorbereitung-prosa):not(.abschluss-text){
     font-size:clamp(1.2rem, 2.5vw, 1.4rem) !important;
   }
 }
@@ -2861,7 +2839,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <div class="door-overlay"></div>
           <div class="door-glow"></div>
 
-          <!-- Text-Zeilen: erscheinen nacheinander, Wort für Wort -->
+          <!-- Text-Zeilen: 4 Zeilen, Wort für Wort, 2.5s pro Zeile -->
           <div class="door-words" id="doorWords">
             <p class="word-line">
               <span class="word gold">Was</span>
@@ -2883,8 +2861,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
               <span class="word">in</span>
               <span class="word">dir</span>
               <span class="word">trägst,</span>
-            </p>
-            <p class="word-line">
               <span class="word">die</span>
               <span class="word">noch</span>
               <span class="word">niemand</span>
@@ -2904,15 +2880,17 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
               <span class="word">—</span>
             </p>
             <p class="word-line">
-              <span class="word">warum</span>
-              <span class="word">es</span>
-              <span class="word">bisher</span>
-              <span class="word">noch</span>
+              <span class="word">dass</span>
+              <span class="word">die</span>
+              <span class="word">Antwort</span>
               <span class="word">nicht</span>
-              <span class="word">so</span>
-              <span class="word">richtig</span>
-              <span class="word">geklappt</span>
-              <span class="word">hat?</span>
+              <span class="word">draußen</span>
+              <span class="word">wartet,</span>
+              <span class="word">sondern</span>
+              <span class="word">längst</span>
+              <span class="word">in</span>
+              <span class="word">dir</span>
+              <span class="word">ist?</span>
             </p>
           </div>
         </div>
@@ -3438,7 +3416,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
         <div class="kugel-orb"></div>
       </div>
     </div>
-    <button class="kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
+    <button class="btn kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
   </div>
 </div>
 
@@ -3702,10 +3680,10 @@ function showFeminineWay(){
   const glow = doorSection.querySelector('.door-glow');
   const lines = doorSection.querySelectorAll('.word-line');
 
-  const fillDur = 1000;
-  const holdDur = 700;
-  const fadeOut = 300;
-  const perLine = fillDur + holdDur + fadeOut;
+  const wordStep = 400;       // fest: 400ms pro Wort
+  const holdDur = 800;        // ms — Pause nach allen Wörtern
+  const fadeOut = 400;        // ms fade-out
+  const perLine = 2500;       // ms zwischen Line-Starts
 
   let started = false;
   function startAnimation() {
@@ -3722,7 +3700,6 @@ function showFeminineWay(){
     let cursor = 1000;
     lines.forEach((line) => {
       const words = line.querySelectorAll('.word');
-      const wordStep = fillDur / words.length;
 
       setTimeout(() => line.classList.add('is-active'), cursor);
 
@@ -3730,7 +3707,8 @@ function showFeminineWay(){
         setTimeout(() => word.classList.add('is-visible'), cursor + i * wordStep);
       });
 
-      setTimeout(() => line.classList.remove('is-active'), cursor + fillDur + holdDur);
+      // Fade-out kurz vor Ende des Line-Slots
+      setTimeout(() => line.classList.remove('is-active'), cursor + perLine - fadeOut);
 
       cursor += perLine;
     });
