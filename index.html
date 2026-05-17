@@ -14,12 +14,12 @@
   --sienna:#8b3a2a; --sienna-1:#b85a42; --sienna-d:#6a2a1a;
   --gold:#c4963a; --gold-1:#e8c06a;
   --cream:#f5efe6; --warm:#ede3d6; --sand:#d4c4ae;
-  --bg:#2a1f18;
+  --bg:#2a1410;
   --text:#2a1f18; --mid:#7a5e4e; --lt:#a8907e;
   --white:#fdfaf6;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html{scroll-behavior:smooth;background-color:#2a1410;}
 body{
   background:#2a1410;
   color:var(--text);
@@ -79,7 +79,7 @@ body::after{
   overflow:hidden;
 }
 /* === Full-screen background images === */
-#screen1,#screen2,#screen3,#screen4{
+#screen1,#screen2,#screen3,#screen4,#screenAbschluss{
   background-color:var(--bg);
   background-image:
     linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
@@ -1874,38 +1874,33 @@ h2 em{font-style:italic;color:var(--gold);}
   border:1px solid rgba(232,192,106,0.2);
   border-radius:12px;
 }
-.vorbereitung-schritte{
+.vorbereitung-liste{
   list-style:none;
   padding:0;
-  margin:0 0 24px 0;
+  margin:0;
+  text-align:left;
 }
-.vorbereitung-schritte li{
-  display:flex;
-  align-items:flex-start;
-  gap:16px;
-  padding:12px 0;
+.vorbereitung-liste li{
+  position:relative;
+  padding:10px 0 10px 24px;
   border-bottom:1px solid rgba(232,192,106,0.1);
-}
-.vorbereitung-schritte li:last-child{
-  border-bottom:none;
-}
-.schritt-nr{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:1.8rem;
-  font-weight:300;
-  color:var(--gold-1);
-  min-width:32px;
-  line-height:1;
-}
-.vorbereitung-schritte p{
   font-family:'Outfit',sans-serif;
   font-weight:300;
   font-size:1rem;
   color:rgba(255,255,255,0.9);
   line-height:1.5;
-  margin:0;
-  padding-top:6px;
+}
+.vorbereitung-liste li:last-child{
+  border-bottom:none;
+}
+.vorbereitung-liste li::before{
+  content:'·';
+  position:absolute;
+  left:6px;
+  top:8px;
+  color:var(--gold-1);
+  font-size:1.5rem;
+  line-height:1;
 }
 .disclaimer{
   margin-top:20px;
@@ -1928,14 +1923,20 @@ h2 em{font-style:italic;color:var(--gold);}
   text-align:center;
 }
 
-/* === KUGEL-SESSION MODAL (Vollbild, 30s auto, kein Standalone-Screen) === */
+/* === KUGEL-SESSION MODAL (Vollbild, nur Kugel + dezenter Close-Button) === */
 .kugel-modal{
   position:fixed;
   inset:0;
-  background:#2a1410;
+  background-color:#2a1410;
+  background-image:
+    linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
+    url('images/bild1.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
   z-index:9999;
   display:none;
-  overflow-y:auto;
+  overflow:hidden;
 }
 .kugel-modal.is-open{
   display:block;
@@ -1943,7 +1944,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .kugel-modal-inner{
   position:relative;
   width:100%;
-  min-height:100vh;
+  height:100vh;
 }
 .kugel-modal-stage{
   position:absolute;
@@ -1984,33 +1985,33 @@ h2 em{font-style:italic;color:var(--gold);}
   0%,100%{ transform:translateX(calc(-45vw + 16px)); }
   50%{ transform:translateX(calc(45vw - 16px)); }
 }
-.kugel-modal .kugel-instruction{
-  margin-top:24px;
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:1.1rem;
-  color:var(--gold-1);
-  text-align:center;
-}
-.kugel-modal .order-display{
-  position:absolute;
-  bottom:160px;
-  left:50%;
-  transform:translateX(-50%);
-  max-width:540px;
-  width:90vw;
-  text-align:center;
-}
+/* Dezenter Gold-Button unten */
 .kugel-modal-close{
   position:absolute;
   bottom:40px;
   left:50%;
   transform:translateX(-50%);
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold-1);
+  font-family:'Outfit',sans-serif;
+  font-size:0.8rem;
+  font-weight:400;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:10px 24px;
+  border-radius:4px;
+  cursor:pointer;
+  min-height:auto;
+  transition:background 0.3s ease, color 0.3s ease;
+}
+.kugel-modal-close:hover{
+  background:rgba(232,192,106,0.1);
+  color:#ffffff;
 }
 
 /* === SEITE 11 NEU: ABSCHLUSS === */
 .screen-abschluss{
-  background-color:#2a1410;
   padding:80px 0 100px;
 }
 .abschluss-inner{
@@ -3035,15 +3036,13 @@ button {
   </div>
 </div>
 
-<!-- ===== SEITE 6: Vorbereitung Atmung ===== -->
+<!-- ===== SEITE 6: Übergang (Atmung wurde auf screenVorbereitung verschoben) ===== -->
 <div class="screen content" id="screen6">
   <div class="wrap">
     <div class="content-inner center">
       <div class="eyebrow">Vorbereitung</div>
       <h2>Komm <em>im Körper</em> an</h2>
-      <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
-      <div class="breath-circle"><span>Atme</span></div>
-      <p class="breath-rhythm"><span>Einatmen <em>4 Sek</em></span><span class="breath-dot"></span><span>Halten <em>4 Sek</em></span><span class="breath-dot"></span><span>Ausatmen <em>6 Sek</em></span></p>
+      <p>Lass die Welt draußen kurz still werden. Diese Minuten gehören dir.</p>
       <div class="nav-actions"><button class="btn" onclick="goTo('screen7')">Weiter</button></div>
     </div>
   </div>
@@ -3096,45 +3095,27 @@ button {
   </div>
 </div>
 
-<!-- ===== SEITE 9 NEU: Vorbereitung (Augen schließen + Atmung + Disclaimer) ===== -->
+<!-- ===== SEITE 11 NEU: Vorbereitung (vor Kugel-Session) ===== -->
 <div class="screen content" id="screenVorbereitung">
   <div class="wrap">
     <div class="content-inner center">
       <div class="eyebrow">Vorbereitung</div>
-      <h2>Bevor wir <em>beginnen</em></h2>
-      <p class="tagline">Drei Atemzüge — und du bist da.</p>
+      <h2>Bevor du die <em>Kugel</em> startest</h2>
 
       <div class="vorbereitung-anleitung">
-        <ol class="vorbereitung-schritte">
-          <li>
-            <span class="schritt-nr">1</span>
-            <p>Schließe deine Augen.</p>
-          </li>
-          <li>
-            <span class="schritt-nr">2</span>
-            <p>Denke an das Bild deiner Zukunft.</p>
-          </li>
-          <li>
-            <span class="schritt-nr">3</span>
-            <p>Spüre, welche Emotion in deinem Körper aufkommt.</p>
-          </li>
-          <li>
-            <span class="schritt-nr">4</span>
-            <p>Sehe und fühle alles gleichzeitig.</p>
-          </li>
-          <li>
-            <span class="schritt-nr">5</span>
-            <p>Öffne die Augen und starte mit der Session, bis die Kugel endet.</p>
-          </li>
-        </ol>
-
-        <p class="disclaimer">
-          <strong>⚠ Wichtiger Hinweis:</strong>
-          Schließe deine Augen nicht, wenn du im Straßenverkehr bist oder im Auto.
-          Falls du dich unwohl fühlst, beende die Session jederzeit.
-        </p>
+        <ul class="vorbereitung-liste">
+          <li>Schließ deine Augen.</li>
+          <li>Denk an deinen Wunsch.</li>
+          <li>Stell ihn dir bildlich vor.</li>
+          <li>Wie fühlst du dich dabei? Welche Emotion spürst du?</li>
+          <li>Halte alles — öffne die Augen und folge dem Punkt mit den Augen.</li>
+          <li>Der Kopf bleibt gerade.</li>
+          <li>Wenn es dir zu viel wird: stoppe die Session.</li>
+          <li>Wenn es dir gut tut: wiederhole es so oft du möchtest.</li>
+        </ul>
       </div>
 
+      <!-- ATMUNG (von screen6 hierher verschoben) -->
       <div class="atmung-block">
         <div class="eyebrow">Dein Atem</div>
         <p class="breath-rhythm">
@@ -3146,6 +3127,11 @@ button {
         </p>
         <div class="breath-circle"><span>Atme</span></div>
       </div>
+
+      <p class="disclaimer">
+        <strong>⚠ Wichtiger Hinweis:</strong>
+        Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.
+      </p>
 
       <div class="nav-actions">
         <button class="btn" onclick="openKugelModal()">Ich bin bereit</button>
@@ -3393,17 +3379,15 @@ button {
   </div>
 </div>
 
-<!-- ===== KUGEL-SESSION MODAL ===== -->
+<!-- ===== KUGEL-SESSION MODAL — Vollbild, nur Kugel ===== -->
 <div class="kugel-modal" id="kugelModal" aria-hidden="true">
   <div class="kugel-modal-inner">
     <div class="kugel-modal-stage">
       <div class="kugel-track">
         <div class="kugel-orb"></div>
       </div>
-      <p class="kugel-instruction"><em>Folge der Kugel mit deinen Augen.</em></p>
     </div>
-    <div class="order-display empty" id="orderDisplay">Deine Bestellung erscheint hier...</div>
-    <button class="btn kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
+    <button class="kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
   </div>
 </div>
 
@@ -3474,6 +3458,7 @@ function updateOrder(){
   const wish = (localStorage.getItem(STORAGE.wish) || '').trim();
   const feel = (localStorage.getItem(STORAGE.feel) || '').trim();
   const display = document.getElementById('orderDisplay');
+  if(!display) return;
   if(!wish && !feel){
     display.textContent = 'Deine Bestellung erscheint hier...';
     display.classList.add('empty');
@@ -3579,7 +3564,6 @@ function openKugelModal(){
   if(!modal) return;
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
-  updateOrder();
   // Auto-Schließen nach 30 Sekunden
   if(kugelTimer) clearTimeout(kugelTimer);
   kugelTimer = setTimeout(closeKugelModal, 30000);
