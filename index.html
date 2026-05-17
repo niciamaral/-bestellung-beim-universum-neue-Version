@@ -1857,6 +1857,77 @@ h2 em{font-style:italic;color:var(--gold);}
   margin-bottom:1.5rem !important;
 }
 
+/* === SEITE 9 NEU: VORBEREITUNG === */
+.tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.1rem;
+  color:var(--gold-1);
+  text-align:center;
+  margin-bottom:2rem;
+}
+.vorbereitung-anleitung{
+  max-width:540px;
+  margin:2rem auto;
+  padding:32px 24px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(232,192,106,0.2);
+  border-radius:12px;
+}
+.vorbereitung-schritte{
+  list-style:none;
+  padding:0;
+  margin:0 0 24px 0;
+}
+.vorbereitung-schritte li{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:12px 0;
+  border-bottom:1px solid rgba(232,192,106,0.1);
+}
+.vorbereitung-schritte li:last-child{
+  border-bottom:none;
+}
+.schritt-nr{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:1.8rem;
+  font-weight:300;
+  color:var(--gold-1);
+  min-width:32px;
+  line-height:1;
+}
+.vorbereitung-schritte p{
+  font-family:'Outfit',sans-serif;
+  font-weight:300;
+  font-size:1rem;
+  color:rgba(255,255,255,0.9);
+  line-height:1.5;
+  margin:0;
+  padding-top:6px;
+}
+.disclaimer{
+  margin-top:20px;
+  padding:14px 16px;
+  background:rgba(139,58,42,0.2);
+  border-left:3px solid var(--sienna);
+  border-radius:4px;
+  font-family:'Outfit',sans-serif;
+  font-size:0.85rem;
+  font-weight:300;
+  color:rgba(255,255,255,0.8);
+  line-height:1.5;
+}
+.disclaimer strong{
+  color:var(--gold-1);
+  font-weight:400;
+}
+.atmung-block{
+  margin-top:2rem;
+  text-align:center;
+}
+
 /* Weiter-Button: kompakter Abstand zum Text (~48px) */
 #screen2NextBtn.is-visible{
   margin-top:3rem !important;
@@ -2779,8 +2850,66 @@ h2 em{font-style:italic;color:var(--gold);}
         <div class="input-hint">Finde das Bild, das für deine neue Realität steht.</div>
 
         <div class="nav-actions">
-          <button class="btn" onclick="goTo('screen9')">Weiter zur Session</button>
+          <button class="btn" onclick="goTo('screenVorbereitung')">Weiter zur Vorbereitung</button>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SEITE 9 NEU: Vorbereitung (Augen schließen + Atmung + Disclaimer) ===== -->
+<div class="screen content" id="screenVorbereitung">
+  <div class="wrap">
+    <div class="content-inner center">
+      <div class="eyebrow">Vorbereitung</div>
+      <h2>Bevor wir <em>beginnen</em></h2>
+      <p class="tagline">Drei Atemzüge — und du bist da.</p>
+
+      <div class="vorbereitung-anleitung">
+        <ol class="vorbereitung-schritte">
+          <li>
+            <span class="schritt-nr">1</span>
+            <p>Schließe deine Augen.</p>
+          </li>
+          <li>
+            <span class="schritt-nr">2</span>
+            <p>Denke an das Bild deiner Zukunft.</p>
+          </li>
+          <li>
+            <span class="schritt-nr">3</span>
+            <p>Spüre, welche Emotion in deinem Körper aufkommt.</p>
+          </li>
+          <li>
+            <span class="schritt-nr">4</span>
+            <p>Sehe und fühle alles gleichzeitig.</p>
+          </li>
+          <li>
+            <span class="schritt-nr">5</span>
+            <p>Öffne die Augen und starte mit der Session, bis die Kugel endet.</p>
+          </li>
+        </ol>
+
+        <p class="disclaimer">
+          <strong>⚠ Wichtiger Hinweis:</strong>
+          Schließe deine Augen nicht, wenn du im Straßenverkehr bist oder im Auto.
+          Falls du dich unwohl fühlst, beende die Session jederzeit.
+        </p>
+      </div>
+
+      <div class="atmung-block">
+        <div class="eyebrow">Dein Atem</div>
+        <p class="breath-rhythm">
+          <span>Einatmen <em>4 Sek</em></span>
+          <span class="breath-dot"></span>
+          <span>Halten <em>4 Sek</em></span>
+          <span class="breath-dot"></span>
+          <span>Ausatmen <em>6 Sek</em></span>
+        </p>
+        <div class="breath-circle"><span>Atme</span></div>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn" onclick="goTo('screen9')">Ich bin bereit</button>
       </div>
     </div>
   </div>
@@ -2954,7 +3083,7 @@ h2 em{font-style:italic;color:var(--gold);}
 </div>
 
 <script>
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screen9','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screen9','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
