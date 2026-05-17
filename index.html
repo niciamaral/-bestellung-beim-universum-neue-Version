@@ -914,11 +914,11 @@ h2 em{font-style:italic;color:var(--gold);}
   margin-bottom:1rem;
   font-weight:500;
 }
-/* Seite 3 startet OBEN — kein zentrierter Wrap, Frau scrollt selbst */
+/* Seite 3 startet OBEN — DER KERN erst beim Scrollen */
 #screen3 .wrap{
-  justify-content:center;
+  justify-content:flex-start;
   align-items:center;
-  padding-top:60px;
+  padding-top:3rem;
   padding-bottom:60px;
 }
 #screen3 .content-inner{
@@ -1936,6 +1936,32 @@ h2 em{font-style:italic;color:var(--gold);}
   text-align:center;
 }
 
+/* Disclaimer-Karte auf screenVorbereitung (schicker als plain .disclaimer) */
+#screenVorbereitung .disclaimer-card{
+  background:rgba(196,150,58,0.1);
+  border:1px solid rgba(196,150,58,0.4);
+  border-radius:8px;
+  padding:1rem 1.5rem;
+  margin:2rem auto;
+  max-width:540px;
+  text-align:left;
+}
+#screenVorbereitung .disclaimer-eyebrow{
+  font-size:0.7rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:500;
+  margin-bottom:8px;
+}
+#screenVorbereitung .disclaimer-text{
+  color:var(--gold-1);
+  font-style:italic;
+  font-size:0.95rem;
+  line-height:1.5;
+  margin:0;
+}
+
 /* === KUGEL-SESSION MODAL (Vollbild, nur Kugel + dezenter Close-Button) === */
 .kugel-modal{
   position:fixed;
@@ -2048,7 +2074,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .abschluss-statement{
   font-family:'Cormorant Garamond',serif;
   font-weight:300;
-  font-size:clamp(1.8rem, 5vw, 2.6rem);
+  font-size:clamp(2rem, 6vw, 3rem);
   line-height:1.2;
   color:#ffffff;
   margin:60px 0 40px;
@@ -2062,8 +2088,8 @@ h2 em{font-style:italic;color:var(--gold);}
 .abschluss-text{
   font-family:'Outfit',sans-serif;
   font-weight:300;
-  font-size:clamp(1rem, 2.5vw, 1.1rem);
-  line-height:1.85;
+  font-size:clamp(1.1rem, 3vw, 1.3rem);
+  line-height:1.8;
   color:rgba(255,255,255,0.9);
   margin:0 auto 28px;
   max-width:560px;
@@ -3122,9 +3148,10 @@ button {
         </p>
       </div>
 
-      <p class="disclaimer">
-        Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.
-      </p>
+      <div class="disclaimer-card">
+        <div class="disclaimer-eyebrow">Wichtiger Hinweis</div>
+        <p class="disclaimer-text">Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.</p>
+      </div>
 
       <div class="nav-actions">
         <button class="btn" onclick="openKugelModal()">Ich bin bereit</button>
@@ -3399,24 +3426,9 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Auto-Scroll-to-Top: NICHT für screen3 (Frau scrollt dort selbst)
-  if (id !== 'screen3') {
-    const html = document.documentElement;
-    html.style.scrollBehavior = 'auto';
-    const forceTop = () => {
-      html.scrollTop = 0;
-      document.body.scrollTop = 0;
-      window.scrollTo({top: 0, left: 0, behavior: 'instant'});
-    };
-    forceTop();
-    requestAnimationFrame(() => {
-      forceTop();
-      setTimeout(() => {
-        forceTop();
-        html.style.scrollBehavior = '';
-      }, 50);
-    });
-  }
+  // Einfach: scrollTop = 0. Kein scrollIntoView, kein smooth, kein RAF.
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
   updateIndicator(id);
   updateIrrglaubeVideos(id);
 }
@@ -3557,6 +3569,12 @@ function openKugelModal(){
   if(!modal) return;
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
+  // Fullscreen anfordern — entfernt Browser-Adressleiste auf Mobile
+  const docEl = document.documentElement;
+  const reqFs = docEl.requestFullscreen || docEl.webkitRequestFullscreen || docEl.mozRequestFullScreen;
+  if(reqFs){
+    Promise.resolve(reqFs.call(docEl)).catch(() => {});
+  }
   // Auto-Schließen nach 30 Sekunden
   if(kugelTimer) clearTimeout(kugelTimer);
   kugelTimer = setTimeout(closeKugelModal, 30000);
@@ -3567,6 +3585,12 @@ function closeKugelModal(){
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   if(kugelTimer){ clearTimeout(kugelTimer); kugelTimer = null; }
+  // Fullscreen verlassen
+  const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+  const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+  if(fsEl && exitFs){
+    Promise.resolve(exitFs.call(document)).catch(() => {});
+  }
   goTo('screenAbschluss');
 }
 
@@ -3619,10 +3643,6 @@ function showFeminineWay(){
   trigger.classList.add('hidden');
   setTimeout(() => {
     orb.classList.add('is-revealed');
-    // Sanft zur Lichtkugel scrollen, sobald sie aufzugehen beginnt
-    setTimeout(() => {
-      orb.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 300);
     if(quote){
       setTimeout(() => quote.classList.add('is-visible'), 1200);
     }
