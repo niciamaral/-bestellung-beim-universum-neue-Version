@@ -2681,22 +2681,14 @@ h2 em{font-style:italic;color:var(--gold);}
   min-height: 100vh;
   background-color: #2a1410;
 }
-/* screen2d: zurück auf Standard-Bordeaux-Hintergrund wie andere Seiten */
+/* screen2d behält video4.mp4 als Hintergrund (irrglaube-video + irrglaube-overlay) */
+/* Balken unten weg: min-height aufheben, Höhe an Inhalt anpassen */
 #screen2d{
-  background-color:#2a1410;
-  background-image:
-    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
-    url('images/bild1.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  min-height:unset !important;
+  height:auto;
 }
-#screen2d .irrglaube-video,
-#screen2d .irrglaube-overlay{
-  display:none;
-}
-/* Kein leerer Bordeaux-Balken unten nach Feminin-Way-Reveal */
 #screen2d .irrglaube-wrap{
+  min-height:unset;
   padding-bottom:0;
 }
 #screen2d #screen2NextBtn{
