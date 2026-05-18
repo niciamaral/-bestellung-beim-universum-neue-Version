@@ -1982,7 +1982,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .kugel-modal{
   position:fixed;
   inset:0;
-  background-color:#2a1410;
+  background:#3a1810 !important;
   z-index:9999;
   display:none;
   overflow:hidden;
@@ -2556,8 +2556,8 @@ h2 em{font-style:italic;color:var(--gold);}
 .door-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
-  max-height: 75vh;
+  max-width: 100%;
+  height: 75vh;
   margin: 0 auto;
   border: none;
   background: transparent;
@@ -2636,7 +2636,7 @@ h2 em{font-style:italic;color:var(--gold);}
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.4;
-  font-size: clamp(1.8rem, 7vw, 3rem) !important;
+  font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
   color: #ffffff;
   overflow: visible;
   text-shadow:
@@ -2677,7 +2677,7 @@ h2 em{font-style:italic;color:var(--gold);}
   .word-line {
     padding: 14px 16px;
     gap: 0.12em 0.28em;
-    font-size: clamp(1.6rem, 7.5vw, 2.4rem) !important;
+    font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
   }
 }
 
@@ -2689,15 +2689,15 @@ h2 em{font-style:italic;color:var(--gold);}
   min-height: 100vh;
   background-color: #2a1410;
 }
-/* screen2d behält video4.mp4 als Hintergrund (irrglaube-video + irrglaube-overlay) */
-/* Streifen unten: min-height 100vh aber Höhe an Inhalt, letztes Element padding-bottom */
+/* screen2d behält video4.mp4 als Hintergrund */
+/* Streifen unten: Höhe genau 100vh, kein Überlauf */
 #screen2d{
-  min-height:100vh;
-  height:auto;
+  height:100vh;
+  overflow:hidden;
 }
 #screen2d .irrglaube-wrap{
   min-height:100vh;
-  padding-bottom:3rem;
+  padding-bottom:0;
 }
 #screen2d #screen2NextBtn{
   margin-bottom:0;
