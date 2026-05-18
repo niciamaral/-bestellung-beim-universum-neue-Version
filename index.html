@@ -928,8 +928,8 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 #screen3 .anchor-text{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.4rem, 8vw, 3.5rem);
-  line-height:1.2;
+  font-size:clamp(1.6rem, 4vw, 2rem);
+  line-height:1.3;
   color:#fff;
   margin:0;
   font-weight:300;
@@ -1525,8 +1525,9 @@ h2 em{font-style:italic;color:var(--gold);}
   display:flex !important;
   flex-direction:column;
   justify-content:center;
-  min-height:100vh;
   margin-top:100vh;
+  margin-bottom:0;
+  padding-bottom:0;
 }
 
 /* === Reveal-Trigger Abstand zur Quote sauber === */
@@ -2541,6 +2542,7 @@ h2 em{font-style:italic;color:var(--gold);}
   margin: 60px auto 80px;
   text-align: center;
   padding: 0;
+  overflow: visible;
 }
 
 .door-container {
@@ -2552,7 +2554,13 @@ h2 em{font-style:italic;color:var(--gold);}
   border: none;
   background: transparent;
   box-shadow: none;
-  /* Weiche Ränder — Video fließt aus dem Bild */
+  overflow: visible;
+}
+
+/* Weiche Ränder — Mask NUR auf Video + Overlay + Glow, NICHT auf Text */
+.door-video,
+.door-overlay,
+.door-glow {
   -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, black 55%, transparent 100%);
   mask-image: radial-gradient(ellipse 88% 88% at center, black 55%, transparent 100%);
 }
@@ -2673,9 +2681,26 @@ h2 em{font-style:italic;color:var(--gold);}
   min-height: 100vh;
   background-color: #2a1410;
 }
-/* Auf screen2d: nach WEITER-Bereich extra solid Bordeaux (kein weißes Durchscheinen) */
-#screen2d .irrglaube-overlay {
-  background: rgba(42, 20, 16, 0.95);
+/* screen2d: zurück auf Standard-Bordeaux-Hintergrund wie andere Seiten */
+#screen2d{
+  background-color:#2a1410;
+  background-image:
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
+    url('images/bild1.png');
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+#screen2d .irrglaube-video,
+#screen2d .irrglaube-overlay{
+  display:none;
+}
+/* Kein leerer Bordeaux-Balken unten nach Feminin-Way-Reveal */
+#screen2d .irrglaube-wrap{
+  padding-bottom:0;
+}
+#screen2d #screen2NextBtn{
+  margin-bottom:0;
 }
 
 .irrglaube-video {
@@ -3633,7 +3658,7 @@ function closeKugelModal(){
   elements.forEach(el => observer.observe(el));
 })();
 
-// === ANCHOR-CARD REVEAL (Seite 3: goldener Schleier) ===
+// === ANCHOR-CARD REVEAL (Seite 3: goldener Schleier, 1s delay) ===
 (function() {
   const anchorCard = document.querySelector('.anchor-card');
   if (!anchorCard) return;
@@ -3641,11 +3666,12 @@ function closeKugelModal(){
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        anchorCard.classList.add('is-revealed');
+        // 1s Verzögerung — DER KERN erscheint nicht sofort beim Sichtbarwerden
+        setTimeout(() => anchorCard.classList.add('is-revealed'), 1000);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.5 });
 
   observer.observe(anchorCard);
 })();
