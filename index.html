@@ -2614,6 +2614,12 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 
 /* Text-Zeilen direkt auf dem Video — eine Zeile gleichzeitig */
+.door-words,
+.door-words * {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 .door-words {
   position: absolute;
   inset: 0;
@@ -2623,9 +2629,6 @@ h2 em{font-style:italic;color:var(--gold);}
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
 }
 
 .word-line {
