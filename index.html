@@ -1955,6 +1955,14 @@ h2 em{font-style:italic;color:var(--gold);}
   line-height:1.5;
   margin:0;
 }
+/* Vorbereitung — kompakte Abstände, alles auf einen Blick */
+#screenVorbereitung .content-inner > *{
+  margin-top:0.75rem;
+  margin-bottom:0.75rem;
+}
+#screenVorbereitung .content-inner > *:first-child{ margin-top:0; }
+#screenVorbereitung .content-inner > *:last-child{ margin-bottom:0; }
+
 /* Toggle der zwei Button-Sets: initial vs. nach Session */
 #screenVorbereitung .vorbereitung-after{
   display:none;
@@ -2548,8 +2556,8 @@ h2 em{font-style:italic;color:var(--gold);}
 .door-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 9/16;
-  max-height: 70vh;
+  aspect-ratio: 3/4;
+  max-height: 75vh;
   margin: 0 auto;
   border: none;
   background: transparent;
@@ -2622,13 +2630,13 @@ h2 em{font-style:italic;color:var(--gold);}
   align-items: center;
   align-content: center;
   justify-content: center;
-  padding: 28px 24px;
+  padding: 16px 20px;
   gap: 0.15em 0.35em;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.4;
-  font-size: clamp(2.8rem, 11vw, 4.5rem) !important;
+  font-size: clamp(1.8rem, 7vw, 3rem) !important;
   color: #ffffff;
   overflow: visible;
   text-shadow:
@@ -2667,9 +2675,9 @@ h2 em{font-style:italic;color:var(--gold);}
     margin: 40px auto 60px;
   }
   .word-line {
-    padding: 20px 14px;
+    padding: 14px 16px;
     gap: 0.12em 0.28em;
-    font-size: clamp(2.8rem, 11vw, 4.5rem) !important;
+    font-size: clamp(1.6rem, 7.5vw, 2.4rem) !important;
   }
 }
 
@@ -2682,17 +2690,18 @@ h2 em{font-style:italic;color:var(--gold);}
   background-color: #2a1410;
 }
 /* screen2d behält video4.mp4 als Hintergrund (irrglaube-video + irrglaube-overlay) */
-/* Balken unten weg: min-height aufheben, Höhe an Inhalt anpassen */
+/* Streifen unten: min-height 100vh aber Höhe an Inhalt, letztes Element padding-bottom */
 #screen2d{
-  min-height:unset !important;
+  min-height:100vh;
   height:auto;
 }
 #screen2d .irrglaube-wrap{
-  min-height:unset;
-  padding-bottom:0;
+  min-height:100vh;
+  padding-bottom:3rem;
 }
 #screen2d #screen2NextBtn{
   margin-bottom:0;
+  padding-bottom:0;
 }
 
 .irrglaube-video {
@@ -2883,6 +2892,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
               <span class="word">in</span>
               <span class="word">dir</span>
               <span class="word">trägst,</span>
+            </p>
+            <p class="word-line">
               <span class="word">die</span>
               <span class="word">dir</span>
               <span class="word">noch</span>
