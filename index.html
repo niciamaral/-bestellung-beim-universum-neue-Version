@@ -928,8 +928,8 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 #screen3 .anchor-text{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.8rem, 9vw, 4rem);
-  line-height:1.4;
+  font-size:clamp(2.4rem, 8vw, 3.5rem);
+  line-height:1.2;
   color:#fff;
   margin:0;
   font-weight:300;
@@ -2553,8 +2553,8 @@ h2 em{font-style:italic;color:var(--gold);}
   background: transparent;
   box-shadow: none;
   /* Weiche Ränder — Video fließt aus dem Bild */
-  -webkit-mask-image: radial-gradient(ellipse 85% 85% at center, black 60%, transparent 100%);
-  mask-image: radial-gradient(ellipse 85% 85% at center, black 60%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 88% 88% at center, black 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 88% 88% at center, black 55%, transparent 100%);
 }
 
 .door-video {
@@ -2671,6 +2671,11 @@ h2 em{font-style:italic;color:var(--gold);}
   overflow: hidden;
   isolation: isolate;
   min-height: 100vh;
+  background-color: #2a1410;
+}
+/* Auf screen2d: nach WEITER-Bereich extra solid Bordeaux (kein weißes Durchscheinen) */
+#screen2d .irrglaube-overlay {
+  background: rgba(42, 20, 16, 0.95);
 }
 
 .irrglaube-video {
@@ -2801,14 +2806,14 @@ button {
   }
 }
 
-/* === GLOBAL FLIESSTEXT: nur FREISTEHENDE p-Tags größer (keine Box-/Step-/Card-Inhalte) === */
+/* === GLOBAL FLIESSTEXT: nur FREISTEHENDE p-Tags === */
 p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm):not(.step-body):not(.step-title):not(.switch-desc):not(.product-tagline):not(.misc-text):not(.misc-title):not(.orb-text):not(.anchor-text):not(.hero-text):not(.vorbereitung-prosa):not(.abschluss-text){
-  font-size:clamp(1.15rem, 4vw, 1.3rem) !important;
+  font-size:clamp(1.1rem, 3.5vw, 1.25rem) !important;
   line-height:1.7;
 }
-@media (min-width: 768px){
+@media (max-width: 768px){
   p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.breath-rhythm):not(.step-body):not(.step-title):not(.switch-desc):not(.product-tagline):not(.misc-text):not(.misc-title):not(.orb-text):not(.anchor-text):not(.hero-text):not(.vorbereitung-prosa):not(.abschluss-text){
-    font-size:clamp(1.2rem, 2.5vw, 1.4rem) !important;
+    font-size:17px !important;
   }
 }
 </style>
@@ -2862,9 +2867,9 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
               <span class="word">dir</span>
               <span class="word">trägst,</span>
               <span class="word">die</span>
+              <span class="word">dir</span>
               <span class="word">noch</span>
               <span class="word">niemand</span>
-              <span class="word">dir</span>
               <span class="word">gezeigt</span>
               <span class="word">hat?</span>
             </p>
