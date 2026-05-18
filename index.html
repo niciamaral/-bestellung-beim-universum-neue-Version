@@ -2547,10 +2547,13 @@ h2 em{font-style:italic;color:var(--gold);}
   position: relative;
   width: 100%;
   max-width: 100%;
-  margin: 60px auto 80px;
   text-align: center;
-  padding: 0;
   overflow: visible;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .door-container {
@@ -2559,10 +2562,11 @@ h2 em{font-style:italic;color:var(--gold);}
   max-width: 100%;
   height: 75vh;
   margin: 0 auto;
-  border: none;
   background: transparent;
-  box-shadow: none;
   overflow: visible !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* Weiche Ränder — Mask NUR auf Video + Overlay + Glow, NICHT auf Text */
@@ -2574,9 +2578,9 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 
 .door-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
   display: block;
 }
 
@@ -2633,6 +2637,7 @@ h2 em{font-style:italic;color:var(--gold);}
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 1rem !important;
 }
 
 .word-line {
@@ -2640,12 +2645,12 @@ h2 em{font-style:italic;color:var(--gold);}
   inset: auto !important;
   display: block !important;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2rem !important;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  line-height: 1.4;
-  font-size: clamp(1.6rem, 6.5vw, 2.8rem) !important;
+  line-height: 1.3 !important;
+  font-size: clamp(1.8rem, 7vw, 3rem) !important;
   color: #ffffff;
   overflow: visible;
   background: transparent !important;
@@ -2682,12 +2687,9 @@ h2 em{font-style:italic;color:var(--gold);}
 
 /* Mobile Optimierung */
 @media (max-width: 600px) {
-  .door-section {
-    margin: 40px auto 60px;
-  }
   .word-line {
-    padding: 0.4rem 0.75rem;
-    font-size: clamp(1.6rem, 6.5vw, 2.8rem) !important;
+    padding: 0.5rem 2rem !important;
+    font-size: clamp(1.8rem, 7vw, 3rem) !important;
   }
 }
 
