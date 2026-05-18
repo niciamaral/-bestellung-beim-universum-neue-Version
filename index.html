@@ -2552,7 +2552,7 @@ h2 em{font-style:italic;color:var(--gold);}
   border-radius: 0 !important;
   border: none !important;
   box-shadow: none !important;
-  margin: 0 !important;
+  margin: 0 0 2rem 0 !important;
   padding: 0 !important;
 }
 
@@ -2632,42 +2632,37 @@ h2 em{font-style:italic;color:var(--gold);}
   position: absolute;
   inset: 0;
   z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
   pointer-events: none;
   overflow: visible !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem !important;
 }
 
 .word-line {
-  position: relative !important;
-  inset: auto !important;
-  display: block !important;
+  display: none !important;
   width: 100%;
-  padding: 0.5rem 2rem !important;
+  padding: 0.5rem 1.5rem !important;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  line-height: 1.3 !important;
-  font-size: clamp(1.8rem, 7vw, 3rem) !important;
+  line-height: 1.3;
+  font-size: clamp(1.6rem, 6.5vw, 2.6rem) !important;
   color: #ffffff;
-  overflow: visible;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
   text-shadow:
     0 0 20px rgba(232, 192, 106, 0.6),
     0 2px 8px rgba(0, 0, 0, 0.7);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
   margin: 0;
 }
 
-/* Aktive Zeile — instant fade-in, sanftes fade-out */
+/* Nur aktive Zeile sichtbar — saubere 1-Zeilen-Anzeige */
 .word-line.is-active {
-  opacity: 1;
-  transition: opacity 0s;
+  display: block !important;
+  opacity: 1 !important;
 }
 
 .word {
@@ -2688,8 +2683,8 @@ h2 em{font-style:italic;color:var(--gold);}
 /* Mobile Optimierung */
 @media (max-width: 600px) {
   .word-line {
-    padding: 0.5rem 2rem !important;
-    font-size: clamp(1.8rem, 7vw, 3rem) !important;
+    padding: 0.5rem 1.5rem !important;
+    font-size: clamp(1.6rem, 6.5vw, 2.6rem) !important;
   }
 }
 
