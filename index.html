@@ -3737,37 +3737,40 @@ function showFeminineWay(){
       glow.classList.add('is-active');
     }, 1000);
 
+    // Text-Animation entkoppelt vom Video — eigenes Tempo
+    // Start: 1s nach Video-Start. Jede Zeile: 2.5s sichtbar. Total: 5 × 2.5s = 12.5s.
     let cursor = 1000;
     lines.forEach((line) => {
       const words = line.querySelectorAll('.word');
 
       setTimeout(() => {
-        line.classList.add('is-active');
-        // Inline-Style-Enforcement falls CSS überschrieben wird
+        // Saubere Übergabe: alle Zeilen aus, dann diese Zeile an
         document.querySelectorAll('.word-line').forEach(el => {
-          el.style.fontSize = '3.5rem';
-          el.style.whiteSpace = 'nowrap';
-          el.style.overflow = 'visible';
+          el.classList.remove('is-active');
           el.style.display = 'none';
         });
-        const activeLine = document.querySelector('.word-line.is-active');
-        if(activeLine){
-          activeLine.style.display = 'block';
-          activeLine.style.fontSize = '3.5rem';
-          activeLine.style.whiteSpace = 'nowrap';
-          activeLine.style.overflow = 'visible';
-        }
+        line.classList.add('is-active');
+        line.style.display = 'block';
+        line.style.fontSize = '3.5rem';
+        line.style.whiteSpace = 'nowrap';
+        line.style.overflow = 'visible';
       }, cursor);
 
+      // Wort-Stagger innerhalb der Zeile
       words.forEach((word, i) => {
         setTimeout(() => word.classList.add('is-visible'), cursor + i * wordStep);
       });
 
-      // Fade-out kurz vor Ende des Line-Slots
-      setTimeout(() => line.classList.remove('is-active'), cursor + perLine - fadeOut);
-
       cursor += perLine;
     });
+
+    // Nach letzter Zeile: alles aus (Video läuft leer weiter, kein Text mehr)
+    setTimeout(() => {
+      document.querySelectorAll('.word-line').forEach(el => {
+        el.classList.remove('is-active');
+        el.style.display = 'none';
+      });
+    }, cursor);
   }
 
   // Sanfter Scroll mit ease-in-out cubic — User-Interaktion bricht ab (Scroll-Bremse weg)
