@@ -3720,10 +3720,10 @@ function showFeminineWay(){
   const glow = doorSection.querySelector('.door-glow');
   const lines = doorSection.querySelectorAll('.word-line');
 
-  const wordStep = 400;       // fest: 400ms pro Wort
-  const holdDur = 800;        // ms — Pause nach allen Wörtern
-  const fadeOut = 400;        // ms fade-out
-  const perLine = 2500;       // ms zwischen Line-Starts
+  // Teleprompter-Konstanten
+  const wordDelay = 600;      // ms zwischen Wörtern
+  const lineHold = 1000;      // ms warten nach letztem Wort
+  const fadeOutMs = 500;      // ms fade-out pro Zeile
 
   let started = false;
   function startAnimation() {
@@ -3737,40 +3737,62 @@ function showFeminineWay(){
       glow.classList.add('is-active');
     }, 1000);
 
-    // Text-Animation entkoppelt vom Video — eigenes Tempo
-    // Start: 1s nach Video-Start. Jede Zeile: 2.5s sichtbar. Total: 5 × 2.5s = 12.5s.
-    let cursor = 1000;
+    // Teleprompter — entkoppelt vom Video, kein fixes Gesamt-Timing
+    // Pro Zeile: Wörter mit 600ms Abstand, 1s halten nach letztem Wort, 500ms fade
+    let timeOffset = 1000;  // Start 1s nach Video-Start
+
     lines.forEach((line) => {
       const words = line.querySelectorAll('.word');
+      const lineWordCount = words.length;
 
+      // Zeile aktivieren: alle anderen verstecken, diese zeigen
       setTimeout(() => {
-        // Saubere Übergabe: alle Zeilen aus, dann diese Zeile an
         document.querySelectorAll('.word-line').forEach(el => {
-          el.classList.remove('is-active');
           el.style.display = 'none';
+          el.style.opacity = '0';
         });
-        line.classList.add('is-active');
         line.style.display = 'block';
-        line.style.fontSize = '3.5rem';
+        line.style.opacity = '1';
+        line.style.transition = 'opacity 0.5s ease';
+        line.style.fontSize = '3rem';
         line.style.whiteSpace = 'nowrap';
         line.style.overflow = 'visible';
-      }, cursor);
+        line.style.textAlign = 'center';
+        line.style.color = '#ffffff';
+        line.style.fontStyle = 'normal';
+        line.style.fontFamily = "'Cormorant Garamond', serif";
+        line.style.fontWeight = '300';
+        line.style.textShadow = '0 0 40px rgba(232,192,106,0.8), 0 0 80px rgba(232,192,106,0.4), 0 4px 16px rgba(0,0,0,0.9)';
+        // Alle Wörter zurücksetzen (auch gold/italic überschreiben)
+        words.forEach(w => {
+          w.style.opacity = '0';
+          w.style.color = '#ffffff';
+          w.style.fontStyle = 'normal';
+          w.style.fontWeight = '300';
+          w.style.transition = 'none';
+        });
+      }, timeOffset);
 
-      // Wort-Stagger innerhalb der Zeile
+      // Wörter nacheinander einblenden (instant pop, 600ms Abstand)
       words.forEach((word, i) => {
-        setTimeout(() => word.classList.add('is-visible'), cursor + i * wordStep);
+        setTimeout(() => { word.style.opacity = '1'; }, timeOffset + i * wordDelay);
       });
 
-      cursor += perLine;
+      // Nach letztem Wort: 1s halten, dann fade-out 0.5s
+      const allShownTime = timeOffset + (lineWordCount - 1) * wordDelay;
+      const fadeStartTime = allShownTime + lineHold;
+      setTimeout(() => { line.style.opacity = '0'; }, fadeStartTime);
+
+      // Nächste Zeile startet nach fade-out
+      timeOffset = fadeStartTime + fadeOutMs;
     });
 
-    // Nach letzter Zeile: alles aus (Video läuft leer weiter, kein Text mehr)
+    // Final-Cleanup: alle Zeilen aus, Video läuft leer weiter
     setTimeout(() => {
       document.querySelectorAll('.word-line').forEach(el => {
-        el.classList.remove('is-active');
         el.style.display = 'none';
       });
-    }, cursor);
+    }, timeOffset);
   }
 
   // Sanfter Scroll mit ease-in-out cubic — User-Interaktion bricht ab (Scroll-Bremse weg)
