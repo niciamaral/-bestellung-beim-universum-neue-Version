@@ -2617,17 +2617,7 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity: 1;
 }
 
-/* Text-Zeilen direkt auf dem Video — eine Zeile gleichzeitig */
-.door-words,
-.door-words * {
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  text-decoration: none !important;
-}
+/* Teleprompter — ganze Sätze sequenziell */
 .door-words {
   position: absolute;
   inset: 0;
@@ -2635,55 +2625,25 @@ h2 em{font-style:italic;color:var(--gold);}
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
   pointer-events: none;
-  overflow: visible !important;
 }
 
-.word-line {
-  display: none !important;
-  white-space: nowrap;
-  overflow: visible !important;
+.door-sentence {
+  display: none;
+  position: absolute;
+  width: 100%;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  line-height: 1.3;
-  font-size: clamp(3rem, 12vw, 6rem) !important;
+  font-size: 2.8rem;
   color: #ffffff;
-  text-shadow:
-    0 0 40px rgba(232, 192, 106, 0.8),
-    0 0 80px rgba(232, 192, 106, 0.4),
-    0 4px 16px rgba(0, 0, 0, 0.9);
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+  padding: 1rem 2rem;
+  text-shadow: 0 0 20px rgba(232, 192, 106, 0.6), 0 2px 8px rgba(0, 0, 0, 0.8);
+  line-height: 1.3;
+  overflow: visible;
+  white-space: normal;
   margin: 0;
-}
-
-/* Nur aktive Zeile sichtbar — Text darf über Video hinausragen */
-.word-line.is-active {
-  display: block !important;
-}
-
-.word {
-  display: inline-block;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.word.gold {
-  color: var(--gold-1);
-  font-style: italic;
-}
-
-.word.is-visible {
-  opacity: 1;
-}
-
-/* Mobile Optimierung */
-@media (max-width: 600px) {
-  .word-line {
-    font-size: clamp(3rem, 12vw, 6rem) !important;
-  }
 }
 
 /* === SEITE 2: 4 IRRGLAUBEN ALS SUB-SCREENS === */
@@ -2876,61 +2836,13 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <div class="door-overlay"></div>
           <div class="door-glow"></div>
 
-          <!-- Text-Zeilen: 4 Zeilen, Wort für Wort, 2.5s pro Zeile -->
-          <div class="door-words" id="doorWords">
-            <p class="word-line">
-              <span class="word gold">Was</span>
-              <span class="word gold">wäre,</span>
-              <span class="word">wenn</span>
-              <span class="word">alles</span>
-              <span class="word">in</span>
-              <span class="word">dir</span>
-              <span class="word">beginnt?</span>
-            </p>
-            <p class="word-line">
-              <span class="word gold">Was</span>
-              <span class="word gold">wäre,</span>
-              <span class="word">wenn</span>
-              <span class="word">du</span>
-              <span class="word">eine</span>
-              <span class="word">absolute</span>
-              <span class="word">Kraft</span>
-              <span class="word">in</span>
-              <span class="word">dir</span>
-              <span class="word">trägst,</span>
-            </p>
-            <p class="word-line">
-              <span class="word">die</span>
-              <span class="word">dir</span>
-              <span class="word">noch</span>
-              <span class="word">niemand</span>
-              <span class="word">gezeigt</span>
-              <span class="word">hat?</span>
-            </p>
-            <p class="word-line">
-              <span class="word gold">Und</span>
-              <span class="word gold">was</span>
-              <span class="word gold">wäre,</span>
-              <span class="word">wenn</span>
-              <span class="word">ich</span>
-              <span class="word">dir</span>
-              <span class="word">heute</span>
-              <span class="word">zeige</span>
-              <span class="word">—</span>
-            </p>
-            <p class="word-line">
-              <span class="word">dass</span>
-              <span class="word">die</span>
-              <span class="word">Antwort</span>
-              <span class="word">nicht</span>
-              <span class="word">draußen</span>
-              <span class="word">wartet,</span>
-              <span class="word">sondern</span>
-              <span class="word">längst</span>
-              <span class="word">in</span>
-              <span class="word">dir</span>
-              <span class="word">ist?</span>
-            </p>
+          <!-- Teleprompter: 5 ganze Sätze sequenziell -->
+          <div id="doorWords" class="door-words">
+            <p class="door-sentence" id="s1">Was wäre, wenn alles in dir beginnt?</p>
+            <p class="door-sentence" id="s2">Was wäre, wenn du eine absolute Kraft in dir trägst,</p>
+            <p class="door-sentence" id="s3">die dir noch niemand gezeigt hat?</p>
+            <p class="door-sentence" id="s4">Und was wäre, wenn ich dir heute zeige —</p>
+            <p class="door-sentence" id="s5">dass die Antwort nicht draußen wartet, sondern längst in dir ist?</p>
           </div>
         </div>
       </div>
@@ -3718,12 +3630,6 @@ function showFeminineWay(){
   const video = doorSection.querySelector('.door-video');
   const overlay = doorSection.querySelector('.door-overlay');
   const glow = doorSection.querySelector('.door-glow');
-  const lines = doorSection.querySelectorAll('.word-line');
-
-  // Teleprompter-Konstanten
-  const wordDelay = 600;      // ms zwischen Wörtern
-  const lineHold = 1000;      // ms warten nach letztem Wort
-  const fadeOutMs = 500;      // ms fade-out pro Zeile
 
   let started = false;
   function startAnimation() {
@@ -3737,62 +3643,34 @@ function showFeminineWay(){
       glow.classList.add('is-active');
     }, 1000);
 
-    // Teleprompter — entkoppelt vom Video, kein fixes Gesamt-Timing
-    // Pro Zeile: Wörter mit 600ms Abstand, 1s halten nach letztem Wort, 500ms fade
-    let timeOffset = 1000;  // Start 1s nach Video-Start
-
-    lines.forEach((line) => {
-      const words = line.querySelectorAll('.word');
-      const lineWordCount = words.length;
-
-      // Zeile aktivieren: alle anderen verstecken, diese zeigen
-      setTimeout(() => {
-        document.querySelectorAll('.word-line').forEach(el => {
-          el.style.display = 'none';
-          el.style.opacity = '0';
-        });
-        line.style.display = 'block';
-        line.style.opacity = '1';
-        line.style.transition = 'opacity 0.5s ease';
-        line.style.fontSize = '3rem';
-        line.style.whiteSpace = 'nowrap';
-        line.style.overflow = 'visible';
-        line.style.textAlign = 'center';
-        line.style.color = '#ffffff';
-        line.style.fontStyle = 'normal';
-        line.style.fontFamily = "'Cormorant Garamond', serif";
-        line.style.fontWeight = '300';
-        line.style.textShadow = '0 0 40px rgba(232,192,106,0.8), 0 0 80px rgba(232,192,106,0.4), 0 4px 16px rgba(0,0,0,0.9)';
-        // Alle Wörter zurücksetzen (auch gold/italic überschreiben)
-        words.forEach(w => {
-          w.style.opacity = '0';
-          w.style.color = '#ffffff';
-          w.style.fontStyle = 'normal';
-          w.style.fontWeight = '300';
-          w.style.transition = 'none';
-        });
-      }, timeOffset);
-
-      // Wörter nacheinander einblenden (instant pop, 600ms Abstand)
-      words.forEach((word, i) => {
-        setTimeout(() => { word.style.opacity = '1'; }, timeOffset + i * wordDelay);
-      });
-
-      // Nach letztem Wort: 1s halten, dann fade-out 0.5s
-      const allShownTime = timeOffset + (lineWordCount - 1) * wordDelay;
-      const fadeStartTime = allShownTime + lineHold;
-      setTimeout(() => { line.style.opacity = '0'; }, fadeStartTime);
-
-      // Nächste Zeile startet nach fade-out
-      timeOffset = fadeStartTime + fadeOutMs;
-    });
-
-    // Final-Cleanup: alle Zeilen aus, Video läuft leer weiter
-    setTimeout(() => {
-      document.querySelectorAll('.word-line').forEach(el => {
-        el.style.display = 'none';
-      });
-    }, timeOffset);
+    // Teleprompter — ganze Sätze sequenziell, kein festes Gesamt-Timing
+    const sentences = ['s1','s2','s3','s4','s5'];
+    let current = 0;
+    function showNext(){
+      if (current >= sentences.length) return;
+      // Vorherigen ausblenden
+      if (current > 0) {
+        const prev = document.getElementById(sentences[current - 1]);
+        if (prev) {
+          prev.style.opacity = '0';
+          prev.style.transition = 'opacity 0.5s ease';
+          setTimeout(() => { prev.style.display = 'none'; }, 500);
+        }
+      }
+      // Aktuellen einblenden
+      const el = document.getElementById(sentences[current]);
+      if (el) {
+        el.style.display = 'block';
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.8s ease';
+        setTimeout(() => { el.style.opacity = '1'; }, 50);
+      }
+      current++;
+      // Nächsten Satz nach 4 Sekunden
+      setTimeout(showNext, 4000);
+    }
+    // Erster Satz 1.5s nach Video-Start
+    setTimeout(showNext, 1500);
   }
 
   // Sanfter Scroll mit ease-in-out cubic — User-Interaktion bricht ab (Scroll-Bremse weg)
