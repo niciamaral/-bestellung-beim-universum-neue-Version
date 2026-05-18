@@ -2545,21 +2545,19 @@ h2 em{font-style:italic;color:var(--gold);}
 /* === TÜR-SEKTION — Vollbreite, freier Text, kein Box-Look === */
 .door-section {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  width: 100vw !important;
+  margin-left: -24px !important;
+  padding: 0 !important;
   text-align: center;
   overflow: visible;
   border-radius: 0 !important;
   border: none !important;
   box-shadow: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
 }
 
 .door-container {
   position: relative;
-  width: 100%;
-  max-width: 100%;
+  width: 100% !important;
   height: 75vh;
   margin: 0 auto;
   background: transparent;
@@ -2629,30 +2627,34 @@ h2 em{font-style:italic;color:var(--gold);}
   text-decoration: none !important;
 }
 .door-words {
-  position: absolute;
-  inset: 0;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
   z-index: 3;
   pointer-events: none;
   overflow: visible !important;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 .word-line {
-  position: relative !important;
-  inset: auto !important;
-  display: block !important;
-  width: 100%;
-  padding: 0.5rem 2rem !important;
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  padding: 1rem 1.5rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.3em !important;
+  overflow: visible !important;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.3 !important;
-  font-size: clamp(1.8rem, 7vw, 3rem) !important;
+  font-size: clamp(1.4rem, 6vw, 2.4rem) !important;
   color: #ffffff;
-  overflow: visible;
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
@@ -2688,8 +2690,8 @@ h2 em{font-style:italic;color:var(--gold);}
 /* Mobile Optimierung */
 @media (max-width: 600px) {
   .word-line {
-    padding: 0.5rem 2rem !important;
-    font-size: clamp(1.8rem, 7vw, 3rem) !important;
+    padding: 1rem 1.5rem !important;
+    font-size: clamp(1.4rem, 6vw, 2.4rem) !important;
   }
 }
 
