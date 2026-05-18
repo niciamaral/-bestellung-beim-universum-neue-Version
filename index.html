@@ -3741,7 +3741,23 @@ function showFeminineWay(){
     lines.forEach((line) => {
       const words = line.querySelectorAll('.word');
 
-      setTimeout(() => line.classList.add('is-active'), cursor);
+      setTimeout(() => {
+        line.classList.add('is-active');
+        // Inline-Style-Enforcement falls CSS überschrieben wird
+        document.querySelectorAll('.word-line').forEach(el => {
+          el.style.fontSize = '3.5rem';
+          el.style.whiteSpace = 'nowrap';
+          el.style.overflow = 'visible';
+          el.style.display = 'none';
+        });
+        const activeLine = document.querySelector('.word-line.is-active');
+        if(activeLine){
+          activeLine.style.display = 'block';
+          activeLine.style.fontSize = '3.5rem';
+          activeLine.style.whiteSpace = 'nowrap';
+          activeLine.style.overflow = 'visible';
+        }
+      }, cursor);
 
       words.forEach((word, i) => {
         setTimeout(() => word.classList.add('is-visible'), cursor + i * wordStep);
