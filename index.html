@@ -1982,7 +1982,7 @@ h2 em{font-style:italic;color:var(--gold);}
 .kugel-modal{
   position:fixed;
   inset:0;
-  background:#3a1810 !important;
+  background:linear-gradient(160deg, #3d1a10 0%, #2a1410 60%, #1f0e08 100%) !important;
   z-index:9999;
   display:none;
   overflow:hidden;
@@ -2562,7 +2562,7 @@ h2 em{font-style:italic;color:var(--gold);}
   border: none;
   background: transparent;
   box-shadow: none;
-  overflow: visible;
+  overflow: visible !important;
 }
 
 /* Weiche Ränder — Mask NUR auf Video + Overlay + Glow, NICHT auf Text */
@@ -2620,23 +2620,22 @@ h2 em{font-style:italic;color:var(--gold);}
   z-index: 3;
   pointer-events: none;
   overflow: visible !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .word-line {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
-  padding: 16px 20px;
-  gap: 0.15em 0.35em;
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: 100%;
+  padding: 0.5rem 1rem;
   text-align: center;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   line-height: 1.4;
-  font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
+  font-size: clamp(1.6rem, 6.5vw, 2.8rem) !important;
   color: #ffffff;
   overflow: visible;
   text-shadow:
@@ -2675,9 +2674,8 @@ h2 em{font-style:italic;color:var(--gold);}
     margin: 40px auto 60px;
   }
   .word-line {
-    padding: 14px 16px;
-    gap: 0.12em 0.28em;
-    font-size: clamp(1.4rem, 5.5vw, 2.2rem) !important;
+    padding: 0.4rem 0.75rem;
+    font-size: clamp(1.6rem, 6.5vw, 2.8rem) !important;
   }
 }
 
@@ -2690,10 +2688,11 @@ h2 em{font-style:italic;color:var(--gold);}
   background-color: #2a1410;
 }
 /* screen2d behält video4.mp4 als Hintergrund */
-/* Streifen unten: Höhe genau 100vh, kein Überlauf */
+/* Streifen unten kompromisslos weg */
 #screen2d{
-  height:100vh;
-  overflow:hidden;
+  overflow:hidden !important;
+  height:100vh !important;
+  min-height:unset !important;
 }
 #screen2d .irrglaube-wrap{
   min-height:100vh;
