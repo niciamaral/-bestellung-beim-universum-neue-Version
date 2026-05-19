@@ -2877,15 +2877,23 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 }
 
 /* === STANDARD-TEMPLATE FÜR HELLE SCREENS === */
-/* Cream-Basis + bild6 + Gradient-Overlay direkt im background-image */
+/* Cream-Basis + bild6 + warm-rosé Gradient-Overlay */
 #screenVorbereitung,
 #screenAbschluss {
   background-color: #f5ede6;
   background-image:
-    linear-gradient(rgba(245,237,230,0.60), rgba(245,237,230,0.60)),
+    linear-gradient(rgba(245,220,195,0.58), rgba(245,220,195,0.58)),
     url('images/bild6.png');
   background-size: cover;
   background-position: center;
+}
+/* screenVorbereitung — Text-Farben dunkel auf hellem Hintergrund */
+#screenVorbereitung h2,
+#screenVorbereitung p {
+  color: var(--text) !important;
+}
+#screenVorbereitung .eyebrow {
+  color: var(--sienna) !important;
 }
 /* Abschluss-Text dunkel auf hellem Hintergrund */
 #screenAbschluss p,
