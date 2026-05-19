@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/bild3.png">
 <style>
 :root{
   --sienna:#8b3a2a; --sienna-1:#b85a42; --sienna-d:#6a2a1a;
@@ -136,6 +137,10 @@ body::after{
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
+}
+/* Screen 6 — Bordeaux-Fallback während Bild lädt (Übergang unauffällig) */
+#screen6 {
+  background-color: #2a1410 !important;
 }
 #screen10,#streamSelf,#streamRelation{
   background-color:var(--bg);
