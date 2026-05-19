@@ -2660,15 +2660,16 @@ h2 em{font-style:italic;color:var(--gold);}
   background-color: #2a1410;
 }
 /* screen2d behält video4.mp4 als Hintergrund */
-/* Roter Streifen unten weg */
+/* Scroll erlauben falls Inhalt zu lang (z.B. Mobile mit großer FW-Sektion) */
 #screen2d {
   height: 100vh !important;
-  overflow: hidden !important;
+  overflow-y: auto !important;
 }
 #screen2d .irrglaube-wrap {
-  height: 100% !important;
-  overflow: hidden !important;
-  padding-bottom: 0 !important;
+  min-height: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding-bottom: 2rem !important;
 }
 #screen2d .feminine-orb {
   padding-bottom: 0 !important;
@@ -2719,6 +2720,20 @@ h2 em{font-style:italic;color:var(--gold);}
   font-weight: 300;
   max-width: 520px;
   margin: 0 auto;
+}
+/* Mobile-Anpassung für Orb-Inhalt */
+@media (max-width: 768px) {
+  #screen2d .orb-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem) !important;
+    line-height: 1.2 !important;
+  }
+  #screen2d .orb-text {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+    line-height: 1.6 !important;
+  }
+  #screen2d .orb-content {
+    padding: 1rem !important;
+  }
 }
 
 .irrglaube-video {
