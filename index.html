@@ -2877,13 +2877,12 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 }
 
 /* === STANDARD-TEMPLATE FÜR HELLE SCREENS === */
-/* Blend-Mode auf Image + Pseudo-Element-Overlay statt Gradient-Layer */
+/* Cream-Basis + Bild + ::before-Overlay (kein blend-mode, Overlay zuverlässig) */
 #screenVorbereitung,
 #screenAbschluss {
   position: relative;
   background-color: #f5ede6;
   background-image: url('images/bild5.png');
-  background-blend-mode: luminosity;
   background-size: cover;
   background-position: center;
 }
@@ -2892,7 +2891,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(245, 237, 230, 0.75);
+  background: rgba(245, 237, 230, 0.88);
   z-index: 0;
   pointer-events: none;
 }
