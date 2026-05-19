@@ -2887,6 +2887,21 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background-size: cover;
   background-position: center;
 }
+/* screenVorbereitung — eigener warm-pfirsich Overlay */
+#screenVorbereitung {
+  background-image:
+    linear-gradient(rgba(255,235,210,0.75), rgba(255,235,210,0.75)),
+    url('images/bild6.png') !important;
+}
+/* Cards auf screenVorbereitung — heller Karten-Hintergrund für Lesbarkeit */
+#screenVorbereitung .vorbereitung-anleitung {
+  background: rgba(255,248,240,0.90) !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+}
+#screenVorbereitung .disclaimer-card {
+  background: rgba(255,248,240,0.90) !important;
+}
 /* screenVorbereitung — Text-Farben dunkel auf hellem Hintergrund */
 #screenVorbereitung h2,
 #screenVorbereitung p {
