@@ -2876,17 +2876,31 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   }
 }
 
-#screenVorbereitung {
-  background-image: url('images/bild5.png') !important;
-  background-size: cover !important;
-  background-position: center !important;
-}
+/* === STANDARD-TEMPLATE FÜR HELLE SCREENS === */
+/* Blend-Mode auf Image + Pseudo-Element-Overlay statt Gradient-Layer */
+#screenVorbereitung,
 #screenAbschluss {
-  background-image:
-    linear-gradient(rgba(255,245,240,0.92), rgba(255,245,240,0.92)),
-    url('images/bild5.png') !important;
-  background-size: cover !important;
-  background-position: center !important;
+  position: relative;
+  background-color: #f5ede6;
+  background-image: url('images/bild5.png');
+  background-blend-mode: luminosity;
+  background-size: cover;
+  background-position: center;
+}
+#screenVorbereitung::before,
+#screenAbschluss::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(245, 237, 230, 0.75);
+  z-index: 0;
+  pointer-events: none;
+}
+#screenVorbereitung .wrap,
+#screenAbschluss .wrap,
+#screenAbschluss .screen-inner {
+  position: relative;
+  z-index: 1;
 }
 /* Abschluss-Text dunkel auf hellem Hintergrund */
 #screenAbschluss p,
