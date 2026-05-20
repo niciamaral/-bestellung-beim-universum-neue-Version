@@ -2911,14 +2911,15 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background-size: cover;
   background-position: center;
 }
-/* screenVorbereitung — helles Cream-Overlay über bild6 */
+/* screenVorbereitung — bild6 direkt mit Filter, Wrap kompensiert */
 #screenVorbereitung {
-  background-color: #f5ede6;
-  background-image:
-    linear-gradient(rgba(245,235,220,0.82), rgba(245,235,220,0.82)),
-    url('images/bild6.png') !important;
+  background-image: url('images/bild6.png') !important;
   background-size: cover !important;
   background-position: center !important;
+  filter: brightness(0.7) !important;
+}
+#screenVorbereitung .wrap {
+  filter: brightness(1.43) !important;
 }
 /* Cards auf screenVorbereitung — gleiche weiße Card-Farbe wie .step etc. */
 #screenVorbereitung .vorbereitung-anleitung {
