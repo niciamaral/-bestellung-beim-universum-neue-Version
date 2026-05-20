@@ -2663,7 +2663,8 @@ h2 em{font-style:italic;color:var(--gold);}
 /* screen2d behält video4.mp4 als Hintergrund */
 /* Scroll erlauben falls Inhalt zu lang (z.B. Mobile mit großer FW-Sektion) */
 #screen2d {
-  height: 100vh !important;
+  min-height: 100vh !important;
+  background-color: var(--bg) !important;
   overflow-y: auto !important;
 }
 #screen2d .irrglaube-wrap {
@@ -2715,12 +2716,17 @@ h2 em{font-style:italic;color:var(--gold);}
   border-radius: 12px !important;
 }
 #screen2d .orb-text {
-  font-size: clamp(1.1rem, 3.5vw, 1.25rem) !important;
+  font-size: 19px !important;
   color: rgba(255, 255, 255, 0.95) !important;
   line-height: 1.8 !important;
   font-weight: 300;
   max-width: 520px;
   margin: 0 auto;
+}
+@media (max-width: 600px) {
+  #screen2d .orb-text {
+    font-size: 17px !important;
+  }
 }
 /* Mobile-Anpassung für Orb-Inhalt */
 @media (max-width: 768px) {
