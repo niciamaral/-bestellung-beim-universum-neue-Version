@@ -2887,11 +2887,13 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background-size: cover;
   background-position: center;
 }
-/* screenVorbereitung — eigener warm-pfirsich Overlay */
+/* screenVorbereitung — eigener warm-pfirsich Overlay (heller, Bild größer + Wasserzeichen weg) */
 #screenVorbereitung {
   background-image:
-    linear-gradient(rgba(255,235,210,0.75), rgba(255,235,210,0.75)),
+    linear-gradient(rgba(255,235,210,0.50), rgba(255,235,210,0.50)),
     url('images/bild6.png') !important;
+  background-size: 120% !important;
+  background-position: 60% center !important;
 }
 /* Cards auf screenVorbereitung — heller Karten-Hintergrund für Lesbarkeit */
 #screenVorbereitung .vorbereitung-anleitung {
