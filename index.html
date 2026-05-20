@@ -79,23 +79,23 @@ body::after{
   position:relative;
 }
 /* === Full-screen background images === */
-#screen1,#screen2,#screen3,#screen4{
-  background-color:var(--bg);
+#screen1,#screen2,#screen4 {
+  background-color: var(--bg);
   background-image:
-    linear-gradient(rgba(101,30,20,0.85),rgba(101,30,20,0.85)),
+    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
     url('images/bild1.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-/* Screen 3 — mittlerer Overlay */
-#screen3{
-  background-color:#2a1410;
+#screen3 {
+  background-color: var(--bg);
   background-image:
-    linear-gradient(rgba(42,20,16,0.78), rgba(42,20,16,0.78)),
-    url('images/bild1.png') !important;
-  background-size:cover;
-  background-position:center;
+    linear-gradient(rgba(101,30,20,0.75),rgba(101,30,20,0.75)),
+    url('images/bild1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 /* Abschluss — eigener Hintergrund mit bild4 + 0.70 Overlay */
 #screenAbschluss{
