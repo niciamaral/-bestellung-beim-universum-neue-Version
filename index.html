@@ -2000,6 +2000,7 @@ h2 em{font-style:italic;color:var(--gold);}
   position:relative;
   width:100%;
   height:100vh;
+  height:100dvh;
 }
 .kugel-modal-stage{
   position:absolute;
@@ -2060,20 +2061,6 @@ h2 em{font-style:italic;color:var(--gold);}
 #kugelModal .btn-end-session:hover {
   border-color: rgba(196,150,58,0.7);
   color: rgba(196,150,58,0.9);
-}
-/* iOS-Fallback: Modal füllt Viewport, Container im Querformat invertieren */
-#kugelModal.is-open {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-@media (orientation: landscape) {
-  #kugelModal .bilat-orb-container {
-    width: 100vh;
-    height: 100vw;
-  }
 }
 
 /* === SEITE 11 NEU: ABSCHLUSS === */
