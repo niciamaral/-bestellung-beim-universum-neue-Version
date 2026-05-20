@@ -2681,8 +2681,24 @@ h2 em{font-style:italic;color:var(--gold);}
   margin-bottom: 0 !important;
   padding-bottom: 1rem !important;
 }
-/* The Feminine Way Orb — Stil wie DER KERN auf screen3 */
-#screen2d .orb-eye {
+/* === screenFeminineWay — eigener Screen statt Orb-Reveal === */
+/* Goldglow als Pseudo-Layer über Video + Bordeaux-Overlay */
+#screenFeminineWay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+    rgba(232, 192, 106, 0.25) 0%,
+    transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+#screenFeminineWay .wrap {
+  position: relative;
+  z-index: 3;
+}
+/* Orb-Inhalt Stile — übertragen von #screen2d */
+#screenFeminineWay .orb-eye {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: clamp(0.7rem, 2vw, 0.85rem) !important;
   letter-spacing: 0.4em !important;
@@ -2692,7 +2708,7 @@ h2 em{font-style:italic;color:var(--gold);}
   display: block;
   margin-bottom: 1.5rem;
 }
-#screen2d .orb-title {
+#screenFeminineWay .orb-title {
   font-family: 'Cormorant Garamond', serif !important;
   font-size: clamp(2.4rem, 7vw, 4rem) !important;
   font-weight: 300 !important;
@@ -2702,20 +2718,12 @@ h2 em{font-style:italic;color:var(--gold);}
   margin-bottom: 1.5rem;
   text-shadow: 0 0 30px rgba(232,192,106,0.4);
 }
-#screen2d .orb-title em {
+#screenFeminineWay .orb-title em {
   font-style: italic;
   color: var(--gold-1);
   font-weight: 300;
 }
-#screen2d .orb-content {
-  background: radial-gradient(ellipse at center,
-    rgba(232, 192, 106, 0.25) 0%,
-    rgba(232, 192, 106, 0.08) 40%,
-    transparent 70%) !important;
-  padding: 2rem !important;
-  border-radius: 12px !important;
-}
-#screen2d .orb-text {
+#screenFeminineWay .orb-text {
   font-size: 19px !important;
   color: rgba(255, 255, 255, 0.95) !important;
   line-height: 1.8 !important;
@@ -2723,23 +2731,19 @@ h2 em{font-style:italic;color:var(--gold);}
   max-width: 520px;
   margin: 0 auto;
 }
-@media (max-width: 600px) {
-  #screen2d .orb-text {
-    font-size: 17px !important;
-  }
-}
-/* Mobile-Anpassung für Orb-Inhalt */
 @media (max-width: 768px) {
-  #screen2d .orb-title {
+  #screenFeminineWay .orb-title {
     font-size: clamp(1.8rem, 7vw, 2.8rem) !important;
     line-height: 1.2 !important;
   }
-  #screen2d .orb-text {
+  #screenFeminineWay .orb-text {
     font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
     line-height: 1.6 !important;
   }
-  #screen2d .orb-content {
-    padding: 1rem !important;
+}
+@media (max-width: 600px) {
+  #screenFeminineWay .orb-text {
+    font-size: 17px !important;
   }
 }
 
@@ -3076,26 +3080,33 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
         <p class="misc-text">Falsch. Du kannst nicht nicht manifestieren. Manifestieren ist der Ausdruck deines Inneren. Deine Gedanken, deine Erfahrungen, deine Handlungen und Entscheidungen bestimmen, was im Außen sichtbar wird — was in deinem Leben erscheint.</p>
 
         <div class="reveal-trigger scroll-reveal" id="revealTrigger">
-          <button class="btn reveal-btn" onclick="showFeminineWay()">The Feminine Way</button>
-        </div>
-
-        <div class="feminine-orb" id="feminineOrb">
-          <div class="orb-glow"></div>
-          <div class="orb-content">
-            <div class="orb-eye">The Feminine Way</div>
-            <h3 class="orb-title">Du wirst zur Frau die <em>es anzieht</em></h3>
-            <p class="orb-text">Weibliche Manifestation beginnt nicht im Kopf — sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein. Wenn du die Frau wirst, für die es selbstverständlich ist — fließt es zu dir.</p>
-          </div>
-
-          <div class="nav-actions irrglaube-nav" id="screen2NextBtn">
-            <button class="btn" onclick="goTo('screen3')">Weiter →3</button>
-            <button class="btn-link" onclick="goTo('screen2c')">← Zurück</button>
-          </div>
+          <button class="btn reveal-btn" onclick="goTo('screenFeminineWay')">The Feminine Way</button>
         </div>
       </div>
     </div>
   </div>
 
+</div>
+
+<!-- ===== NEUER SCREEN: Feminine-Way (nach screen2d) ===== -->
+<div class="screen irrglaube-screen" id="screenFeminineWay">
+  <video class="irrglaube-video" src="video4.mp4"
+         muted loop playsinline preload="metadata"></video>
+  <div class="irrglaube-overlay"></div>
+  <div class="wrap irrglaube-wrap">
+    <div class="content-inner irrglaube-content">
+      <div class="orb-eye">THE FEMININE WAY</div>
+      <h3 class="orb-title">Du wirst zur Frau die <em>es anzieht</em></h3>
+      <p class="orb-text">Weibliche Manifestation beginnt nicht im Kopf —
+      sie beginnt im Körper. Nicht mit dem Wünschen, sondern mit dem Sein.
+      Wenn du die Frau wirst, für die es selbstverständlich ist —
+      fließt es zu dir.</p>
+      <div class="nav-actions">
+        <button class="btn" onclick="goTo('screen3')">Weiter</button>
+        <button class="btn-link" onclick="goTo('screen2d')">← Zurück</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ===== SEITE 3: The Feminine Way ===== -->
@@ -3524,7 +3535,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 </div>
 
 <script>
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
@@ -3749,27 +3760,7 @@ function closeKugelModal(){
 })();
 
 // === The Feminine Way Reveal ===
-function showFeminineWay(){
-  const trigger = document.getElementById('revealTrigger');
-  const orb = document.getElementById('feminineOrb');
-  const quote = document.getElementById('finalQuote');
-  const nextBtn = document.getElementById('screen2NextBtn');
-  if(!trigger || !orb) return;
-  trigger.classList.add('hidden');
-  setTimeout(() => {
-    orb.classList.add('is-revealed');
-    // Einziger Auto-Scroll außerhalb screen1 — zur Feminine-Way-Sektion
-    setTimeout(() => {
-      orb.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 300);
-    if(quote){
-      setTimeout(() => quote.classList.add('is-visible'), 1200);
-    }
-    if(nextBtn){
-      setTimeout(() => nextBtn.classList.add('is-visible'), 1800);
-    }
-  }, 400);
-}
+// showFeminineWay() entfernt — Feminine-Way ist jetzt eigener Screen (#screenFeminineWay)
 
 // === AUTO-SCROLL + TÜR-ANIMATION (synchron mit 11s Video) ===
 (function() {
