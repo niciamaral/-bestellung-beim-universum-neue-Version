@@ -2908,9 +2908,25 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screen4 {
   min-height: 100vh;
 }
+#screen4 .wrap {
+  min-height: 100vh;
+}
 #screen4 p {
   font-size: 19px !important;
   line-height: 1.8;
+}
+#screen4 .btn-link {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Gleichbehandlung auf #screen2d, wo der Zurück-Button tatsächlich liegt */
+#screen2d .feminine-orb .nav-actions .btn-link {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 /* screenVorbereitung — Text-Farben dunkel auf hellem Hintergrund */
 #screenVorbereitung h2,
