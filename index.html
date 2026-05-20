@@ -2040,13 +2040,40 @@ h2 em{font-style:italic;color:var(--gold);}
   0%,100%{ transform:translateX(calc(-45vw + 16px)); }
   50%{ transform:translateX(calc(45vw - 16px)); }
 }
-/* Close-Button rund — gleicher Style wie .btn, nur Position */
-.kugel-modal-close{
-  position:absolute;
-  bottom:40px;
-  left:50%;
-  transform:translateX(-50%);
-  border-radius:50px !important;
+/* Session-beenden Button — dezent, klein, rechts unten */
+#kugelModal .btn-end-session {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(196,150,58,0.3);
+  color: rgba(196,150,58,0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  text-transform: uppercase;
+  z-index: 10000;
+}
+#kugelModal .btn-end-session:hover {
+  border-color: rgba(196,150,58,0.7);
+  color: rgba(196,150,58,0.9);
+}
+/* iOS-Fallback: Modal füllt Viewport, Container im Querformat invertieren */
+#kugelModal.is-open {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (orientation: landscape) {
+  #kugelModal .bilat-orb-container {
+    width: 100vh;
+    height: 100vw;
+  }
 }
 
 /* === SEITE 11 NEU: ABSCHLUSS === */
@@ -3527,12 +3554,12 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <!-- ===== KUGEL-SESSION MODAL — Vollbild, nur Kugel ===== -->
 <div class="kugel-modal" id="kugelModal" aria-hidden="true">
   <div class="kugel-modal-inner">
-    <div class="kugel-modal-stage">
+    <div class="kugel-modal-stage bilat-orb-container">
       <div class="kugel-track">
         <div class="kugel-orb"></div>
       </div>
     </div>
-    <button class="btn kugel-modal-close" onclick="closeKugelModal()">Session beenden</button>
+    <button class="btn-end-session" onclick="closeKugelModal()">Session beenden</button>
   </div>
 </div>
 
@@ -3699,6 +3726,10 @@ function openKugelModal(){
   if(reqFs){
     Promise.resolve(reqFs.call(docEl)).catch(() => {});
   }
+  // Querformat-Lock (Mobile, wenn unterstützt)
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(() => {});
+  }
   // Auto-Schließen nach 30 Sekunden
   if(kugelTimer) clearTimeout(kugelTimer);
   kugelTimer = setTimeout(closeKugelModal, 30000);
@@ -3714,6 +3745,10 @@ function closeKugelModal(){
   const exitFs = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
   if(fsEl && exitFs){
     Promise.resolve(exitFs.call(document)).catch(() => {});
+  }
+  // Orientation-Lock freigeben
+  if (screen.orientation && screen.orientation.unlock) {
+    screen.orientation.unlock();
   }
   // Zurück zu Vorbereitung mit "Noch mal wiederholen" / "Weiter"-Buttons statt "Ich bin bereit"
   const prep = document.getElementById('screenVorbereitung');
