@@ -97,15 +97,15 @@ body::after{
   background-position: center;
   background-repeat: no-repeat;
 }
-/* Abschluss — eigener Hintergrund mit bild4 + 0.70 Overlay */
-#screenAbschluss{
-  background-color:#2a1410;
+/* Abschluss — dunkler Hintergrund mit bild7 + 0.85 Overlay */
+#screenAbschluss {
+  background-color: var(--bg) !important;
   background-image:
-    linear-gradient(rgba(101,30,20,0.70),rgba(101,30,20,0.70)),
-    url('images/bild4.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+    linear-gradient(rgba(101,30,20,0.85), rgba(101,30,20,0.85)),
+    url('images/bild7.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 /* Alle Texte auf der Abschluss-Seite weiß */
 #screenAbschluss,
@@ -2901,9 +2901,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 }
 
 /* === STANDARD-TEMPLATE FÜR HELLE SCREENS === */
-/* Cream-Basis + bild6 + warm-rosé Gradient-Overlay */
-#screenVorbereitung,
-#screenAbschluss {
+/* Cream-Basis + bild6 + warm-rosé Gradient-Overlay (nur Vorbereitung — Abschluss hat eigenen dunklen Hintergrund) */
+#screenVorbereitung {
   background-color: #f5ede6;
   background-image:
     linear-gradient(rgba(245,220,195,0.58), rgba(245,220,195,0.58)),
@@ -2972,23 +2971,21 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   left: 50%;
   transform: translateX(-50%);
 }
-/* Abschluss-Text dunkel auf hellem Hintergrund */
+/* Abschluss-Text weiß auf dunklem Hintergrund, em in gold-1 */
 #screenAbschluss p,
 #screenAbschluss h1,
 #screenAbschluss h2,
 #screenAbschluss h3,
 #screenAbschluss span,
 #screenAbschluss .eyebrow,
-#screenAbschluss .abschluss-text,
-#screenAbschluss .abschluss-title,
-#screenAbschluss .abschluss-statement {
-  color: #2a1410 !important;
+#screenAbschluss em {
+  color: #ffffff !important;
 }
 #screenAbschluss em {
-  color: var(--gold) !important;
+  color: var(--gold-1) !important;
 }
 #screenAbschluss .abschluss-divider {
-  background: var(--gold) !important;
+  background: var(--gold-1) !important;
 }
 </style>
 </head>
