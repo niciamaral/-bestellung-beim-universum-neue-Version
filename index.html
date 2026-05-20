@@ -3538,9 +3538,8 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Einfach: scrollTop = 0. Kein scrollIntoView, kein smooth, kein RAF.
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+  // Ziel-Screen exakt oben im Viewport landen lassen
+  target.scrollIntoView({behavior: 'instant', block: 'start'});
   updateIndicator(id);
   updateIrrglaubeVideos(id);
 }
