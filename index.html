@@ -2999,11 +2999,18 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background: var(--gold-1) !important;
 }
 
-/* === Sound-Button (Hintergrundmusik Mute/Unmute) === */
-.sound-btn {
+/* === Sound-Control (Button + Label) === */
+.sound-control {
   position: fixed;
   top: 1.25rem;
   right: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 9000;
+}
+.sound-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -3015,7 +3022,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 9000;
   padding: 0;
   animation: soundBtnPulse 2s ease-in-out infinite;
 }
@@ -3024,12 +3030,25 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   height: 20px;
   display: block;
 }
-.sound-btn .wave {
+.sound-control .wave {
   transition: opacity 0.3s ease;
 }
-.sound-btn.is-muted .wave-2,
-.sound-btn.is-muted .wave-3 {
+.sound-control.is-muted .wave-2,
+.sound-control.is-muted .wave-3 {
   opacity: 0;
+}
+.sound-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--gold-1);
+  pointer-events: none;
+  transition: color 0.3s ease;
+}
+.sound-control.is-muted .sound-label {
+  color: #ffffff;
 }
 @keyframes soundBtnPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(196,150,58,0); }
@@ -3041,13 +3060,16 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
 <audio id="bgMusic" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
 
-<button class="sound-btn is-muted" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">
-  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-    <path class="wave wave-1" d="M9 10 Q11 12 9 14" />
-    <path class="wave wave-2" d="M13 7 Q17 12 13 17" />
-    <path class="wave wave-3" d="M17 4 Q23 12 17 20" />
-  </svg>
-</button>
+<div class="sound-control is-muted" id="soundControl">
+  <button class="sound-btn" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
+      <path class="wave wave-1" d="M9 10 Q11 12 9 14" />
+      <path class="wave wave-2" d="M13 7 Q17 12 13 17" />
+      <path class="wave wave-3" d="M17 4 Q23 12 17 20" />
+    </svg>
+  </button>
+  <div class="sound-label" id="soundLabel">SOUND OFF</div>
+</div>
 
 <div class="indicator" id="indicator"></div>
 
@@ -3660,24 +3682,29 @@ function manageBgMusic(id){
 
 function unmuteBgMusic(){
   const audio = document.getElementById('bgMusic');
-  const btn = document.getElementById('soundBtn');
+  const control = document.getElementById('soundControl');
+  const label = document.getElementById('soundLabel');
   if(!audio) return;
   audio.muted = false;
-  if(btn) btn.classList.remove('is-muted');
+  if(control) control.classList.remove('is-muted');
+  if(label) label.textContent = 'SOUND ON';
   audio.play().catch(() => {});
 }
 
 function toggleBgMusic(){
   const audio = document.getElementById('bgMusic');
-  const btn = document.getElementById('soundBtn');
-  if(!audio || !btn) return;
+  const control = document.getElementById('soundControl');
+  const label = document.getElementById('soundLabel');
+  if(!audio || !control) return;
   if(audio.muted){
     audio.muted = false;
-    btn.classList.remove('is-muted');
+    control.classList.remove('is-muted');
+    if(label) label.textContent = 'SOUND ON';
     audio.play().catch(() => {});
   } else {
     audio.muted = true;
-    btn.classList.add('is-muted');
+    control.classList.add('is-muted');
+    if(label) label.textContent = 'SOUND OFF';
   }
 }
 
