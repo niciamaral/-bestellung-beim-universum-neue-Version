@@ -3027,7 +3027,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 </head>
 <body>
 
-<audio id="bgMusic" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
+<audio id="bgMusic1" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
+<audio id="bgMusic2" src="audio/audio4.mp3" loop muted preload="auto"></audio>
 
 <button class="sound-btn is-muted" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">♪ SOUND ON</button>
 
@@ -3624,19 +3625,26 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// Screens auf denen Hintergrundmusik spielt (screen1 bis screen8 inkl. Sub-Screens + FW)
-const MUSIC_SCREENS = new Set([
+// Audio 1 (audio1.mp3): screen1 bis screen7 inkl. Sub-Screens + FW
+const MUSIC_SCREENS1 = new Set([
   'screen1','screen2','screen2a','screen2b','screen2c','screen2d',
-  'screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8'
+  'screenFeminineWay','screen3','screen4','screen5','screen6','screen7'
 ]);
+// Audio 2 (audio4.mp3): screen8 + screen9
+const MUSIC_SCREENS2 = new Set(['screen8','screen9']);
 
 function manageBgMusic(id){
-  const audio = document.getElementById('bgMusic');
-  if(!audio) return;
-  if(MUSIC_SCREENS.has(id)){
-    audio.play().catch(() => {});
+  const a1 = document.getElementById('bgMusic1');
+  const a2 = document.getElementById('bgMusic2');
+  if(MUSIC_SCREENS1.has(id)){
+    if(a2) a2.pause();
+    if(a1) a1.play().catch(() => {});
+  } else if(MUSIC_SCREENS2.has(id)){
+    if(a1) a1.pause();
+    if(a2) a2.play().catch(() => {});
   } else {
-    audio.pause();
+    if(a1) a1.pause();
+    if(a2) a2.pause();
   }
 }
 
@@ -3647,11 +3655,11 @@ function updateSoundControlVisibility(activeId){
 }
 
 function unmuteBgMusic(){
-  const audio = document.getElementById('bgMusic');
+  const a1 = document.getElementById('bgMusic1');
+  const a2 = document.getElementById('bgMusic2');
   const btn = document.getElementById('soundBtn');
-  if(!audio) return;
-  audio.muted = false;
-  audio.play().catch(() => {});
+  if(a1) a1.muted = false;
+  if(a2) a2.muted = false;
   if(btn){
     btn.classList.remove('is-muted');
     btn.textContent = '♪ SOUND AN';
@@ -3659,18 +3667,21 @@ function unmuteBgMusic(){
 }
 
 function toggleBgMusic(){
-  const audio = document.getElementById('bgMusic');
+  const a1 = document.getElementById('bgMusic1');
+  const a2 = document.getElementById('bgMusic2');
   const btn = document.getElementById('soundBtn');
-  if(!audio || !btn) return;
-  if(audio.muted){
-    audio.muted = false;
-    audio.play().catch(() => {});
-    btn.classList.remove('is-muted');
-    btn.textContent = '♪ SOUND AN';
-  } else {
-    audio.muted = true;
+  if(!a1 || !btn) return;
+  const willMute = !a1.muted;
+  a1.muted = willMute;
+  if(a2) a2.muted = willMute;
+  if(willMute){
     btn.classList.add('is-muted');
     btn.textContent = '♪ SOUND ON';
+  } else {
+    btn.classList.remove('is-muted');
+    btn.textContent = '♪ SOUND AN';
+    const active = document.querySelector('.screen.active');
+    manageBgMusic(active ? active.id : 'screen1');
   }
 }
 
