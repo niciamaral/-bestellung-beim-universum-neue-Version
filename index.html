@@ -3011,9 +3011,9 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   z-index: 9000;
 }
 .sound-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  border-radius: 20px;
   background: rgba(255,255,255,0.15);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -3680,32 +3680,33 @@ function manageBgMusic(id){
   }
 }
 
+let bgMusicEnabled = false;
+
+function updateSoundControlVisibility(activeId){
+  const control = document.getElementById('soundControl');
+  if(!control) return;
+  if(bgMusicEnabled){ control.style.display = 'none'; return; }
+  control.style.display = (activeId === 'screen1') ? 'flex' : 'none';
+}
+
 function unmuteBgMusic(){
   const audio = document.getElementById('bgMusic');
   const control = document.getElementById('soundControl');
-  const label = document.getElementById('soundLabel');
   if(!audio) return;
   audio.muted = false;
-  if(control) control.classList.remove('is-muted');
-  if(label) label.textContent = 'SOUND ON';
   audio.play().catch(() => {});
+  bgMusicEnabled = true;
+  if(control) control.style.display = 'none';
 }
 
 function toggleBgMusic(){
   const audio = document.getElementById('bgMusic');
   const control = document.getElementById('soundControl');
-  const label = document.getElementById('soundLabel');
-  if(!audio || !control) return;
-  if(audio.muted){
-    audio.muted = false;
-    control.classList.remove('is-muted');
-    if(label) label.textContent = 'SOUND ON';
-    audio.play().catch(() => {});
-  } else {
-    audio.muted = true;
-    control.classList.add('is-muted');
-    if(label) label.textContent = 'SOUND OFF';
-  }
+  if(!audio) return;
+  audio.muted = false;
+  audio.play().catch(() => {});
+  bgMusicEnabled = true;
+  if(control) control.style.display = 'none';
 }
 
 function goTo(id){
@@ -3718,6 +3719,7 @@ function goTo(id){
   updateIndicator(id);
   updateIrrglaubeVideos(id);
   manageBgMusic(id);
+  updateSoundControlVisibility(id);
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
