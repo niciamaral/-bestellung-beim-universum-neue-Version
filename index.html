@@ -2654,9 +2654,9 @@ h2 em{font-style:italic;color:var(--gold);}
   display: none;
   position: relative !important;
   width: 100% !important;
-  font-size: 2rem !important;
+  font-size: clamp(2.5rem, 10vw, 5rem) !important;
   line-height: 1.4;
-  text-align: center !important;
+  text-align: center;
   padding: 1rem 1.5rem !important;
   white-space: normal !important;
   font-family: 'Cormorant Garamond', serif;
@@ -2665,11 +2665,6 @@ h2 em{font-style:italic;color:var(--gold);}
   text-shadow: 0 0 20px rgba(232, 192, 106, 0.6), 0 2px 8px rgba(0, 0, 0, 0.8);
   overflow: visible;
   margin: 0;
-}
-@media (max-width: 768px) {
-  .door-sentence {
-    font-size: 1.5rem !important;
-  }
 }
 
 /* === SEITE 2: 4 IRRGLAUBEN ALS SUB-SCREENS === */
@@ -3862,8 +3857,6 @@ function closeKugelModal(){
       const el = document.getElementById(sentences[current]);
       if (el) {
         el.style.display = 'block';
-        el.style.fontSize = 'clamp(2.5rem, 10vw, 5rem)';
-        el.style.textAlign = 'center';
         el.style.opacity = '0';
         el.style.transition = 'opacity 0.8s ease';
         setTimeout(() => { el.style.opacity = '1'; }, 50);
