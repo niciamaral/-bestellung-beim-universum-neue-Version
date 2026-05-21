@@ -2637,12 +2637,10 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity: 1;
 }
 
-/* Teleprompter — Sätze überlappen via absolute, .door-words als Positions-Kontext */
+/* Teleprompter — Sätze überlappen via absolute, .door-words füllt den Container */
 .door-words {
-  position: relative;
+  position: absolute !important;
   inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
   z-index: 3 !important;
   overflow: visible;
   pointer-events: none;
