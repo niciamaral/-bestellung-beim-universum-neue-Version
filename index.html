@@ -2999,56 +2999,25 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background: var(--gold-1) !important;
 }
 
-/* === Sound-Control (Button + Label) === */
-.sound-control {
+/* === Sound-Button (Pill, weiß, wie .btn) === */
+.sound-btn {
   position: fixed;
   top: 1.25rem;
   right: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 9000;
-}
-.sound-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 20px;
   background: rgba(255,255,255,0.15);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-  animation: soundBtnPulse 2s ease-in-out infinite;
-}
-.sound-btn svg {
-  width: 20px;
-  height: 20px;
-  display: block;
-}
-.sound-control .wave {
-  transition: opacity 0.3s ease;
-}
-.sound-control.is-muted .wave-2,
-.sound-control.is-muted .wave-3 {
-  opacity: 0;
-}
-.sound-label {
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 50px;
+  color: #ffffff;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.55rem;
+  font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  text-align: center;
-  color: var(--gold-1);
-  pointer-events: none;
-  transition: color 0.3s ease;
-}
-.sound-control.is-muted .sound-label {
-  color: #ffffff;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  animation: soundBtnPulse 2s ease-in-out infinite;
 }
 @keyframes soundBtnPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(196,150,58,0); }
@@ -3060,16 +3029,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
 <audio id="bgMusic" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
 
-<div class="sound-control is-muted" id="soundControl">
-  <button class="sound-btn" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">
-    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round">
-      <path class="wave wave-1" d="M9 10 Q11 12 9 14" />
-      <path class="wave wave-2" d="M13 7 Q17 12 13 17" />
-      <path class="wave wave-3" d="M17 4 Q23 12 17 20" />
-    </svg>
-  </button>
-  <div class="sound-label" id="soundLabel">SOUND OFF</div>
-</div>
+<button class="sound-btn is-muted" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">♪ SOUND ON</button>
 
 <div class="indicator" id="indicator"></div>
 
@@ -3680,33 +3640,38 @@ function manageBgMusic(id){
   }
 }
 
-let bgMusicEnabled = false;
-
 function updateSoundControlVisibility(activeId){
-  const control = document.getElementById('soundControl');
-  if(!control) return;
-  if(bgMusicEnabled){ control.style.display = 'none'; return; }
-  control.style.display = (activeId === 'screen1') ? 'flex' : 'none';
+  const btn = document.getElementById('soundBtn');
+  if(!btn) return;
+  btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
 }
 
 function unmuteBgMusic(){
   const audio = document.getElementById('bgMusic');
-  const control = document.getElementById('soundControl');
+  const btn = document.getElementById('soundBtn');
   if(!audio) return;
   audio.muted = false;
   audio.play().catch(() => {});
-  bgMusicEnabled = true;
-  if(control) control.style.display = 'none';
+  if(btn){
+    btn.classList.remove('is-muted');
+    btn.textContent = '♪ SOUND AN';
+  }
 }
 
 function toggleBgMusic(){
   const audio = document.getElementById('bgMusic');
-  const control = document.getElementById('soundControl');
-  if(!audio) return;
-  audio.muted = false;
-  audio.play().catch(() => {});
-  bgMusicEnabled = true;
-  if(control) control.style.display = 'none';
+  const btn = document.getElementById('soundBtn');
+  if(!audio || !btn) return;
+  if(audio.muted){
+    audio.muted = false;
+    audio.play().catch(() => {});
+    btn.classList.remove('is-muted');
+    btn.textContent = '♪ SOUND AN';
+  } else {
+    audio.muted = true;
+    btn.classList.add('is-muted');
+    btn.textContent = '♪ SOUND ON';
+  }
 }
 
 function goTo(id){
