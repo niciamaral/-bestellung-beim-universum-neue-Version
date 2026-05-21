@@ -3002,6 +3002,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 </head>
 <body>
 
+<audio id="bgMusic" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
+
 <div class="indicator" id="indicator"></div>
 
 <!-- ===== SEITE 1: Hero ===== -->
@@ -3039,7 +3041,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
       <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
       <p class="hero-text animate" style="animation-delay:2.1s">Die Antwort liegt tiefer als du denkst. Und sie beginnt hier.</p>
-      <button class="btn animate" style="animation-delay:2.4s" onclick="goTo('screen2a')">JETZT ENTDECKEN →</button>
+      <button class="btn animate" style="animation-delay:2.4s" onclick="unmuteBgMusic(); goTo('screen2a')">JETZT ENTDECKEN →</button>
     </div>
   </div>
   <div class="disclaimer animate" style="animation-delay:2.8s"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
@@ -3595,6 +3597,29 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+// Screens auf denen Hintergrundmusik spielt (screen1 bis screen8 inkl. Sub-Screens + FW)
+const MUSIC_SCREENS = new Set([
+  'screen1','screen2','screen2a','screen2b','screen2c','screen2d',
+  'screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8'
+]);
+
+function manageBgMusic(id){
+  const audio = document.getElementById('bgMusic');
+  if(!audio) return;
+  if(MUSIC_SCREENS.has(id)){
+    audio.play().catch(() => {});
+  } else {
+    audio.pause();
+  }
+}
+
+function unmuteBgMusic(){
+  const audio = document.getElementById('bgMusic');
+  if(!audio) return;
+  audio.muted = false;
+  audio.play().catch(() => {});
+}
+
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(id);
@@ -3604,6 +3629,7 @@ function goTo(id){
   target.scrollIntoView({behavior: 'instant', block: 'start'});
   updateIndicator(id);
   updateIrrglaubeVideos(id);
+  manageBgMusic(id);
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
