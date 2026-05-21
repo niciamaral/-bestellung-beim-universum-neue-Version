@@ -2645,10 +2645,11 @@ h2 em{font-style:italic;color:var(--gold);}
   opacity: 1;
 }
 
-/* Teleprompter — Sätze überlappen via absolute, .door-words füllt den Container */
+/* Teleprompter — Sätze zentriert via top/left 50% + translate(-50%,-50%) */
 .door-words {
   position: absolute !important;
   inset: 0 !important;
+  display: block !important;
   z-index: 3 !important;
   overflow: visible;
   pointer-events: none;
@@ -2657,14 +2658,16 @@ h2 em{font-style:italic;color:var(--gold);}
 .door-sentence {
   display: none;
   position: absolute !important;
-  inset: 0;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: clamp(1.6rem, 6vw, 3rem) !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  text-align: center !important;
+  font-size: 30px !important;
   line-height: 1.2;
   padding: 1rem 1.5rem !important;
   white-space: normal !important;
+  word-wrap: break-word !important;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
   color: #ffffff;
@@ -3862,7 +3865,14 @@ function closeKugelModal(){
       // Aktuellen einblenden
       const el = document.getElementById(sentences[current]);
       if (el) {
-        el.style.display = 'flex';
+        el.style.display = 'block';
+        el.style.position = 'absolute';
+        el.style.top = '50%';
+        el.style.left = '50%';
+        el.style.transform = 'translate(-50%, -50%)';
+        el.style.width = '90%';
+        el.style.textAlign = 'center';
+        el.style.fontSize = '30px';
         el.style.opacity = '0';
         el.style.transition = 'opacity 0.8s ease';
         setTimeout(() => { el.style.opacity = '1'; }, 50);
