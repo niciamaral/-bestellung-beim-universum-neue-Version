@@ -3655,6 +3655,7 @@ const MUSIC_SCREENS4 = new Set(['streamSelf','streamRelation','streamRelationPro
 
 function manageBgMusic(id){
   console.log('manageBgMusic:', id);
+  console.log('manageBgMusic aufgerufen mit:', id, '| a1 muted:', document.getElementById('bgMusic1')?.muted, '| a2 muted:', document.getElementById('bgMusic2')?.muted);
   const a1 = document.getElementById('bgMusic1');
   const a2 = document.getElementById('bgMusic2');
   const a3 = document.getElementById('bgMusic3');
