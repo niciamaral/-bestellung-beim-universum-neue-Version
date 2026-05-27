@@ -3009,10 +3009,10 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   border-radius: 50px;
   color: #ffffff;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem 0.9rem;
   cursor: pointer;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
@@ -3662,7 +3662,7 @@ function unmuteBgMusic(){
   if(a2) a2.muted = false;
   if(btn){
     btn.classList.remove('is-muted');
-    btn.textContent = '♪ SOUND AN';
+    btn.textContent = '♪ SOUND OFF';
   }
 }
 
@@ -3679,7 +3679,7 @@ function toggleBgMusic(){
     btn.textContent = '♪ SOUND ON';
   } else {
     btn.classList.remove('is-muted');
-    btn.textContent = '♪ SOUND AN';
+    btn.textContent = '♪ SOUND OFF';
     const active = document.querySelector('.screen.active');
     manageBgMusic(active ? active.id : 'screen1');
   }
