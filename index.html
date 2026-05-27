@@ -3703,6 +3703,10 @@ function setAllAudiosMuted(muted){
 function unmuteBgMusic(){
   const btn = document.getElementById('soundBtn');
   setAllAudiosMuted(false);
+  document.getElementById('bgMusic1').muted = false;
+  document.getElementById('bgMusic2').muted = false;
+  document.getElementById('bgMusic3').muted = false;
+  document.getElementById('bgMusic4').muted = false;
   if(btn){
     btn.classList.remove('is-muted');
     btn.textContent = '♪ SOUND OFF';
@@ -3719,6 +3723,10 @@ function toggleBgMusic(){
     btn.classList.add('is-muted');
     btn.textContent = '♪ SOUND ON';
   } else {
+    document.getElementById('bgMusic1').muted = false;
+    document.getElementById('bgMusic2').muted = false;
+    document.getElementById('bgMusic3').muted = false;
+    document.getElementById('bgMusic4').muted = false;
     btn.classList.remove('is-muted');
     btn.textContent = '♪ SOUND OFF';
     const active = document.querySelector('.screen.active');
