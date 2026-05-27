@@ -3028,9 +3028,9 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <body>
 
 <audio id="bgMusic1" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
-<audio id="bgMusic2" src="audio/audio5.mp3" loop muted preload="auto"></audio>
-<audio id="bgMusic3" src="audio/audio2.mp3" loop muted preload="auto"></audio>
-<audio id="bgMusic4" src="audio/audio3.mp3" loop muted preload="auto"></audio>
+<audio id="bgMusic2" src="audio/audio5.mp3" autoplay loop muted preload="auto"></audio>
+<audio id="bgMusic3" src="audio/audio2.mp3" autoplay loop muted preload="auto"></audio>
+<audio id="bgMusic4" src="audio/audio3.mp3" autoplay loop muted preload="auto"></audio>
 
 <button class="sound-btn is-muted" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">♪ SOUND ON</button>
 
@@ -3640,6 +3640,7 @@ const MUSIC_SCREENS3 = new Set(['screenVorbereitung','screenAbschluss']);
 const MUSIC_SCREENS4 = new Set(['screen10','streamSelf','streamRelation','streamRelationProducts']);
 
 function manageBgMusic(id){
+  console.log('manageBgMusic:', id);
   const a1 = document.getElementById('bgMusic1');
   const a2 = document.getElementById('bgMusic2');
   const a3 = document.getElementById('bgMusic3');
@@ -3649,14 +3650,24 @@ function manageBgMusic(id){
   if(a2) a2.pause();
   if(a3) a3.pause();
   if(a4) a4.pause();
+  // currentTime = 0 außer wenn schon pausiert am Anfang
+  function resetIfNeeded(a){
+    if(!(a.paused && a.currentTime === 0)){
+      a.currentTime = 0;
+    }
+  }
   // Dann den passenden starten
   if(MUSIC_SCREENS1.has(id) && a1){
+    resetIfNeeded(a1);
     a1.play().catch(() => {});
   } else if(MUSIC_SCREENS2.has(id) && a2){
+    resetIfNeeded(a2);
     a2.play().catch(() => {});
   } else if(MUSIC_SCREENS3.has(id) && a3){
+    resetIfNeeded(a3);
     a3.play().catch(() => {});
   } else if(MUSIC_SCREENS4.has(id) && a4){
+    resetIfNeeded(a4);
     a4.play().catch(() => {});
   }
 }
