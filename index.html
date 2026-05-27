@@ -3028,7 +3028,9 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <body>
 
 <audio id="bgMusic1" src="audio/audio1.mp3" autoplay loop muted preload="auto"></audio>
-<audio id="bgMusic2" src="audio/audio4.mp3" loop muted preload="auto"></audio>
+<audio id="bgMusic2" src="audio/audio5.mp3" loop muted preload="auto"></audio>
+<audio id="bgMusic3" src="audio/audio2.mp3" loop muted preload="auto"></audio>
+<audio id="bgMusic4" src="audio/audio3.mp3" loop muted preload="auto"></audio>
 
 <button class="sound-btn is-muted" id="soundBtn" onclick="toggleBgMusic()" aria-label="Sound umschalten">♪ SOUND ON</button>
 
@@ -3630,21 +3632,32 @@ const MUSIC_SCREENS1 = new Set([
   'screen1','screen2','screen2a','screen2b','screen2c','screen2d',
   'screenFeminineWay','screen3','screen4','screen5','screen6','screen7'
 ]);
-// Audio 2 (audio4.mp3): screen8 + screen9
+// Audio 2 (audio5.mp3): Bilateral-Bereich screen8 + screen9
 const MUSIC_SCREENS2 = new Set(['screen8','screen9']);
+// Audio 3 (audio2.mp3): Kugel-Session-Bereich Vorbereitung + Abschluss
+const MUSIC_SCREENS3 = new Set(['screenVorbereitung','screenAbschluss']);
+// Audio 4 (audio3.mp3): screen10 + alle weiteren Upsell-Screens
+const MUSIC_SCREENS4 = new Set(['screen10','streamSelf','streamRelation']);
 
 function manageBgMusic(id){
   const a1 = document.getElementById('bgMusic1');
   const a2 = document.getElementById('bgMusic2');
-  if(MUSIC_SCREENS1.has(id)){
-    if(a2) a2.pause();
-    if(a1) a1.play().catch(() => {});
-  } else if(MUSIC_SCREENS2.has(id)){
-    if(a1) a1.pause();
-    if(a2) a2.play().catch(() => {});
-  } else {
-    if(a1) a1.pause();
-    if(a2) a2.pause();
+  const a3 = document.getElementById('bgMusic3');
+  const a4 = document.getElementById('bgMusic4');
+  // Erst alle pausieren — keine Überlappung
+  if(a1) a1.pause();
+  if(a2) a2.pause();
+  if(a3) a3.pause();
+  if(a4) a4.pause();
+  // Dann den passenden starten
+  if(MUSIC_SCREENS1.has(id) && a1){
+    a1.play().catch(() => {});
+  } else if(MUSIC_SCREENS2.has(id) && a2){
+    a2.play().catch(() => {});
+  } else if(MUSIC_SCREENS3.has(id) && a3){
+    a3.play().catch(() => {});
+  } else if(MUSIC_SCREENS4.has(id) && a4){
+    a4.play().catch(() => {});
   }
 }
 
@@ -3654,12 +3667,16 @@ function updateSoundControlVisibility(activeId){
   btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
 }
 
+function setAllAudiosMuted(muted){
+  ['bgMusic1','bgMusic2','bgMusic3','bgMusic4'].forEach(id => {
+    const a = document.getElementById(id);
+    if(a) a.muted = muted;
+  });
+}
+
 function unmuteBgMusic(){
-  const a1 = document.getElementById('bgMusic1');
-  const a2 = document.getElementById('bgMusic2');
   const btn = document.getElementById('soundBtn');
-  if(a1) a1.muted = false;
-  if(a2) a2.muted = false;
+  setAllAudiosMuted(false);
   if(btn){
     btn.classList.remove('is-muted');
     btn.textContent = '♪ SOUND OFF';
@@ -3668,12 +3685,10 @@ function unmuteBgMusic(){
 
 function toggleBgMusic(){
   const a1 = document.getElementById('bgMusic1');
-  const a2 = document.getElementById('bgMusic2');
   const btn = document.getElementById('soundBtn');
   if(!a1 || !btn) return;
   const willMute = !a1.muted;
-  a1.muted = willMute;
-  if(a2) a2.muted = willMute;
+  setAllAudiosMuted(willMute);
   if(willMute){
     btn.classList.add('is-muted');
     btn.textContent = '♪ SOUND ON';
