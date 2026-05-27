@@ -3646,12 +3646,12 @@ const MUSIC_SCREENS1 = new Set([
   'screen1','screen2a','screen2b','screen2c','screen2d',
   'screenFeminineWay','screen3','screen4','screen5','screen6','screen7'
 ]);
-// Audio 2 (audio5.mp3): Bilateral-Bereich screen8
-const MUSIC_SCREENS2 = new Set(['screen8']);
-// Audio 3 (audio2.mp3): Kugel-Session-Bereich Vorbereitung + Abschluss
-const MUSIC_SCREENS3 = new Set(['screenVorbereitung','screenAbschluss']);
-// Audio 4 (audio3.mp3): screen10 + alle Upsell-Screens
-const MUSIC_SCREENS4 = new Set(['screen10','streamSelf','streamRelation','streamRelationProducts']);
+// Audio 2 (audio5.mp3): screen8 + screenVorbereitung
+const MUSIC_SCREENS2 = new Set(['screen8','screenVorbereitung']);
+// Audio 3 (audio2.mp3): screenAbschluss + screen10
+const MUSIC_SCREENS3 = new Set(['screenAbschluss','screen10']);
+// Audio 4 (audio3.mp3): Upsell-Stream-Screens
+const MUSIC_SCREENS4 = new Set(['streamSelf','streamRelation','streamRelationProducts']);
 
 function manageBgMusic(id){
   console.log('manageBgMusic:', id);
