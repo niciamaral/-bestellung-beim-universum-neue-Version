@@ -2999,6 +2999,26 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background: var(--gold-1) !important;
 }
 
+/* === Sound-Button === */
+#soundBtn {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 200;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.65rem;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.6);
+  color: white;
+  border-radius: 50px;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 /* === DEBUG: temporäre Seitenzahl-Labels === */
 .debug-page-num {
   position: absolute;
@@ -3015,6 +3035,9 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 </style>
 </head>
 <body>
+
+<audio id="bgMusic" loop muted preload="auto"></audio>
+<button id="soundBtn" onclick="toggleSound()">♪ SOUND ON</button>
 
 <div class="indicator" id="indicator"></div>
 
@@ -3609,6 +3632,67 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+// === Audio-System ===
+let currentAudioSrc = '';
+let soundEverClicked = false;
+
+const AUDIO_GROUPS = [
+  { src: 'audio/audio1.mp3', screens: new Set(['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7']) },
+  { src: 'audio/audio5.mp3', screens: new Set(['screen8','screenVorbereitung']) },
+  { src: 'audio/audio2.mp3', screens: new Set(['screenAbschluss','screen10']) },
+  { src: 'audio/audio3.mp3', screens: new Set(['streamSelf','streamRelation','streamRelationProducts']) }
+];
+
+function getAudioForScreen(id){
+  for(const g of AUDIO_GROUPS){
+    if(g.screens.has(id)) return g.src;
+  }
+  return null;
+}
+
+function playAudio(src){
+  const audio = document.getElementById('bgMusic');
+  if(!audio) return;
+  if(src === currentAudioSrc) return;
+  audio.src = src;
+  currentAudioSrc = src;
+  audio.load();
+  audio.play().catch(() => {});
+}
+
+function manageBgMusicForScreen(id){
+  const audio = document.getElementById('bgMusic');
+  if(!audio) return;
+  const src = getAudioForScreen(id);
+  if(src){
+    playAudio(src);
+  } else {
+    audio.pause();
+  }
+}
+
+function updateSoundBtnVisibility(activeId){
+  const btn = document.getElementById('soundBtn');
+  if(!btn) return;
+  btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
+}
+
+function toggleSound(){
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('soundBtn');
+  if(!audio || !btn) return;
+  audio.muted = !audio.muted;
+  btn.textContent = audio.muted ? '♪ SOUND ON' : '♪ SOUND OFF';
+  if(!soundEverClicked){
+    soundEverClicked = true;
+    const active = document.querySelector('.screen.active');
+    if(active){
+      const src = getAudioForScreen(active.id);
+      if(src) playAudio(src);
+    }
+  }
+}
+
 function goTo(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const target = document.getElementById(id);
@@ -3618,6 +3702,8 @@ function goTo(id){
   target.scrollIntoView({behavior: 'instant', block: 'start'});
   updateIndicator(id);
   updateIrrglaubeVideos(id);
+  manageBgMusicForScreen(id);
+  updateSoundBtnVisibility(id);
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
