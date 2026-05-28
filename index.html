@@ -3653,7 +3653,7 @@ function getAudioForScreen(id){
 function playAudio(src){
   const audio = document.getElementById('bgMusic');
   if(!audio) return;
-  if(src === currentAudioSrc) return;
+  if(audio.src.endsWith(src)) return;
   audio.src = src;
   currentAudioSrc = src;
   audio.load();
