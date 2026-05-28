@@ -3000,22 +3000,23 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background: var(--gold-1) !important;
 }
 
-/* === Dark-Mode Hinweis-Banner === */
+/* === Dark-Mode Hinweis-Banner — klein, nur auf screen1 === */
 .dark-mode-banner {
   display: none;
 }
 @media (prefers-color-scheme: dark) {
-  .dark-mode-banner:not(.is-closed) {
+  .dark-mode-banner.show-on-screen1:not(.is-closed) {
     display: block;
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 260px;
     background: rgba(42,31,24,0.95);
     color: var(--gold);
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.3rem 0.5rem;
     z-index: 300;
     letter-spacing: 0.1em;
     font-family: 'Outfit', sans-serif;
@@ -3024,10 +3025,10 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
     background: none;
     border: none;
     color: var(--gold);
-    font-size: 0.85rem;
-    margin-left: 0.6rem;
+    font-size: 0.7rem;
+    margin-left: 0.4rem;
     cursor: pointer;
-    padding: 0 0.3rem;
+    padding: 0 0.2rem;
     line-height: 1;
     vertical-align: middle;
   }
@@ -3076,7 +3077,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <audio id="bgMusic" loop muted preload="auto"></audio>
 <button id="soundBtn" onclick="toggleSound()">♪ SOUND ON</button>
 
-<div class="dark-mode-banner" id="darkModeBanner">
+<div class="dark-mode-banner show-on-screen1" id="darkModeBanner">
   <span>✨ Für das beste Erlebnis: Dunkelmodus ausschalten</span>
   <button class="dark-mode-banner-close" onclick="closeDarkModeBanner()" aria-label="Schließen">✕</button>
 </div>
@@ -3718,6 +3719,16 @@ function updateSoundBtnVisibility(activeId){
   btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
 }
 
+function updateDarkModeBannerVisibility(activeId){
+  const banner = document.getElementById('darkModeBanner');
+  if(!banner) return;
+  if(activeId === 'screen1'){
+    banner.classList.add('show-on-screen1');
+  } else {
+    banner.classList.remove('show-on-screen1');
+  }
+}
+
 function closeDarkModeBanner(){
   const banner = document.getElementById('darkModeBanner');
   if(banner) banner.classList.add('is-closed');
@@ -3756,6 +3767,7 @@ function goTo(id){
   updateIrrglaubeVideos(id);
   manageBgMusicForScreen(id);
   updateSoundBtnVisibility(id);
+  updateDarkModeBannerVisibility(id);
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
