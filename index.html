@@ -3623,6 +3623,10 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 </div>
 
 <script>
+// === Audio-System State (global, persistent über alle Funktionsaufrufe) ===
+let currentAudioSrc = '';
+let soundEverClicked = false;
+
 const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
@@ -3631,10 +3635,6 @@ const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
-
-// === Audio-System ===
-let currentAudioSrc = '';
-let soundEverClicked = false;
 
 const AUDIO_GROUPS = [
   { src: 'audio/audio1.mp3', screens: new Set(['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3']) },
