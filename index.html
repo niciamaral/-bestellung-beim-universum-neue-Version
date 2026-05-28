@@ -3009,31 +3009,18 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
     display: block;
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 260px;
+    left: 0;
+    max-width: 200px;
+    padding: 0.25rem 0.5rem;
+    white-space: nowrap;
     background: rgba(42,31,24,0.95);
     color: var(--gold);
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-align: center;
-    padding: 0.3rem 0.5rem;
     z-index: 300;
     letter-spacing: 0.1em;
     font-family: 'Outfit', sans-serif;
-  }
-  .dark-mode-banner-close {
-    background: none;
-    border: none;
-    color: var(--gold);
-    font-size: 0.7rem;
-    margin-left: 0.4rem;
     cursor: pointer;
-    padding: 0 0.2rem;
-    line-height: 1;
-    vertical-align: middle;
-  }
-  .dark-mode-banner-close:hover {
-    color: var(--gold-1);
   }
 }
 
@@ -3077,10 +3064,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <audio id="bgMusic" loop muted preload="auto"></audio>
 <button id="soundBtn" onclick="toggleSound()">♪ SOUND ON</button>
 
-<div class="dark-mode-banner show-on-screen1" id="darkModeBanner">
-  <span>✨ Für das beste Erlebnis: Dunkelmodus ausschalten</span>
-  <button class="dark-mode-banner-close" onclick="closeDarkModeBanner()" aria-label="Schließen">✕</button>
-</div>
+<div class="dark-mode-banner show-on-screen1" id="darkModeBanner" onclick="closeDarkModeBanner()">✨ Dunkelmodus ausschalten ✕</div>
 
 <div class="indicator" id="indicator"></div>
 
