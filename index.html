@@ -3625,7 +3625,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <script>
 // === Audio-System State (global, persistent über alle Funktionsaufrufe) ===
 let currentAudioSrc = '';
-let soundEverClicked = false;
 
 const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
@@ -3683,12 +3682,10 @@ function toggleSound(){
   if(!audio || !btn) return;
   audio.muted = !audio.muted;
   btn.textContent = audio.muted ? '♪ SOUND ON' : '♪ SOUND OFF';
-  if(!soundEverClicked){
-    soundEverClicked = true;
+  if(!audio.muted){
     const active = document.querySelector('.screen.active');
     if(active){
-      const src = getAudioForScreen(active.id);
-      if(src) playAudio(src);
+      manageBgMusicForScreen(active.id);
     }
   }
 }
