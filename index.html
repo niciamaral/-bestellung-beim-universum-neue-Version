@@ -3076,7 +3076,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
       <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
       <p class="hero-text animate" style="animation-delay:2.1s">Die Antwort liegt tiefer als du denkst. Und sie beginnt hier.</p>
-      <button class="btn animate" style="animation-delay:2.4s" onclick="goTo('screen2a')">JETZT ENTDECKEN →</button>
+      <button class="btn animate" style="animation-delay:2.4s" onclick="startAudio(); goTo('screen2a')">JETZT ENTDECKEN →</button>
     </div>
   </div>
   <div class="disclaimer animate" style="animation-delay:2.8s"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
@@ -3674,6 +3674,14 @@ function updateSoundBtnVisibility(activeId){
   const btn = document.getElementById('soundBtn');
   if(!btn) return;
   btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
+}
+
+function startAudio(){
+  const audio = document.getElementById('bgMusic');
+  const btn = document.getElementById('soundBtn');
+  if(!audio) return;
+  audio.muted = false;
+  if(btn) btn.textContent = '♪ SOUND OFF';
 }
 
 function toggleSound(){
