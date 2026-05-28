@@ -2999,6 +2999,42 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background: var(--gold-1) !important;
 }
 
+/* === Dark-Mode Hinweis-Banner === */
+.dark-mode-banner {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  .dark-mode-banner:not(.is-closed) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(42,31,24,0.95);
+    color: var(--gold);
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 0.5rem;
+    z-index: 300;
+    letter-spacing: 0.1em;
+    font-family: 'Outfit', sans-serif;
+  }
+  .dark-mode-banner-close {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-left: 0.6rem;
+    cursor: pointer;
+    padding: 0 0.3rem;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .dark-mode-banner-close:hover {
+    color: var(--gold-1);
+  }
+}
+
 /* === Sound-Button === */
 #soundBtn {
   position: fixed;
@@ -3038,6 +3074,11 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
 <audio id="bgMusic" loop muted preload="auto"></audio>
 <button id="soundBtn" onclick="toggleSound()">♪ SOUND ON</button>
+
+<div class="dark-mode-banner" id="darkModeBanner">
+  <span>✨ Für das beste Erlebnis: Dunkelmodus ausschalten</span>
+  <button class="dark-mode-banner-close" onclick="closeDarkModeBanner()" aria-label="Schließen">✕</button>
+</div>
 
 <div class="indicator" id="indicator"></div>
 
@@ -3674,6 +3715,11 @@ function updateSoundBtnVisibility(activeId){
   const btn = document.getElementById('soundBtn');
   if(!btn) return;
   btn.style.display = (activeId === 'screen1') ? 'block' : 'none';
+}
+
+function closeDarkModeBanner(){
+  const banner = document.getElementById('darkModeBanner');
+  if(banner) banner.classList.add('is-closed');
 }
 
 function startAudio(){
