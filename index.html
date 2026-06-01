@@ -3662,6 +3662,7 @@ function playAudio(src){
   if(!audio) return;
   if(audio.src.endsWith(src)) return;
   audio.src = src;
+  audio.volume = src.includes('audio5') ? 1.0 : 0.8;
   currentAudioSrc = src;
   audio.load();
   audio.play().catch(() => {});
