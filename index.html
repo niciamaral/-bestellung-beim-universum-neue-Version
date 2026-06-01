@@ -3740,9 +3740,10 @@ function goTo(id){
   const target = document.getElementById(id);
   if(!target) return;
   target.classList.add('active');
-  // Ziel-Screen exakt oben im Viewport landen lassen — außer auf screenVorbereitung
-  // (dessen Scroll wird immer von außen gesteuert, z.B. nach closeKugelModal)
-  if(id !== 'screenVorbereitung'){
+  // Ziel-Screen exakt oben im Viewport landen lassen — Ausnahme: screenVorbereitung
+  // NACH einer Kugel-Session (.session-done), da wird der Scroll extern gesteuert.
+  const skipScroll = id === 'screenVorbereitung' && target.classList.contains('session-done');
+  if(!skipScroll){
     target.scrollIntoView({behavior: 'instant', block: 'start'});
   }
   updateIndicator(id);
