@@ -1393,10 +1393,20 @@ h2 em{font-style:italic;color:var(--gold);}
   color:var(--gold-1);
 }
 
-/* === Mobile: alle Karten untereinander === */
+/* === Mobile: alle Karten untereinander + Karten-Layout angepasst === */
 @media(max-width:767px){
   #streamRelationProducts .product-grid{
     grid-template-columns:1fr;
+  }
+  #streamRelationProducts .product-card{
+    max-width:100%;
+    padding:1.5rem 1rem;
+  }
+  #streamRelationProducts .product-name{
+    font-size:1.4rem;
+  }
+  #streamRelationProducts .product-price{
+    font-size:1.6rem;
   }
 }
 /* === Stream 2 Produktseite — Einladungs-Block fix === */
