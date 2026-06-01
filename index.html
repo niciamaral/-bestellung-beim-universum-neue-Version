@@ -3915,6 +3915,8 @@ function closeKugelModal(){
   const prep = document.getElementById('screenVorbereitung');
   if(prep) prep.classList.add('session-done');
   goTo('screenVorbereitung');
+  const navActions = document.querySelector('#screenVorbereitung .nav-actions');
+  if(navActions) navActions.scrollIntoView({behavior: 'smooth', block: 'center'});
 }
 
 // === ABSCHLUSS-SEITE FLUSS-ANIMATION ===
