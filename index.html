@@ -2816,7 +2816,13 @@ h2 em{font-style:italic;color:var(--gold);}
   height: 100%;
   object-fit: cover;
   z-index: 0;
-  pointer-events: none;
+  pointer-events: none !important;
+}
+video::-webkit-media-controls {
+  display: none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display: none !important;
 }
 
 .irrglaube-overlay {
