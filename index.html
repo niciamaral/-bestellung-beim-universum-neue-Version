@@ -2708,6 +2708,9 @@ h2 em{font-style:italic;color:var(--gold);}
   min-height: 100vh;
   background-color: #2a1410;
 }
+.irrglaube-screen.active {
+  animation: fadeIn .6s ease 0.2s both;
+}
 /* screen2d behält video4.mp4 als Hintergrund */
 /* Scroll erlauben falls Inhalt zu lang (z.B. Mobile mit großer FW-Sektion) */
 #screen2d {
@@ -3134,7 +3137,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
   <!-- Sub-Screen 2a — Irrglaube 1 (mit Eingangstext oben) -->
   <div class="screen content irrglaube-screen" id="screen2a">
-    <video class="irrglaube-video" src="video1.mp4" muted loop playsinline preload="metadata"></video>
+    <video class="irrglaube-video" src="video1.mp4" muted loop playsinline preload="auto"></video>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3154,7 +3157,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
   <!-- Sub-Screen 2b — Irrglaube 2 -->
   <div class="screen content irrglaube-screen" id="screen2b">
-    <video class="irrglaube-video" src="video2.mp4" muted loop playsinline preload="metadata"></video>
+    <video class="irrglaube-video" src="video2.mp4" muted loop playsinline preload="auto"></video>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3171,7 +3174,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
   <!-- Sub-Screen 2c — Irrglaube 3 -->
   <div class="screen content irrglaube-screen" id="screen2c">
-    <video class="irrglaube-video" src="video3.mp4" muted loop playsinline preload="metadata"></video>
+    <video class="irrglaube-video" src="video3.mp4" muted loop playsinline preload="auto"></video>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3188,7 +3191,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
   <!-- Sub-Screen 2d — Irrglaube 4 + Feminine-Way-Reveal -->
   <div class="screen content irrglaube-screen" id="screen2d">
-    <video class="irrglaube-video" src="video4.mp4" muted loop playsinline preload="metadata"></video>
+    <video class="irrglaube-video" src="video4.mp4" muted loop playsinline preload="auto"></video>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3208,7 +3211,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <!-- ===== NEUER SCREEN: Feminine-Way (nach screen2d) ===== -->
 <div class="screen irrglaube-screen" id="screenFeminineWay">
   <video class="irrglaube-video" src="video5.mp4"
-         muted loop playsinline preload="metadata"></video>
+         muted loop playsinline preload="auto"></video>
   <div class="irrglaube-overlay"></div>
   <div class="wrap irrglaube-wrap">
     <div class="content-inner irrglaube-content">
@@ -3662,6 +3665,8 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+document.querySelectorAll('.irrglaube-video').forEach(vid => { vid.load(); });
+
 const AUDIO_GROUPS = [
   { src: 'audio/audio1.mp3', screens: new Set(['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3']) },
   { src: 'audio/audio5.mp3', screens: new Set(['screen4','screen5']) },
@@ -3809,6 +3814,7 @@ function updateIrrglaubeVideos(activeId){
     const vid = scr.querySelector('.irrglaube-video');
     if(!vid) return;
     if(scr.id === activeId){
+      vid.currentTime = 0;
       vid.play().catch(() => {});
     } else {
       vid.pause();
