@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/bild3.png">
 <link rel="preload" as="image" href="images/bild6.png">
+<link rel="preload" as="video" href="videotuer.mp4">
 <style>
 :root{
   --sienna:#8b3a2a; --sienna-1:#b85a42; --sienna-d:#6a2a1a;
@@ -320,11 +321,25 @@ h2 em{font-style:italic;color:var(--gold);}
   display:flex;
   align-items:center;
   justify-content:center;
+  position:relative;
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
   color:var(--gold);
   font-size:1.2rem;
   animation:breathe 14s ease-in-out infinite;
+}
+.breath-circle span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  color:rgba(255,255,255,0.9);
+  font-size:0.85rem;
+  text-align:center;
+  pointer-events:none;
+  white-space:nowrap;
 }
 @keyframes breathe{
   0%,100%{transform:scale(1);opacity:0.85;}
@@ -2243,14 +2258,7 @@ h2 em{font-style:italic;color:var(--gold);}
 }
 /* === Seite 6 — Atemrhythmus in einer Zeile === */
 .breath-rhythm{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:center;
-  gap:0.85rem;
-  margin:1.5rem auto 0 !important;
-  font-size:0.95rem;
-  line-height:1;
+  display:none !important;
 }
 .breath-rhythm span{
   display:inline-flex;
@@ -3306,7 +3314,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       <div class="eyebrow">Vorbereitung</div>
       <h2>Komm <em>im Körper</em> an</h2>
       <p>Bevor wir starten, atme dreimal tief ein und aus. Lass die Welt draußen kurz still werden.</p>
-      <div class="breath-circle"><span>Atme</span></div>
+      <div class="breath-circle"><span id="breathText">Einatmen</span></div>
       <p class="breath-rhythm"><span>Einatmen <em>4 Sek</em></span><span class="breath-dot"></span><span>Halten <em>4 Sek</em></span><span class="breath-dot"></span><span>Ausatmen <em>6 Sek</em></span></p>
       <div class="nav-actions"><button class="btn" onclick="goTo('screen7')">Weiter</button></div>
     </div>
@@ -3668,15 +3676,58 @@ function getAudioForScreen(id){
   return null;
 }
 
+let _breathTimer = null;
+function startBreathText(){
+  const el = document.getElementById('breathText');
+  if(!el) return;
+  clearTimeout(_breathTimer);
+  const bc = document.querySelector('.breath-circle');
+  if(bc){ bc.style.animation = 'none'; void bc.offsetHeight; bc.style.animation = ''; }
+  const cycle = [
+    { text: 'Einatmen', dur: 4000 },
+    { text: 'Halten',   dur: 4000 },
+    { text: 'Ausatmen', dur: 6000 }
+  ];
+  let i = 0;
+  function next(){
+    el.textContent = cycle[i].text;
+    _breathTimer = setTimeout(() => { i = (i + 1) % cycle.length; next(); }, cycle[i].dur);
+  }
+  next();
+}
+
+let _fadeTimer = null;
+function _fadeTo(audio, target, ms, onDone){
+  clearInterval(_fadeTimer);
+  const start = audio.volume;
+  const diff = target - start;
+  const steps = 30;
+  const dt = ms / steps;
+  let i = 0;
+  _fadeTimer = setInterval(() => {
+    i++;
+    audio.volume = Math.min(1, Math.max(0, start + diff * (i / steps)));
+    if(i >= steps){ clearInterval(_fadeTimer); if(onDone) onDone(); }
+  }, dt);
+}
 function playAudio(src){
   const audio = document.getElementById('bgMusic');
   if(!audio) return;
   if(audio.src.endsWith(src)) return;
-  audio.src = src;
-  audio.volume = src.includes('audio5') ? 1.0 : 0.8;
-  currentAudioSrc = src;
-  audio.load();
-  audio.play().catch(() => {});
+  const targetVol = src.includes('audio5') ? 1.0 : 0.8;
+  const doSwitch = () => {
+    audio.src = src;
+    currentAudioSrc = src;
+    audio.volume = 0;
+    audio.load();
+    audio.play().catch(() => {});
+    _fadeTo(audio, targetVol, 1500, null);
+  };
+  if(!audio.paused && audio.volume > 0){
+    _fadeTo(audio, 0, 1500, doSwitch);
+  } else {
+    doSwitch();
+  }
 }
 
 function manageBgMusicForScreen(id){
@@ -3749,6 +3800,7 @@ function goTo(id){
   manageBgMusicForScreen(id);
   updateSoundBtnVisibility(id);
   updateDarkModeBannerVisibility(id);
+  if(id === 'screen6') startBreathText();
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
@@ -3991,6 +4043,7 @@ function closeKugelModal(){
     if (started) return;
     started = true;
 
+    video.load();
     video.play().catch(() => {});
 
     setTimeout(() => {
