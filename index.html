@@ -4027,36 +4027,29 @@ function closeKugelModal(){
 // === The Feminine Way Reveal ===
 // showFeminineWay() entfernt — Feminine-Way ist jetzt eigener Screen (#screenFeminineWay)
 
-// === AUTO-SCROLL + TÜR-ANIMATION (synchron mit 11s Video) ===
+// === TÜR-ANIMATION (IntersectionObserver — startet wenn Video sichtbar) ===
 (function() {
   const doorSection = document.getElementById('doorSection');
   if (!doorSection) return;
-  const doorContainer = doorSection.querySelector('.door-container');
-  if (!doorContainer) return;
 
   const video = doorSection.querySelector('.door-video');
   const overlay = doorSection.querySelector('.door-overlay');
   const glow = doorSection.querySelector('.door-glow');
 
-  let started = false;
-  function startAnimation() {
-    if (started) return;
-    started = true;
-
-    video.load();
-    video.play().catch(() => {});
+  let animStarted = false;
+  function startDoorAnimation() {
+    if (animStarted) return;
+    animStarted = true;
 
     setTimeout(() => {
       overlay.classList.add('is-opening');
       glow.classList.add('is-active');
     }, 1000);
 
-    // Teleprompter — ganze Sätze sequenziell, kein festes Gesamt-Timing
     const sentences = ['s1','s2','s3','s4','s5'];
     let current = 0;
     function showNext(){
       if (current >= sentences.length) return;
-      // Vorherigen ausblenden
       if (current > 0) {
         const prev = document.getElementById(sentences[current - 1]);
         if (prev) {
@@ -4065,7 +4058,6 @@ function closeKugelModal(){
           setTimeout(() => { prev.style.display = 'none'; }, 500);
         }
       }
-      // Aktuellen einblenden
       const el = document.getElementById(sentences[current]);
       if (el) {
         el.style.display = 'block';
@@ -4081,78 +4073,23 @@ function closeKugelModal(){
         setTimeout(() => { el.style.opacity = '1'; }, 50);
       }
       current++;
-      // Nächsten Satz nach 4 Sekunden
       setTimeout(showNext, 4000);
     }
-    // Erster Satz 1.5s nach Video-Start
     setTimeout(showNext, 1500);
   }
 
-  // Sanfter Scroll mit ease-in-out cubic — User-Interaktion bricht ab (Scroll-Bremse weg)
-  function smoothScrollTo(targetY, duration) {
-    const startY = window.scrollY;
-    const distance = targetY - startY;
-    if (Math.abs(distance) < 5) return;
-    const startTime = performance.now();
-    let aborted = false;
-    const abort = () => { aborted = true; cleanup(); };
-    function cleanup(){
-      window.removeEventListener('wheel', abort);
-      window.removeEventListener('touchmove', abort);
-      window.removeEventListener('keydown', abort);
-    }
-    window.addEventListener('wheel', abort, { once: true, passive: true });
-    window.addEventListener('touchmove', abort, { once: true, passive: true });
-    window.addEventListener('keydown', abort, { once: true });
-    function step(now) {
-      if (aborted) return;
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-      window.scrollTo(0, startY + distance * eased);
-      if (progress < 1) requestAnimationFrame(step);
-      else cleanup();
-    }
-    requestAnimationFrame(step);
-  }
-
-  function getDoorCenterY() {
-    const rect = doorContainer.getBoundingClientRect();
-    return window.scrollY + rect.top + rect.height / 2 - window.innerHeight / 2;
-  }
-
-  // Falls Frau selbst zur Tür scrollt: Animation per IntersectionObserver
-  const observer = new IntersectionObserver((entries) => {
+  const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        startAnimation();
-        observer.disconnect();
+        video.play().catch(() => {});
+        startDoorAnimation();
+      } else {
+        video.pause();
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.5 });
 
-  // Eigen-Scroll der Frau tracken
-  let userScrolled = false;
-  const initialY = window.scrollY;
-  const onScroll = () => {
-    if (Math.abs(window.scrollY - initialY) > 30) {
-      userScrolled = true;
-      window.removeEventListener('scroll', onScroll);
-      observer.observe(doorSection);
-    }
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-
-  // Auto-Scroll bei 2s (wenn Frau nicht selbst gescrollt)
-  setTimeout(() => {
-    if (userScrolled) return;
-    window.removeEventListener('scroll', onScroll);
-    smoothScrollTo(getDoorCenterY(), 2500);
-    // Animation startet erst NACH Scroll-Ende
-    setTimeout(startAnimation, 2500);
-  }, 2000);
+  videoObserver.observe(video);
 })();
 
 // DEBUG: Seitenzahl-Label in jedes .screen einfügen (DOM-Reihenfolge)
