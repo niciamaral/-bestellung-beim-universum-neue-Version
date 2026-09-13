@@ -3726,10 +3726,10 @@ function playAudio(src){
     audio.volume = 0;
     audio.load();
     audio.play().catch(() => {});
-    _fadeTo(audio, targetVol, 1500, null);
+    _fadeTo(audio, targetVol, 600, null);
   };
   if(!audio.paused && audio.volume > 0){
-    _fadeTo(audio, 0, 1500, doSwitch);
+    _fadeTo(audio, 0, 600, doSwitch);
   } else {
     doSwitch();
   }
