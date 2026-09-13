@@ -22,7 +22,7 @@
   --white:#fdfaf6;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;background-color:#2a1410;scrollbar-gutter:stable;}
+html{scroll-behavior:smooth;background-color:#2a1410;overflow-x:hidden !important;width:100% !important;max-width:100vw !important;}
 
 body{
   background:#2a1410;
@@ -30,7 +30,9 @@ body{
   font-family:'Outfit',sans-serif;
   font-weight:300;
   min-height:100vh;
-  overflow-x:hidden;
+  overflow-x:hidden !important;
+  width:100% !important;
+  max-width:100vw !important;
   padding-right:0 !important;
 }
 body::before{
@@ -62,6 +64,9 @@ body::after{
   position:relative;
   z-index:1;
   min-height:100vh;
+  width:100vw !important;
+  max-width:100vw !important;
+  overflow-x:hidden !important;
   animation:fadeIn .6s ease;
 }
 .screen.active{display:flex;flex-direction:column;}
@@ -3742,10 +3747,10 @@ function playAudio(src){
     audio.volume = 0;
     audio.load();
     audio.play().catch(() => {});
-    _fadeTo(audio, targetVol, 600, null);
+    _fadeTo(audio, targetVol, 300, null);
   };
   if(!audio.paused && audio.volume > 0){
-    _fadeTo(audio, 0, 600, doSwitch);
+    _fadeTo(audio, 0, 300, doSwitch);
   } else {
     doSwitch();
   }
