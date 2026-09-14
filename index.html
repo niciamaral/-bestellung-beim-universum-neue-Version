@@ -3745,7 +3745,7 @@ function playAudio(src){
   const audio = document.getElementById('bgMusic');
   if(!audio) return;
   if(audio.src.endsWith(src)) return;
-  const targetVol = src.includes('audio5') ? 1.0 : 0.8;
+  const targetVol = src.includes('audio5') ? 0.3 : 0.3;
   const doSwitch = () => {
     audio.src = src;
     currentAudioSrc = src;
