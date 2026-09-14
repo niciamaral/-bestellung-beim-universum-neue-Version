@@ -3745,17 +3745,17 @@ function playAudio(src){
   const audio = document.getElementById('bgMusic');
   if(!audio) return;
   if(audio.src.endsWith(src)) return;
-  const targetVol = src.includes('audio5') ? 0.3 : 0.3;
+  const targetVol = src.includes('audio5') ? 0.2 : 0.2;
   const doSwitch = () => {
     audio.src = src;
     currentAudioSrc = src;
     audio.volume = 0;
     audio.load();
     audio.play().catch(() => {});
-    _fadeTo(audio, targetVol, 80, null);
+    _fadeTo(audio, targetVol, 50, null);
   };
   if(!audio.paused && audio.volume > 0){
-    _fadeTo(audio, 0, 80, doSwitch);
+    _fadeTo(audio, 0, 50, doSwitch);
   } else {
     doSwitch();
   }
