@@ -2829,25 +2829,15 @@ video::-webkit-media-controls {
 video::-webkit-media-controls-enclosure {
   display: none !important;
 }
-.watermark-cover {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 180px;
-  height: 70px;
-  background: linear-gradient(
-    to top left,
-    rgba(42,20,16,1) 30%,
-    rgba(42,20,16,0) 100%
-  );
-  z-index: 100;
-  pointer-events: none;
-}
-
 .irrglaube-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(42, 20, 16, 0.82), rgba(101, 30, 20, 0.78));
+  background:
+    linear-gradient(rgba(101,30,20,0.70), rgba(101,30,20,0.70)),
+    radial-gradient(ellipse at 95% 95%,
+      rgba(101,30,20,1) 0%,
+      rgba(101,30,20,0.95) 8%,
+      transparent 25%);
   z-index: 1;
   pointer-events: none;
 }
@@ -3144,7 +3134,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
             playsinline
             preload="auto"
           ></video>
-          <div class="watermark-cover"></div>
           <div class="door-overlay"></div>
           <div class="door-glow"></div>
 
@@ -3174,7 +3163,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   <!-- Sub-Screen 2a — Irrglaube 1 (mit Eingangstext oben) -->
   <div class="screen content irrglaube-screen" id="screen2a">
     <video class="irrglaube-video" src="video1.mp4" muted loop playsinline preload="auto"></video>
-    <div class="watermark-cover"></div>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3195,7 +3183,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   <!-- Sub-Screen 2b — Irrglaube 2 -->
   <div class="screen content irrglaube-screen" id="screen2b">
     <video class="irrglaube-video" src="video2.mp4" muted loop playsinline preload="auto"></video>
-    <div class="watermark-cover"></div>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3213,7 +3200,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   <!-- Sub-Screen 2c — Irrglaube 3 -->
   <div class="screen content irrglaube-screen" id="screen2c">
     <video class="irrglaube-video" src="video3.mp4" muted loop playsinline preload="auto"></video>
-    <div class="watermark-cover"></div>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3231,7 +3217,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   <!-- Sub-Screen 2d — Irrglaube 4 + Feminine-Way-Reveal -->
   <div class="screen content irrglaube-screen" id="screen2d">
     <video class="irrglaube-video" src="video4.mp4" muted loop playsinline preload="auto"></video>
-    <div class="watermark-cover"></div>
     <div class="irrglaube-overlay"></div>
     <div class="wrap irrglaube-wrap">
       <div class="content-inner irrglaube-content">
@@ -3252,7 +3237,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 <div class="screen irrglaube-screen" id="screenFeminineWay">
   <video class="irrglaube-video" src="video5.mp4"
          muted loop playsinline preload="auto"></video>
-  <div class="watermark-cover"></div>
   <div class="irrglaube-overlay"></div>
   <div class="wrap irrglaube-wrap">
     <div class="content-inner irrglaube-content">
