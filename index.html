@@ -3030,8 +3030,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   background-color: #2a1410;
 }
 #screenVisualisierung .vis-orb {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   margin: 2rem auto;
   background: radial-gradient(circle at 35% 32%, #fff8ec 0%, var(--gold-1) 35%, var(--gold) 75%, var(--sienna) 100%);
@@ -3480,6 +3480,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <span class="step-bg-num">1</span>
           <div class="step-content">
             <h3 class="step-title">Augen schließen</h3>
+            <p class="step-answer" id="cardAnswer1" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
             <p class="step-desc">Denk an deinen Wunsch. Stell ihn dir bildlich vor.</p>
           </div>
         </div>
@@ -3487,6 +3488,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <span class="step-bg-num">2</span>
           <div class="step-content">
             <h3 class="step-title">Emotion spüren</h3>
+            <p class="step-answer" id="cardAnswer2" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
             <p class="step-desc">Welche Emotion spürst du dabei? Halte alles.</p>
           </div>
         </div>
@@ -3494,6 +3496,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <span class="step-bg-num">3</span>
           <div class="step-content">
             <h3 class="step-title">Wo sitzt es im Körper?</h3>
+            <p class="step-answer" id="cardAnswer3" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
             <p class="step-desc">Spür an welcher Körperstelle du es fühlst.</p>
           </div>
         </div>
@@ -3501,6 +3504,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           <span class="step-bg-num">4</span>
           <div class="step-content">
             <h3 class="step-title">Augen öffnen</h3>
+            <p class="step-answer" id="cardAnswer4" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;display:none;"></p>
             <p class="step-desc">Folge dem Punkt mit den Augen. Der Kopf bleibt gerade.</p>
           </div>
         </div>
@@ -3540,7 +3544,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       </div>
 
       <div class="nav-actions">
-        <button class="btn" onclick="openKugelModal()">ICH BIN BEREIT</button>
+        <button onclick="openKugelModal()" style="background:transparent;border:1px solid rgba(196,150,58,0.3);color:rgba(196,150,58,0.5);font-size:0.7rem;letter-spacing:0.2em;padding:0.5rem 1.5rem;border-radius:50px;cursor:pointer;font-family:inherit;">ICH BIN BEREIT</button>
         <button class="btn-link" onclick="goTo('screenVorbereitung')">← Zurück</button>
       </div>
     </div>
@@ -3643,6 +3647,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
     <button class="btn reveal-on-scroll" onclick="goTo('screen10')">
       Räume entdecken
     </button>
+
+    <button class="btn-link" onclick="goTo('screenVisualisierung')" style="margin-top:1rem;">← Zurück</button>
 
   </div>
 </div>
@@ -3815,6 +3821,21 @@ function loadUserSummary(){
   set('summaryEmotion', STORAGE.feel);
   set('summaryKoerper', STORAGE.koerper);
   set('summaryBild',    STORAGE.bild);
+
+  const answers = [
+    { id: 'cardAnswer1', key: STORAGE.wish },
+    { id: 'cardAnswer2', key: STORAGE.feel },
+    { id: 'cardAnswer3', key: STORAGE.koerper },
+    { id: 'cardAnswer4', key: STORAGE.bild, optional: true }
+  ];
+  answers.forEach(({ id, key, optional }) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    const val = localStorage.getItem(key);
+    if(optional && !val){ el.style.display = 'none'; return; }
+    el.textContent = val || '—';
+    el.style.display = '';
+  });
 }
 
 let _visTimer = null;
