@@ -3009,6 +3009,22 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screenVorbereitung .disclaimer-card {
   background: var(--white) !important;
 }
+.user-summary{
+  margin:1.5rem auto 0;
+  max-width:480px;
+  text-align:left;
+  color:var(--gold-1);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1rem;
+  line-height:1.8;
+}
+.user-summary em{
+  font-style:italic;
+  color:var(--gold);
+  font-weight:400;
+}
+.user-summary p{margin:0;}
+
 /* === #screenVisualisierung === */
 #screenVisualisierung {
   background-color: #2a1410;
@@ -3259,8 +3275,8 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 
         <div class="reveal-trigger scroll-reveal" id="revealTrigger">
           <button class="btn reveal-btn" onclick="goTo('screenFeminineWay')">The Feminine Way</button>
-          <button class="btn-link" onclick="goTo('screen2c')">← Zurück</button>
         </div>
+        <button class="btn-link" onclick="goTo('screen2c')" style="margin-top:1rem;">← Zurück</button>
       </div>
     </div>
   </div>
@@ -3425,11 +3441,17 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
           autocomplete="off">
         <div class="input-hint">Eine Sache. Konkret. Sinnlich.</div>
 
-        <label class="input-label" for="feelInput">Dein Gefühl</label>
+        <label class="input-label" for="feelInput">Deine Emotion</label>
         <input type="text" class="text-input" id="feelInput"
           placeholder="z.B. geborgen, gesehen, frei"
           autocomplete="off">
         <div class="input-hint">Wie fühlt es sich an, wenn es schon da ist?</div>
+
+        <label class="input-label" for="koerperInput">WO SITZT ES IM KÖRPER?</label>
+        <input type="text" class="text-input" id="koerperInput"
+          placeholder="z.B. Brust, Bauch, Kehle..."
+          autocomplete="off">
+        <div class="input-hint">Spüre kurz in deinen Körper hinein.</div>
 
         <label class="input-label" for="bildInput">Bild</label>
         <input type="text" class="text-input" id="bildInput"
@@ -3482,6 +3504,13 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
             <p class="step-desc">Folge dem Punkt mit den Augen. Der Kopf bleibt gerade.</p>
           </div>
         </div>
+      </div>
+
+      <div class="user-summary">
+        <p><em>Dein Wunsch:</em> <span id="summaryWunsch"></span></p>
+        <p><em>Deine Emotion:</em> <span id="summaryEmotion"></span></p>
+        <p><em>Wo sitzt es:</em> <span id="summaryKoerper"></span></p>
+        <p><em>Dein Bild:</em> <span id="summaryBild"></span></p>
       </div>
 
       <p class="disclaimer-text" style="margin-top:1.5rem;">Wichtiger Hinweis: Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.</p>
@@ -3754,7 +3783,7 @@ let currentAudioSrc = '';
 
 const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenVisualisierung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
-const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
+const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', koerper:'bbu_koerper', bild:'bbu_bild', tempo:'bbu_tempo' };
 
 // Browser-Scroll-Restoration deaktivieren — wir steuern selbst
 if ('scrollRestoration' in history) {
@@ -3775,6 +3804,17 @@ function getAudioForScreen(id){
     if(g.screens.has(id)) return g.src;
   }
   return null;
+}
+
+function loadUserSummary(){
+  const set = (id, key) => {
+    const el = document.getElementById(id);
+    if(el) el.textContent = localStorage.getItem(key) || '—';
+  };
+  set('summaryWunsch',  STORAGE.wish);
+  set('summaryEmotion', STORAGE.feel);
+  set('summaryKoerper', STORAGE.koerper);
+  set('summaryBild',    STORAGE.bild);
 }
 
 let _visTimer = null;
@@ -3926,6 +3966,7 @@ function goTo(id){
   updateDarkModeBannerVisibility(id);
   if(id === 'screen6') startBreathText();
   if(id === 'screenVisualisierung') runVisualisierung();
+  if(id === 'screenVorbereitung') loadUserSummary();
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
@@ -4005,9 +4046,13 @@ function toggleSession(){
 window.addEventListener('load', () => {
   const wishInput = document.getElementById('wishInput');
   const feelInput = document.getElementById('feelInput');
+  const koerperInput = document.getElementById('koerperInput');
+  const bildInput = document.getElementById('bildInput');
 
   wishInput.value = localStorage.getItem(STORAGE.wish) || '';
   feelInput.value = localStorage.getItem(STORAGE.feel) || '';
+  if(koerperInput) koerperInput.value = localStorage.getItem(STORAGE.koerper) || '';
+  if(bildInput) bildInput.value = localStorage.getItem(STORAGE.bild) || '';
 
   wishInput.addEventListener('input', e => {
     localStorage.setItem(STORAGE.wish, e.target.value);
@@ -4016,6 +4061,12 @@ window.addEventListener('load', () => {
   feelInput.addEventListener('input', e => {
     localStorage.setItem(STORAGE.feel, e.target.value);
     updateOrder();
+  });
+  if(koerperInput) koerperInput.addEventListener('input', e => {
+    localStorage.setItem(STORAGE.koerper, e.target.value);
+  });
+  if(bildInput) bildInput.addEventListener('input', e => {
+    localStorage.setItem(STORAGE.bild, e.target.value);
   });
 
   setTempo('sanft');
