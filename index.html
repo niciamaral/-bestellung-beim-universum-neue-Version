@@ -3479,7 +3479,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
         <div class="step-card">
           <span class="step-bg-num">1</span>
           <div class="step-content">
-            <h3 class="step-title">Augen schließen</h3>
+            <h3 class="step-title">Dein Wunsch</h3>
             <p class="step-answer" id="cardAnswer1" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
             <p class="step-desc">Denk an deinen Wunsch. Stell ihn dir bildlich vor.</p>
           </div>
@@ -3487,7 +3487,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
         <div class="step-card">
           <span class="step-bg-num">2</span>
           <div class="step-content">
-            <h3 class="step-title">Emotion spüren</h3>
+            <h3 class="step-title">Deine Emotion</h3>
             <p class="step-answer" id="cardAnswer2" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
             <p class="step-desc">Welche Emotion spürst du dabei? Halte alles.</p>
           </div>
@@ -3503,18 +3503,11 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
         <div class="step-card">
           <span class="step-bg-num">4</span>
           <div class="step-content">
-            <h3 class="step-title">Augen öffnen</h3>
-            <p class="step-answer" id="cardAnswer4" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;display:none;"></p>
-            <p class="step-desc">Folge dem Punkt mit den Augen. Der Kopf bleibt gerade.</p>
+            <h3 class="step-title">Dein Bild</h3>
+            <p class="step-answer" id="cardAnswer4" style="color:var(--gold);font-style:italic;margin-top:0.5rem;font-size:0.95rem;"></p>
+            <p class="step-desc">Stell dir das bildlich vor.</p>
           </div>
         </div>
-      </div>
-
-      <div class="user-summary">
-        <p><em>Dein Wunsch:</em> <span id="summaryWunsch"></span></p>
-        <p><em>Deine Emotion:</em> <span id="summaryEmotion"></span></p>
-        <p><em>Wo sitzt es:</em> <span id="summaryKoerper"></span></p>
-        <p><em>Dein Bild:</em> <span id="summaryBild"></span></p>
       </div>
 
       <p class="disclaimer-text" style="margin-top:1.5rem;">Wichtiger Hinweis: Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.</p>
@@ -3826,7 +3819,7 @@ function loadUserSummary(){
     { id: 'cardAnswer1', key: STORAGE.wish },
     { id: 'cardAnswer2', key: STORAGE.feel },
     { id: 'cardAnswer3', key: STORAGE.koerper },
-    { id: 'cardAnswer4', key: STORAGE.bild, optional: true }
+    { id: 'cardAnswer4', key: STORAGE.bild }
   ];
   answers.forEach(({ id, key, optional }) => {
     const el = document.getElementById(id);
