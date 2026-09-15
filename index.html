@@ -3009,6 +3009,36 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screenVorbereitung .disclaimer-card {
   background: var(--white) !important;
 }
+/* === #screenVisualisierung === */
+#screenVisualisierung {
+  background-color: #2a1410;
+}
+#screenVisualisierung .vis-orb {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 2rem auto;
+  background: radial-gradient(circle at 35% 32%, #fff8ec 0%, var(--gold-1) 35%, var(--gold) 75%, var(--sienna) 100%);
+  box-shadow: inset 0 0 8px rgba(255,248,236,0.45), 0 0 24px 4px rgba(232,192,106,0.5);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#screenVisualisierung .bilat-orb-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(255,255,255,0.95);
+  font-size: 0.65rem;
+  text-align: center;
+  white-space: nowrap;
+  transition: opacity 0.5s ease;
+}
+
 /* screen4 — Fließtext + min-height-Fix */
 #screen4 {
   min-height: 100vh;
@@ -3457,12 +3487,32 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       <p class="disclaimer-text" style="margin-top:1.5rem;">Wichtiger Hinweis: Menschen mit Epilepsie oder neurologischen Erkrankungen konsultieren bitte vorher ihren Arzt.</p>
 
       <div class="nav-actions vorbereitung-initial">
-        <button class="btn" onclick="openKugelModal()">Ich bin bereit</button>
+        <button class="btn" onclick="goTo('screenVisualisierung')">Ich bin bereit</button>
         <button class="btn-link" onclick="goTo('screen8')">← Zurück</button>
       </div>
       <div class="nav-actions vorbereitung-after">
         <button class="btn" onclick="openKugelModal()">Noch mal wiederholen</button>
         <button class="btn" onclick="goTo('screenAbschluss')">Weiter</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN VISUALISIERUNG (nach screenVorbereitung) ===== -->
+<div class="screen content" id="screenVisualisierung">
+  <div class="wrap">
+    <div class="content-inner center">
+      <div class="eyebrow">Visualisierung</div>
+      <h2>Lass es <em>lebendig</em> werden</h2>
+      <p>Halte diese Bilder für einen Moment in dir.</p>
+
+      <div class="vis-orb">
+        <span class="bilat-orb-text">Dein Wunsch</span>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn" onclick="openKugelModal()">ICH BIN BEREIT</button>
+        <button class="btn-link" onclick="goTo('screenVorbereitung')">← Zurück</button>
       </div>
     </div>
   </div>
@@ -3702,7 +3752,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 // === Audio-System State (global, persistent über alle Funktionsaufrufe) ===
 let currentAudioSrc = '';
 
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenAbschluss','screen10'];
+const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenVisualisierung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', tempo:'bbu_tempo' };
 
@@ -3716,7 +3766,7 @@ document.querySelectorAll('.irrglaube-video').forEach(vid => { vid.load(); });
 const AUDIO_GROUPS = [
   { src: 'audio/audio1.mp3', screens: new Set(['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3']) },
   { src: 'audio/audio5emdr.m4a', screens: new Set(['screen4','screen5']) },
-  { src: 'audio/audio2.mp3', screens: new Set(['screen6','screen7','screen8','screenVorbereitung']) },
+  { src: 'audio/audio2.mp3', screens: new Set(['screen6','screen7','screen8','screenVorbereitung','screenVisualisierung']) },
   { src: 'audio/audio3.mp3', screens: new Set(['screenAbschluss','screen10','streamSelf','streamRelation','streamRelationProducts']) }
 ];
 
@@ -3725,6 +3775,29 @@ function getAudioForScreen(id){
     if(g.screens.has(id)) return g.src;
   }
   return null;
+}
+
+let _visTimer = null;
+let _visRound = 0, _visPhase = 0;
+const VIS_TEXTS = ['Dein Wunsch', 'Deine Emotion', 'Wo sitzt es?', 'Dein Bild'];
+const VIS_MAX_ROUNDS = 3;
+function runVisualisierung() {
+  const el = document.querySelector('#screenVisualisierung .bilat-orb-text');
+  if(!el) return;
+  clearTimeout(_visTimer);
+  _visRound = 0; _visPhase = 0;
+  function nextPhase() {
+    if(_visRound >= VIS_MAX_ROUNDS) return;
+    el.style.opacity = '0';
+    _visTimer = setTimeout(() => {
+      el.textContent = VIS_TEXTS[_visPhase];
+      el.style.opacity = '1';
+      _visPhase++;
+      if(_visPhase >= VIS_TEXTS.length){ _visPhase = 0; _visRound++; }
+      if(_visRound < VIS_MAX_ROUNDS){ _visTimer = setTimeout(nextPhase, 3000); }
+    }, 500);
+  }
+  nextPhase();
 }
 
 let _breathTimer = null;
@@ -3852,6 +3925,7 @@ function goTo(id){
   updateSoundBtnVisibility(id);
   updateDarkModeBannerVisibility(id);
   if(id === 'screen6') startBreathText();
+  if(id === 'screenVisualisierung') runVisualisierung();
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
