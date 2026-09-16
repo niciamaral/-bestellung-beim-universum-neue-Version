@@ -3048,30 +3048,56 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screenVisualisierung {
   background-color: #2a1410;
 }
+#screenVisualisierung h2,
+#screenVisualisierung p,
+#screenVisualisierung .eyebrow {
+  color: #ffffff !important;
+}
 #screenVisualisierung .vis-orb {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  margin: 2rem auto;
-  background: radial-gradient(circle at 35% 32%, #fff8ec 0%, var(--gold-1) 35%, var(--gold) 75%, var(--sienna) 100%);
-  box-shadow: inset 0 0 8px rgba(255,248,236,0.45), 0 0 24px 4px rgba(232,192,106,0.5);
+  margin: 2.5rem auto;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(255,248,236,0.55) 0%,
+    rgba(232,192,106,0.7) 25%,
+    rgba(196,150,58,0.45) 55%,
+    rgba(196,150,58,0.15) 80%,
+    transparent 100%);
+  border: 1px solid rgba(232,192,106,0.6);
+  box-shadow:
+    inset 0 0 30px rgba(255,248,236,0.3),
+    0 0 40px 8px rgba(232,192,106,0.35),
+    0 0 80px 16px rgba(232,192,106,0.2);
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: breathe 14s ease-in-out infinite;
 }
-#screenVisualisierung .bilat-orb-text {
+@media(min-width:769px){
+  #screenVisualisierung .vis-orb {
+    width: 200px;
+    height: 200px;
+  }
+}
+.vis-orb-text {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: rgba(255,255,255,0.95);
-  font-size: 0.65rem;
-  text-align: center;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  color: rgba(255,255,255,0.95) !important;
+  font-size: 1rem !important;
+  text-align: center !important;
   white-space: nowrap;
   transition: opacity 0.5s ease;
+}
+@media(min-width:769px){
+  .vis-orb-text {
+    font-size: 1.3rem !important;
+  }
 }
 
 /* screen4 — Fließtext + min-height-Fix */
@@ -3552,7 +3578,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       <p>Halte diese Bilder für einen Moment in dir.</p>
 
       <div class="vis-orb">
-        <span class="bilat-orb-text">Dein Wunsch</span>
+        <span class="vis-orb-text">Dein Wunsch</span>
       </div>
 
       <div class="nav-actions">
@@ -3855,7 +3881,7 @@ let _visRound = 0, _visPhase = 0;
 const VIS_TEXTS = ['Dein Wunsch', 'Deine Emotion', 'Wo sitzt es?', 'Dein Bild'];
 const VIS_MAX_ROUNDS = 3;
 function runVisualisierung() {
-  const el = document.querySelector('#screenVisualisierung .bilat-orb-text');
+  const el = document.querySelector('#screenVisualisierung .vis-orb-text');
   if(!el) return;
   clearTimeout(_visTimer);
   _visRound = 0; _visPhase = 0;
