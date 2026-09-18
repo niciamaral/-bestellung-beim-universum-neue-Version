@@ -3949,10 +3949,10 @@ function playAudio(src){
     audio.volume = 0;
     audio.load();
     audio.play().catch(() => {});
-    _fadeTo(audio, targetVol, 50, null);
+    _fadeTo(audio, targetVol, 300, null);
   };
   if(!audio.paused && audio.volume > 0){
-    _fadeTo(audio, 0, 50, doSwitch);
+    _fadeTo(audio, 0, 300, doSwitch);
   } else {
     doSwitch();
   }
