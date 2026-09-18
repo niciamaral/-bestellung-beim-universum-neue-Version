@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/bild3.png">
+<link rel="preload" as="image" href="images/bild4.png">
 <link rel="preload" as="image" href="images/bild6.png">
 <link rel="preload" as="video" href="videotuer.mp4">
 <style>*{box-sizing:border-box;scrollbar-width:none;-ms-overflow-style:none;}*::-webkit-scrollbar{display:none;width:0;}html{overflow-x:hidden;}body{overflow-x:hidden;width:100%;}</style>
@@ -3145,6 +3146,10 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screenAbschluss .abschluss-divider {
   background: var(--gold-1) !important;
 }
+#screenAbschluss .nav-actions {
+  flex-direction: column !important;
+  align-items: center !important;
+}
 
 /* === Dark-Mode Hinweis-Banner — klein, nur auf screen1 === */
 .dark-mode-banner {
@@ -3687,11 +3692,10 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       bereits auf dich warten.
     </p>
 
-    <button class="btn reveal-on-scroll" onclick="goTo('screen10')">
-      Räume entdecken
-    </button>
-
-    <button class="btn-link" onclick="goTo('screenVisualisierung')" style="margin-top:1rem;">← Zurück</button>
+    <div class="nav-actions">
+      <button class="btn reveal-on-scroll" onclick="goTo('screen10')">Räume entdecken</button>
+      <button class="btn-link" onclick="goTo('screenVisualisierung')">← Zurück</button>
+    </div>
 
   </div>
 </div>
