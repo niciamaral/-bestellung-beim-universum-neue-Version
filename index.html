@@ -3150,24 +3150,28 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   flex-direction: column !important;
   align-items: center !important;
 }
-/* Wasserzeichen-Abdeckung rechts unten */
+/* Wasserzeichen-Abdeckung via radial-gradient Ecke unten rechts */
+#screen6,
+#screen7,
+#screenVisualisierung,
+#screen10 {
+  position: relative;
+}
 #screen6::after,
 #screen7::after,
 #screenVisualisierung::after,
 #screen10::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 180px;
-  height: 70px;
-  background: linear-gradient(
-    to top left,
-    rgba(42,20,16,1) 30%,
-    transparent 100%
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 95% 95%,
+    rgba(101,30,20,1) 0%,
+    rgba(101,30,20,0.95) 8%,
+    transparent 25%
   );
-  z-index: 10;
   pointer-events: none;
+  z-index: 2;
 }
 
 /* === Dark-Mode Hinweis-Banner — klein, nur auf screen1 === */
