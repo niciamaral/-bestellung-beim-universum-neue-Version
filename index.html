@@ -3150,6 +3150,25 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   flex-direction: column !important;
   align-items: center !important;
 }
+/* Wasserzeichen-Abdeckung rechts unten */
+#screen6::after,
+#screen7::after,
+#screenVisualisierung::after,
+#screen10::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 180px;
+  height: 70px;
+  background: linear-gradient(
+    to top left,
+    rgba(42,20,16,1) 30%,
+    transparent 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
 
 /* === Dark-Mode Hinweis-Banner — klein, nur auf screen1 === */
 .dark-mode-banner {
