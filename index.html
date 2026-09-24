@@ -3262,8 +3262,35 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screenTuer .nav-actions {
   bottom: 4rem !important;
 }
-#screenTuer .door-words {
-  top: 30% !important;
+.door-words {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90% !important;
+  text-align: center !important;
+  z-index: 3 !important;
+}
+.door-sentence {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+@media (max-width: 768px) {
+  .door-words {
+    width: 95% !important;
+  }
+  .door-sentence {
+    font-size: 1.4rem !important;
+  }
+}
+@media (min-width: 769px) {
+  .door-sentence {
+    font-size: 2rem !important;
+  }
 }
 /* === screen1 disclaimer Abstand === */
 #screen1 .disclaimer {
