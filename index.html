@@ -3307,14 +3307,15 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   border-radius: 50%;
   margin: 2.5rem auto;
   background: radial-gradient(circle at 40% 35%,
-    rgba(232,192,106,0.6) 0%,
-    rgba(196,150,58,0.8) 40%,
-    rgba(139,58,42,0.6) 80%,
-    rgba(42,20,16,0.4) 100%);
+    rgba(253,250,246,0.9) 0%,
+    rgba(245,235,220,0.7) 40%,
+    rgba(232,192,106,0.3) 70%,
+    rgba(196,150,58,0.15) 100%);
   border: 1px solid rgba(232,192,106,0.6);
   box-shadow:
-    0 0 20px 4px rgba(196,150,58,0.3),
-    0 0 40px 8px rgba(196,150,58,0.15);
+    0 0 20px 4px rgba(232,192,106,0.2),
+    0 0 40px 8px rgba(232,192,106,0.1),
+    inset 0 0 20px rgba(253,250,246,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3325,13 +3326,15 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 #screen1 .tritt-ein-orb span {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
-  color: #ffffff !important;
-  font-weight: 400 !important;
-  font-size: 1.1rem !important;
-  letter-spacing: 0.2em !important;
-  text-shadow: 0 0 12px rgba(232,192,106,0.8) !important;
   text-align: center;
   pointer-events: none;
+}
+.eintritt-orb-text {
+  color: var(--gold) !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  letter-spacing: 0.25em !important;
+  text-shadow: none !important;
 }
 </style>
 </head>
@@ -3353,7 +3356,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       <p class="hero-text animate" style="animation-delay:0.9s">Schön, dass du da bist, du wundervolle Frau. Ich lade dich ein in einen Raum — für deine Wünsche, deine Träume und vor allem: für dich selbst.</p>
 
       <div class="tritt-ein-orb" onclick="startAudio(); goTo('screenTuer')">
-        <span>TRITT EIN</span>
+        <span class="eintritt-orb-text">TRITT EIN</span>
       </div>
     </div>
   </div>
