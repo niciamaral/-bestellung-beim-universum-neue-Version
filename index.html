@@ -3231,6 +3231,39 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   pointer-events: none;
   font-family: 'Outfit', sans-serif;
 }
+/* === Tritt-ein-Kugel auf screen1 === */
+#screen1 .tritt-ein-orb {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 2.5rem auto;
+  background: radial-gradient(circle at 35% 35%,
+    rgba(255,248,236,0.55) 0%,
+    rgba(232,192,106,0.7) 25%,
+    rgba(196,150,58,0.45) 55%,
+    rgba(196,150,58,0.15) 80%,
+    transparent 100%);
+  border: 1px solid rgba(232,192,106,0.6);
+  box-shadow:
+    inset 0 0 30px rgba(255,248,236,0.3),
+    0 0 40px 8px rgba(232,192,106,0.35),
+    0 0 80px 16px rgba(232,192,106,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  animation: breathe 14s ease-in-out infinite;
+}
+#screen1 .tritt-ein-orb span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(255,255,255,0.95);
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
 </style>
 </head>
 <body>
@@ -3251,36 +3284,28 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       <h1 class="animate" style="animation-delay:0.5s">Bestellung beim <em>Universum</em></h1>
       <p class="hero-text animate" style="animation-delay:0.9s">Schön, dass du da bist, du wundervolle Frau. Ich lade dich ein in einen Raum — für deine Wünsche, deine Träume und vor allem: für dich selbst.</p>
 
-      <!-- TÜR-SEKTION -->
-      <div class="door-section" id="doorSection">
-        <div class="door-container">
-          <video
-            class="door-video"
-            src="videotuer.mp4"
-            muted
-            playsinline
-            preload="auto"
-          ></video>
-          <div class="door-overlay"></div>
-          <div class="door-glow"></div>
-
-          <!-- Teleprompter: 5 ganze Sätze sequenziell -->
-          <div id="doorWords" class="door-words">
-            <p class="door-sentence" id="s1">Was wäre, wenn alles in dir beginnt?</p>
-            <p class="door-sentence" id="s2">Was wäre, wenn du eine absolute Kraft in dir trägst,</p>
-            <p class="door-sentence" id="s3">die dir noch niemand gezeigt hat?</p>
-            <p class="door-sentence" id="s4">Und was wäre, wenn ich dir heute zeige —</p>
-            <p class="door-sentence" id="s5">dass die Antwort nicht draußen wartet, sondern längst in dir ist?</p>
-          </div>
-        </div>
+      <div class="tritt-ein-orb" onclick="startAudio(); goTo('screenTuer')">
+        <span>TRITT EIN</span>
       </div>
-
-      <p class="hero-text animate" style="animation-delay:1.3s">Du hast bestimmt schon vieles versucht. Visualisiert. Affirmiert. Dir vorgestellt, als wäre es schon da. Und wenn du ehrlich bist — so ganz hat es noch nicht funktioniert.</p>
-      <p class="hero-text animate" style="animation-delay:2.1s">Die Antwort liegt tiefer als du denkst. Und sie beginnt hier.</p>
-      <button class="btn animate" style="animation-delay:2.4s" onclick="startAudio(); goTo('screen2a')">JETZT ENTDECKEN →</button>
     </div>
   </div>
   <div class="disclaimer animate" style="animation-delay:2.8s"><div><strong>Wichtiger Hinweis</strong>Dieses Coaching-Erlebnis ist keine medizinische oder psychologische Behandlung. Bei akuter psychischer Belastung wende dich bitte an deinen Arzt oder eine psychologische Fachpraxis. Die hier verwendeten Methoden dienen ausschließlich der Selbstreflexion im Rahmen eines persönlichen Wachstumsprozesses.</div></div>
+</div>
+
+<!-- ===== SEITE TÜR: Video Vollbild ===== -->
+<div class="screen irrglaube-screen" id="screenTuer">
+  <video class="irrglaube-video" src="videotuer.mp4" muted playsinline preload="auto"></video>
+  <div class="irrglaube-overlay"></div>
+  <div class="door-words" id="doorWords">
+    <p class="door-sentence" id="s1">Was wäre, wenn alles in dir beginnt?</p>
+    <p class="door-sentence" id="s2">Was wäre, wenn du eine absolute Kraft in dir trägst,</p>
+    <p class="door-sentence" id="s3">die dir noch niemand gezeigt hat?</p>
+    <p class="door-sentence" id="s4">Und was wäre, wenn ich dir heute zeige —</p>
+    <p class="door-sentence" id="s5">dass die Antwort nicht draußen wartet, sondern längst in dir ist?</p>
+  </div>
+  <div class="nav-actions" style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;">
+    <button class="btn" onclick="goTo('screen2a')">WEITER</button>
+  </div>
 </div>
 
 <!-- ===== SEITE 2: Das Missverständnis ===== -->
@@ -3857,7 +3882,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
 // === Audio-System State (global, persistent über alle Funktionsaufrufe) ===
 let currentAudioSrc = '';
 
-const screens = ['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenVisualisierung','screenAbschluss','screen10'];
+const screens = ['screen1','screenTuer','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3','screen4','screen5','screen6','screen7','screen8','screenVorbereitung','screenVisualisierung','screenAbschluss','screen10'];
 const tempos = { sanft:'8s' };
 const STORAGE = { wish:'bbu_wish', feel:'bbu_feel', koerper:'bbu_koerper', bild:'bbu_bild', tempo:'bbu_tempo' };
 
@@ -3869,7 +3894,7 @@ if ('scrollRestoration' in history) {
 document.querySelectorAll('.irrglaube-video').forEach(vid => { vid.load(); });
 
 const AUDIO_GROUPS = [
-  { src: 'audio/audio1.mp3', screens: new Set(['screen1','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3']) },
+  { src: 'audio/audio1.mp3', screens: new Set(['screen1','screenTuer','screen2a','screen2b','screen2c','screen2d','screenFeminineWay','screen3']) },
   { src: 'audio/audio5emdr.m4a', screens: new Set(['screen4','screen5']) },
   { src: 'audio/audio2.mp3', screens: new Set(['screen6','screen7','screen8','screenVorbereitung','screenVisualisierung']) },
   { src: 'audio/audio3.mp3', screens: new Set(['screenAbschluss','screen10','streamSelf','streamRelation','streamRelationProducts']) }
@@ -4058,6 +4083,7 @@ function goTo(id){
   if(id === 'screen6') startBreathText();
   if(id === 'screenVisualisierung') runVisualisierung();
   if(id === 'screenVorbereitung') loadUserSummary();
+  if(id === 'screenTuer') startTuerAnimation();
 }
 
 // Pause Videos in inaktiven Irrglauben-Sub-Screens (Mobile-Performance)
@@ -4294,6 +4320,44 @@ function closeKugelModal(){
 
 // === The Feminine Way Reveal ===
 // showFeminineWay() entfernt — Feminine-Way ist jetzt eigener Screen (#screenFeminineWay)
+
+// === TUER-ANIMATION (Teleprompter, gestartet via goTo('screenTuer')) ===
+function startTuerAnimation(){
+  const ids = ['s1','s2','s3','s4','s5'];
+  ids.forEach(sid => {
+    const el = document.getElementById(sid);
+    if(el){ el.style.display = 'none'; el.style.opacity = '0'; }
+  });
+  let current = 0;
+  function showNext(){
+    if(current >= ids.length) return;
+    if(current > 0){
+      const prev = document.getElementById(ids[current - 1]);
+      if(prev){
+        prev.style.opacity = '0';
+        prev.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => { prev.style.display = 'none'; }, 500);
+      }
+    }
+    const el = document.getElementById(ids[current]);
+    if(el){
+      el.style.display = 'block';
+      el.style.position = 'absolute';
+      el.style.top = '50%';
+      el.style.left = '50%';
+      el.style.transform = 'translate(-50%, -50%)';
+      el.style.width = '90%';
+      el.style.textAlign = 'center';
+      el.style.fontSize = '30px';
+      el.style.opacity = '0';
+      el.style.transition = 'opacity 0.8s ease';
+      setTimeout(() => { el.style.opacity = '1'; }, 50);
+    }
+    current++;
+    setTimeout(showNext, 4000);
+  }
+  setTimeout(showNext, 1500);
+}
 
 // === TÜR-ANIMATION (IntersectionObserver — startet wenn Video sichtbar) ===
 (function() {
