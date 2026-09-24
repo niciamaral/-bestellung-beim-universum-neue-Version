@@ -3368,11 +3368,12 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   <video class="irrglaube-video" src="videotuer.mp4" muted playsinline preload="auto"></video>
   <div class="irrglaube-overlay"></div>
   <div class="door-words" id="doorWords">
-    <p class="door-sentence" id="s1">Was wäre, wenn alles in dir beginnt?</p>
-    <p class="door-sentence" id="s2">Was wäre, wenn du eine absolute Kraft in dir trägst,</p>
-    <p class="door-sentence" id="s3">die dir noch niemand gezeigt hat?</p>
-    <p class="door-sentence" id="s4">Und was wäre, wenn ich dir heute zeige —</p>
-    <p class="door-sentence" id="s5">dass die Antwort nicht draußen wartet, sondern längst in dir ist?</p>
+    <p class="door-sentence" id="s1">Was wäre, wenn alles, was du suchst, bereits in dir beginnt?</p>
+    <p class="door-sentence" id="s2">Was wäre, wenn du eine Schöpferkraft in dir trägst,</p>
+    <p class="door-sentence" id="s3">die viel größer ist als deine Zweifel,</p>
+    <p class="door-sentence" id="s4">die du bisher nur nicht genutzt hast, weil dir niemand den Schlüssel dazu gegeben hat?</p>
+    <p class="door-sentence" id="s5">Was wäre, wenn wir diesen Schlüssel heute gemeinsam umdrehen?</p>
+    <p class="door-sentence" id="s6">Denn hinter dieser Tür wartet bereits die Antwort. Und die Antwort… bist du.</p>
   </div>
   <div class="nav-actions" style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;">
     <button class="btn" onclick="goTo('screen2a')">WEITER</button>
@@ -4393,7 +4394,8 @@ function closeKugelModal(){
 
 // === TUER-ANIMATION (Teleprompter, gestartet via goTo('screenTuer')) ===
 function startTuerAnimation(){
-  const ids = ['s1','s2','s3','s4','s5'];
+  const ids = ['s1','s2','s3','s4','s5','s6'];
+  const fontSizes = { s1:'1.8rem', s2:'1.4rem', s3:'1.4rem', s4:'1.2rem', s5:'1.6rem', s6:'2rem' };
   ids.forEach(sid => {
     const el = document.getElementById(sid);
     if(el){ el.style.display = 'none'; el.style.opacity = '0'; }
@@ -4418,7 +4420,7 @@ function startTuerAnimation(){
       el.style.transform = 'translate(-50%, -50%)';
       el.style.width = '90%';
       el.style.textAlign = 'center';
-      el.style.fontSize = '30px';
+      el.style.fontSize = fontSizes[ids[current]];
       el.style.opacity = '0';
       el.style.transition = 'opacity 0.8s ease';
       setTimeout(() => { el.style.opacity = '1'; }, 50);
@@ -4428,71 +4430,6 @@ function startTuerAnimation(){
   }
   setTimeout(showNext, 1500);
 }
-
-// === TÜR-ANIMATION (IntersectionObserver — startet wenn Video sichtbar) ===
-(function() {
-  const doorSection = document.getElementById('doorSection');
-  if (!doorSection) return;
-
-  const video = doorSection.querySelector('.door-video');
-  const overlay = doorSection.querySelector('.door-overlay');
-  const glow = doorSection.querySelector('.door-glow');
-
-  let animStarted = false;
-  function startDoorAnimation() {
-    if (animStarted) return;
-    animStarted = true;
-
-    setTimeout(() => {
-      overlay.classList.add('is-opening');
-      glow.classList.add('is-active');
-    }, 1000);
-
-    const sentences = ['s1','s2','s3','s4','s5'];
-    let current = 0;
-    function showNext(){
-      if (current >= sentences.length) return;
-      if (current > 0) {
-        const prev = document.getElementById(sentences[current - 1]);
-        if (prev) {
-          prev.style.opacity = '0';
-          prev.style.transition = 'opacity 0.5s ease';
-          setTimeout(() => { prev.style.display = 'none'; }, 500);
-        }
-      }
-      const el = document.getElementById(sentences[current]);
-      if (el) {
-        el.style.display = 'block';
-        el.style.position = 'absolute';
-        el.style.top = '50%';
-        el.style.left = '50%';
-        el.style.transform = 'translate(-50%, -50%)';
-        el.style.width = '90%';
-        el.style.textAlign = 'center';
-        el.style.fontSize = '30px';
-        el.style.opacity = '0';
-        el.style.transition = 'opacity 0.8s ease';
-        setTimeout(() => { el.style.opacity = '1'; }, 50);
-      }
-      current++;
-      setTimeout(showNext, 4000);
-    }
-    setTimeout(showNext, 1500);
-  }
-
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        video.play().catch(() => {});
-        startDoorAnimation();
-      } else {
-        video.pause();
-      }
-    });
-  }, { threshold: 0.5 });
-
-  videoObserver.observe(video);
-})();
 
 // DEBUG: Seitenzahl-Label in jedes .screen einfügen (DOM-Reihenfolge)
 (function(){
