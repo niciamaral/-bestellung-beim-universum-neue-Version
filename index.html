@@ -3231,6 +3231,26 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   pointer-events: none;
   font-family: 'Outfit', sans-serif;
 }
+/* === screenVisualisierung Mobile + Button === */
+@media (max-width: 768px) {
+  #screenVisualisierung .bilat-orb {
+    width: 140px !important;
+    height: 140px !important;
+    margin: -70px 0 0 -70px !important;
+  }
+  #screenVisualisierung .vis-orb-text {
+    font-size: 1.1rem !important;
+  }
+}
+#screenVisualisierung .btn-ready {
+  background: var(--gold) !important;
+  color: var(--bg) !important;
+  border: none !important;
+  opacity: 1 !important;
+  font-size: 0.85rem !important;
+  padding: 0.8rem 2rem !important;
+  border-radius: 50px !important;
+}
 /* === step-title größer auf screen5 + screenVorbereitung === */
 #screen5 .step-title,
 #screenVorbereitung .step-title {
@@ -3650,7 +3670,7 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
       </div>
 
       <div class="nav-actions">
-        <button onclick="openKugelModal()" style="background:transparent;border:1px solid rgba(196,150,58,0.3);color:rgba(196,150,58,0.5);font-size:0.7rem;letter-spacing:0.2em;padding:0.5rem 1.5rem;border-radius:50px;cursor:pointer;font-family:inherit;">ICH BIN BEREIT</button>
+        <button class="btn-ready" onclick="openKugelModal()">ICH BIN BEREIT</button>
         <button class="btn-link" onclick="goTo('screenVorbereitung')">← Zurück</button>
       </div>
     </div>
