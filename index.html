@@ -4421,13 +4421,15 @@ function startTuerAnimation(){
     }
     const el = document.getElementById(ids[current]);
     if(el){
+      if(current === 0) {
+        el.style.position = 'absolute';
+        el.style.top = '50%';
+        el.style.left = '50%';
+        el.style.transform = 'translate(-50%, -50%)';
+        el.style.width = '90%';
+        el.style.textAlign = 'center';
+      }
       el.style.display = 'block';
-      el.style.position = 'absolute';
-      el.style.top = '50%';
-      el.style.left = '50%';
-      el.style.transform = 'translate(-50%, -50%)';
-      el.style.width = '90%';
-      el.style.textAlign = 'center';
       el.style.fontSize = fontSizes[ids[current]];
       el.style.opacity = '0';
       el.style.transition = 'opacity 0.8s ease';
