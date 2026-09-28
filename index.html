@@ -3276,8 +3276,14 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  width: 90% !important;
+  width: 88% !important;
   text-align: center !important;
+  color: #ffffff !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 300 !important;
+  line-height: 1.4 !important;
+  display: none;
+  opacity: 0;
 }
 @media (max-width: 768px) {
   .door-words {
@@ -4411,30 +4417,26 @@ function startTuerAnimation(){
   let current = 0;
   function showNext(){
     if(current >= ids.length) return;
+
+    // Vorherigen ausblenden
     if(current > 0){
       const prev = document.getElementById(ids[current - 1]);
       if(prev){
+        prev.style.transition = 'opacity 0.8s ease';
         prev.style.opacity = '0';
-        prev.style.transition = 'opacity 0.5s ease';
-        setTimeout(() => { prev.style.display = 'none'; }, 500);
+        setTimeout(() => { prev.style.display = 'none'; }, 800);
       }
     }
+    // Aktuellen einblenden
     const el = document.getElementById(ids[current]);
     if(el){
-      if(current === 0) {
-        el.style.position = 'absolute';
-        el.style.top = '50%';
-        el.style.left = '50%';
-        el.style.transform = 'translate(-50%, -50%)';
-        el.style.width = '90%';
-        el.style.textAlign = 'center';
-      }
-      el.style.display = 'block';
       el.style.fontSize = fontSizes[ids[current]];
+      el.style.display = 'block';
       el.style.opacity = '0';
       el.style.transition = 'opacity 0.8s ease';
       setTimeout(() => { el.style.opacity = '1'; }, 50);
     }
+
     current++;
     setTimeout(showNext, 4000);
   }
