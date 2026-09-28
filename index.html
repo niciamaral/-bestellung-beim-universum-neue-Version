@@ -2084,10 +2084,13 @@ h2 em{font-style:italic;color:var(--gold);}
   }
 }
 #kugelModal{overflow:hidden !important;}
-#kugelModal .kugel-track{overflow:visible !important;}
+#kugelModal .kugel-track{
+  overflow:visible !important;
+  width:calc(100vw - 64px) !important;
+}
 @keyframes kugelSession{
-  0%,100%{ transform:translateX(calc(-40vw + 20px)); }
-  50%{ transform:translateX(calc(40vw - 20px)); }
+  0%,100%{ transform:translateX(calc(-50vw + 48px)); }
+  50%{ transform:translateX(calc(50vw - 48px)); }
 }
 /* Session-beenden Button — dezent, klein, rechts unten */
 #kugelModal .btn-end-session {
