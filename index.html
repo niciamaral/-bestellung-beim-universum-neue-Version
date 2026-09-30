@@ -3227,19 +3227,6 @@ p:not(.disclaimer):not(.disclaimer-text):not(.input-hint):not(.tagline):not(.bre
   backdrop-filter: blur(8px);
 }
 
-/* === DEBUG: temporäre Seitenzahl-Labels === */
-.debug-page-num {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  font-size: 11px;
-  padding: 2px 6px;
-  z-index: 99;
-  pointer-events: none;
-  font-family: 'Outfit', sans-serif;
-}
 /* === screenVisualisierung Mobile + Button === */
 @media (max-width: 768px) {
   #screenVisualisierung .bilat-orb {
@@ -4502,15 +4489,6 @@ function startTuerAnimation(){
   setTimeout(showNext, 1500);
 }
 
-// DEBUG: Seitenzahl-Label in jedes .screen einfügen (DOM-Reihenfolge)
-(function(){
-  document.querySelectorAll('.screen').forEach((screen, idx) => {
-    const label = document.createElement('div');
-    label.className = 'debug-page-num';
-    label.textContent = 'Seite ' + (idx + 1);
-    screen.appendChild(label);
-  });
-})();
 </script>
 
 </body>
